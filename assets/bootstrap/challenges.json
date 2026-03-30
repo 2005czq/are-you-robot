@@ -1,0 +1,164 @@
+[
+  {
+    "id": "text-001",
+    "mode": "text",
+    "title": "第一次学骑车",
+    "prompt": "你第一次学骑自行车的时候是什么感觉？",
+    "difficulty": "easy",
+    "explanation": "真人回答里有一点点慌张和很具体的小动作，AI 回答虽然自然，但组织得更完整一些。",
+    "options": [
+      {
+        "id": "text-001-a",
+        "label": "A",
+        "sourceType": "human",
+        "text": "我一开始特别怕摔，脚一直不敢离地。后来我爸在后面扶着，我以为他还抓着，结果一回头发现他早就松手了，那一下又紧张又开心。"
+      },
+      {
+        "id": "text-001-b",
+        "label": "B",
+        "sourceType": "ai",
+        "text": "我记得刚开始的时候心里有点发抖，总觉得车子会歪到一边。可是等我慢慢骑出去几米之后，又觉得风吹在脸上特别有意思，好像突然学会了一件很厉害的事。"
+      }
+    ]
+  },
+  {
+    "id": "text-002",
+    "mode": "text",
+    "title": "最喜欢的下雨天",
+    "prompt": "如果让你描述一个你喜欢的下雨天，你会怎么说？",
+    "difficulty": "normal",
+    "explanation": "真人回答里有一点随口想到哪里说到哪里的感觉，AI 回答更像一段整理过的小作文。",
+    "options": [
+      {
+        "id": "text-002-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "我喜欢那种下午慢慢变暗、窗户上有小雨点往下滑的下雨天。屋子里会变得特别安静，外面像盖了一层灰蓝色的薄纱，让人很想坐下来发呆或者看书。"
+      },
+      {
+        "id": "text-002-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "我喜欢放学刚到家就下雨的那种天。鞋子有点湿，客厅灯一开就暖暖的，外面雨一直响，感觉今天就不用再跑来跑去了，可以安心吃东西。"
+      }
+    ]
+  },
+  {
+    "id": "text-003",
+    "mode": "text",
+    "title": "早餐偏好",
+    "prompt": "如果只能选一种早餐吃一个月，你会选什么？为什么？",
+    "difficulty": "easy",
+    "explanation": "真人回答会更直接，也会带一点个人小习惯；AI 回答通常会把理由讲得更平衡。",
+    "options": [
+      {
+        "id": "text-003-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "如果只能选一种早餐，我会选鸡蛋三明治，因为它吃起来方便，味道也比较稳定，还能搭配不同的酱料和蔬菜，不容易觉得太单调。"
+      },
+      {
+        "id": "text-003-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "我 probably 还是会选豆浆和小包子，因为我早上真的不太清醒，吃这个最省事，而且天冷的时候手里拿着热热的杯子会很舒服。"
+      }
+    ]
+  },
+  {
+    "id": "image-001",
+    "mode": "image",
+    "title": "花朵照片",
+    "prompt": "哪一张更像真实拍到的花朵照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片里的景深和边缘过渡更自然，AI 风格图的颜色更饱和，花瓣边缘也稍微有点发糊。",
+    "options": [
+      {
+        "id": "image-001-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_flower.jpg",
+        "credit": "Pixabay sample image"
+      },
+      {
+        "id": "image-001-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_flower_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      }
+    ]
+  },
+  {
+    "id": "image-002",
+    "mode": "image",
+    "title": "公园视频封面",
+    "prompt": "如果这是一段公园里拍到的短视频封面，哪一张更可能来自真实镜头？",
+    "difficulty": "normal",
+    "explanation": "真实封面的光线过渡和远处细节更统一，AI 风格图虽然也很像，但局部颜色和纹理显得更“抹开”。",
+    "options": [
+      {
+        "id": "image-002-a",
+        "label": "A",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      },
+      {
+        "id": "image-002-b",
+        "label": "B",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_medium.jpg",
+        "credit": "Pixabay sample thumbnail"
+      }
+    ]
+  },
+  {
+    "id": "image-003",
+    "mode": "image",
+    "title": "高清镜头感",
+    "prompt": "下面两张图里，哪一张更像相机真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实图里光影和细节分布更稳定，AI 风格图更容易在边缘和颜色上显得过度处理。",
+    "options": [
+      {
+        "id": "image-003-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
+        "credit": "Pixabay sample thumbnail"
+      },
+      {
+        "id": "image-003-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      }
+    ]
+  },
+  {
+    "id": "image-004",
+    "mode": "image",
+    "title": "人物头像占位",
+    "prompt": "如果这是用户上传的一张头像图，哪一张更像真实照片？",
+    "difficulty": "easy",
+    "explanation": "真实头像的肤色和边缘更自然，AI 风格图会有一点过度平滑和扭曲感。",
+    "options": [
+      {
+        "id": "image-004-a",
+        "label": "A",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      },
+      {
+        "id": "image-004-b",
+        "label": "B",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
+        "credit": "Pixabay sample image"
+      }
+    ]
+  }
+]
