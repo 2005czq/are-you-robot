@@ -5,14 +5,16 @@ class FadeSlideIn extends StatefulWidget {
     super.key,
     required this.child,
     this.delay = Duration.zero,
-    this.offset = const Offset(0, 0.08),
-    this.duration = const Duration(milliseconds: 650),
+    this.offset = const Offset(0, 0.035),
+    this.duration = const Duration(milliseconds: 880),
+    this.beginScale = 0.985,
   });
 
   final Widget child;
   final Duration delay;
   final Offset offset;
   final Duration duration;
+  final double beginScale;
 
   @override
   State<FadeSlideIn> createState() => _FadeSlideInState();
@@ -40,11 +42,16 @@ class _FadeSlideInState extends State<FadeSlideIn> {
       duration: widget.duration,
       curve: Curves.easeOutCubic,
       offset: _visible ? Offset.zero : widget.offset,
-      child: AnimatedOpacity(
+      child: AnimatedScale(
         duration: widget.duration,
         curve: Curves.easeOutCubic,
-        opacity: _visible ? 1 : 0,
-        child: widget.child,
+        scale: _visible ? 1 : widget.beginScale,
+        child: AnimatedOpacity(
+          duration: widget.duration,
+          curve: Curves.easeOutCubic,
+          opacity: _visible ? 1 : 0,
+          child: widget.child,
+        ),
       ),
     );
   }

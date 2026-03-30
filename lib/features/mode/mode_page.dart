@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/widgets/app_page_route.dart';
 import '../../app/widgets/fade_slide_in.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
@@ -32,12 +33,12 @@ class _ModePageState extends State<ModePage> {
   Future<List<Challenge>> _loadBatch() async {
     final batch = await widget.repository.randomBatch(
       widget.mode,
-      count: 10,
+      count: 6,
       excludeIds: _lastBatchIds,
     );
 
     if (batch.isEmpty) {
-      return widget.repository.randomBatch(widget.mode, count: 10);
+      return widget.repository.randomBatch(widget.mode, count: 6);
     }
 
     _lastBatchIds
@@ -58,7 +59,7 @@ class _ModePageState extends State<ModePage> {
       return;
     }
     await Navigator.of(context).push(
-      MaterialPageRoute<void>(
+      AppPageRoute<void>(
         builder: (context) => ChallengePage(challenge: challenge),
       ),
     );
@@ -67,152 +68,168 @@ class _ModePageState extends State<ModePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final wide = MediaQuery.sizeOf(context).width >= 900;
+    final topColor = theme.brightness == Brightness.dark
+        ? const Color(0xFF0F1F31)
+        : const Color(0xFFF0F7FF);
+    final bottomColor = theme.brightness == Brightness.dark
+        ? const Color(0xFF0B1522)
+        : const Color(0xFFF8FBFF);
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFF0F7FF), Color(0xFFF8FBFF)],
+            colors: [topColor, bottomColor],
           ),
         ),
         child: SafeArea(
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1160),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FadeSlideIn(
-                      child: Row(
-                        children: [
-                          IconButton.outlined(
-                            onPressed: () => Navigator.of(context).pop(),
-                            icon: const Icon(Icons.arrow_back_rounded),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(widget.mode.label, style: theme.textTheme.headlineMedium),
-                                const SizedBox(height: 4),
-                                Text(
-                                  widget.mode == ChallengeMode.text
-                                      ? '从题库里抽一题，试着找出哪一句更像真人的声音。'
-                                      : '看清光线、边缘和细节，判断哪一张更像真实拍摄。',
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                    color: theme.colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    FadeSlideIn(
-                      delay: const Duration(milliseconds: 120),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(22),
-                          child: Wrap(
-                            alignment: WrapAlignment.spaceBetween,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 14,
-                            runSpacing: 14,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    widget.mode == ChallengeMode.text ? '✍️ 文字侦探桌' : '🖼️ 图片侦探桌',
-                                    style: theme.textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    '你可以随机开始，也可以先从下面的题目卡片里挑一题。',
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.onSurfaceVariant,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final wide = constraints.maxWidth >= 900;
+                  final compactHeader = constraints.maxWidth < 820;
+
+                  return Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadeSlideIn(
+                          child: compactHeader
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        IconButton.outlined(
+                                          onPressed: () => Navigator.of(context).pop(),
+                                          icon: const Icon(Icons.arrow_back_rounded),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Text(
+                                            widget.mode.label,
+                                            style: theme.textTheme.headlineMedium,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Wrap(
-                                spacing: 12,
-                                runSpacing: 12,
-                                children: [
-                                  FilledButton.icon(
-                                    onPressed: _openRandomChallenge,
-                                    icon: const Icon(Icons.casino_outlined),
-                                    label: const Text('随机挑战'),
-                                  ),
-                                  OutlinedButton.icon(
-                                    onPressed: _refreshBatch,
-                                    icon: const Icon(Icons.refresh_rounded),
-                                    label: const Text('换一批'),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    const SizedBox(height: 12),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Wrap(
+                                        spacing: 12,
+                                        runSpacing: 12,
+                                        alignment: WrapAlignment.end,
+                                        children: [
+                                          OutlinedButton.icon(
+                                            onPressed: _refreshBatch,
+                                            icon: const Icon(Icons.refresh_rounded),
+                                            label: const Text('换一批'),
+                                          ),
+                                          FilledButton.icon(
+                                            onPressed: _openRandomChallenge,
+                                            icon: const Icon(Icons.casino_outlined),
+                                            label: const Text('随机挑战'),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    IconButton.outlined(
+                                      onPressed: () => Navigator.of(context).pop(),
+                                      icon: const Icon(Icons.arrow_back_rounded),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(
+                                        widget.mode.label,
+                                        style: theme.textTheme.headlineMedium,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    OutlinedButton.icon(
+                                      onPressed: _refreshBatch,
+                                      icon: const Icon(Icons.refresh_rounded),
+                                      label: const Text('换一批'),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    FilledButton.icon(
+                                      onPressed: _openRandomChallenge,
+                                      icon: const Icon(Icons.casino_outlined),
+                                      label: const Text('随机挑战'),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          widget.mode == ChallengeMode.text
+                              ? '从下面 6 个问题里挑一个，点进去再判断哪一段更像真人写的。'
+                              : '从下面 6 个标题里挑一个，点进去之后再看图片。',
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    Expanded(
-                      child: FutureBuilder<List<Challenge>>(
-                        future: _batchFuture,
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState != ConnectionState.done) {
-                            return const Center(child: CircularProgressIndicator());
-                          }
+                        const SizedBox(height: 16),
+                        Expanded(
+                          child: FutureBuilder<List<Challenge>>(
+                            future: _batchFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState != ConnectionState.done) {
+                                return const Center(child: CircularProgressIndicator());
+                              }
 
-                          final challenges = snapshot.data ?? <Challenge>[];
-                          if (challenges.isEmpty) {
-                            return Center(
-                              child: Text(
-                                '这个模式暂时还没有可玩的题目。',
-                                style: theme.textTheme.titleMedium,
-                              ),
-                            );
-                          }
+                              final challenges = snapshot.data ?? <Challenge>[];
+                              if (challenges.isEmpty) {
+                                return Center(
+                                  child: Text(
+                                    '这个模式暂时还没有可玩的题目。',
+                                    style: theme.textTheme.titleMedium,
+                                  ),
+                                );
+                              }
 
-                          return GridView.builder(
-                            itemCount: challenges.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: wide ? 2 : 1,
-                              crossAxisSpacing: 18,
-                              mainAxisSpacing: 18,
-                              childAspectRatio: wide ? 1.42 : 1.24,
-                            ),
-                            itemBuilder: (context, index) {
-                              final challenge = challenges[index];
-                              return FadeSlideIn(
-                                delay: Duration(milliseconds: 160 + index * 45),
-                                child: _ChallengePreviewCard(
-                                  challenge: challenge,
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute<void>(
-                                        builder: (context) => ChallengePage(challenge: challenge),
-                                      ),
-                                    );
-                                  },
+                              return GridView.builder(
+                                padding: EdgeInsets.zero,
+                                itemCount: challenges.length,
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: wide ? 2 : 1,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: wide ? 3.2 : 2.85,
                                 ),
+                                itemBuilder: (context, index) {
+                                  final challenge = challenges[index];
+                                  return FadeSlideIn(
+                                    delay: Duration(milliseconds: 90 + index * 40),
+                                    child: _ChallengePreviewCard(
+                                      challenge: challenge,
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          AppPageRoute<void>(
+                                            builder: (context) => ChallengePage(challenge: challenge),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ),
@@ -234,81 +251,34 @@ class _ChallengePreviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    String? previewImage;
-    for (final option in challenge.options) {
-      if (option.asset != null) {
-        previewImage = option.asset;
-        break;
-      }
-    }
+    final hint = challenge.mode == ChallengeMode.text
+        ? challenge.prompt
+        : '进入后查看两张图片，再判断哪张更像真实镜头。';
 
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Chip(
-                    avatar: Text(challenge.mode == ChallengeMode.text ? '✍️' : '🖼️'),
-                    label: Text(challenge.difficulty.toUpperCase()),
-                  ),
-                  const Spacer(),
-                  Icon(
-                    challenge.mode == ChallengeMode.text
-                        ? Icons.chat_bubble_outline_rounded
-                        : Icons.image_outlined,
-                    color: theme.colorScheme.primary,
-                  ),
-                ],
+              Text(
+                challenge.title,
+                style: theme.textTheme.headlineSmall?.copyWith(fontSize: 26),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 14),
-              if (previewImage != null) ...[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(22),
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Image.asset(previewImage, fit: BoxFit.cover),
-                  ),
+              const SizedBox(height: 6),
+              Text(
+                hint,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
-                const SizedBox(height: 16),
-              ],
-              Text(challenge.title, style: theme.textTheme.headlineSmall),
-              const SizedBox(height: 8),
-              Expanded(
-                child: Text(
-                  challenge.prompt,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 14),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFEDF5FF), Color(0xFFF7FBFF)],
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.play_circle_outline_rounded, color: theme.colorScheme.primary),
-                    const SizedBox(width: 10),
-                    Text(
-                      '点击开始判断',
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),

@@ -14,20 +14,25 @@ class ChallengePage extends StatefulWidget {
 
 class _ChallengePageState extends State<ChallengePage> {
   String? _selectedOptionId;
-  bool _revealed = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final challenge = widget.challenge;
+    final topColor = theme.brightness == Brightness.dark
+        ? const Color(0xFF0D1B2A)
+        : const Color(0xFFF4F9FF);
+    final bottomColor = theme.brightness == Brightness.dark
+        ? const Color(0xFF101927)
+        : const Color(0xFFFFFFFF);
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFFF4F9FF), Color(0xFFFFFFFF)],
+            colors: [topColor, bottomColor],
           ),
         ),
         child: SafeArea(
@@ -46,59 +51,38 @@ class _ChallengePageState extends State<ChallengePage> {
                             onPressed: () => Navigator.of(context).pop(),
                             icon: const Icon(Icons.arrow_back_rounded),
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(challenge.title, style: theme.textTheme.headlineMedium),
-                                const SizedBox(height: 4),
-                                Text(
-                                  '从两张卡片里选出你觉得更像真人创作的那一个。',
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                    color: theme.colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     FadeSlideIn(
                       delay: const Duration(milliseconds: 120),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Wrap(
-                                spacing: 10,
-                                runSpacing: 10,
-                                children: [
-                                  Chip(
-                                    avatar: Text(challenge.mode == ChallengeMode.text ? '✍️' : '🖼️'),
-                                    label: Text(challenge.mode.label),
-                                  ),
-                                  Chip(label: Text(challenge.difficulty.toUpperCase())),
-                                ],
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Text(
+                              challenge.title,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.headlineLarge?.copyWith(fontSize: 34),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              challenge.prompt,
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
                               ),
-                              const SizedBox(height: 18),
-                              Text(
-                                challenge.prompt,
-                                style: theme.textTheme.displaySmall?.copyWith(fontSize: 34),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              '选出你觉得更像真人创作的那一个。',
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.bodyLarge?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
                               ),
-                              const SizedBox(height: 12),
-                              Text(
-                                '小提示：别急着选，可以先看语气、边缘、光线、纹理，或者哪里“太完美”了。 🔎',
-                                style: theme.textTheme.titleMedium?.copyWith(
-                                  color: theme.colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -113,7 +97,7 @@ class _ChallengePageState extends State<ChallengePage> {
                             optionWidgets.add(
                               Expanded(
                                 child: FadeSlideIn(
-                                  delay: Duration(milliseconds: 180 + i * 90),
+                                  delay: Duration(milliseconds: 160 + i * 90),
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                       right: horizontal && i == 0 ? 10 : 0,
@@ -122,7 +106,6 @@ class _ChallengePageState extends State<ChallengePage> {
                                     ),
                                     child: _OptionCard(
                                       option: option,
-                                      revealed: _revealed,
                                       selected: _selectedOptionId == option.id,
                                       onTap: () {
                                         setState(() {
@@ -144,45 +127,15 @@ class _ChallengePageState extends State<ChallengePage> {
                     ),
                     const SizedBox(height: 18),
                     FadeSlideIn(
-                      delay: const Duration(milliseconds: 280),
-                      child: Wrap(
-                        spacing: 12,
-                        runSpacing: 12,
-                        children: [
-                          FilledButton.icon(
-                            onPressed: _selectedOptionId == null
-                                ? null
-                                : () {
-                                    setState(() {
-                                      _revealed = true;
-                                    });
-                                  },
-                            icon: const Icon(Icons.auto_awesome_rounded),
-                            label: Text(_revealed ? '答案已揭晓' : '提交判断'),
-                          ),
-                          OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                _selectedOptionId = null;
-                                _revealed = false;
-                              });
-                            },
-                            icon: const Icon(Icons.refresh_rounded),
-                            label: const Text('重新看看'),
-                          ),
-                        ],
+                      delay: const Duration(milliseconds: 260),
+                      child: FilledButton.icon(
+                        onPressed: _selectedOptionId == null
+                            ? null
+                            : () => _showResultDialog(context, challenge),
+                        icon: const Icon(Icons.auto_awesome_rounded),
+                        label: const Text('提交判断'),
                       ),
                     ),
-                    if (_revealed) ...[
-                      const SizedBox(height: 18),
-                      FadeSlideIn(
-                        delay: const Duration(milliseconds: 120),
-                        child: _ResultPanel(
-                          selectedOptionId: _selectedOptionId!,
-                          challenge: challenge,
-                        ),
-                      ),
-                    ],
                   ],
                 ),
               ),
@@ -192,18 +145,96 @@ class _ChallengePageState extends State<ChallengePage> {
       ),
     );
   }
+
+  Future<void> _showResultDialog(BuildContext context, Challenge challenge) {
+    final theme = Theme.of(context);
+    final selected = challenge.options.firstWhere((option) => option.id == _selectedOptionId);
+    final isCorrect = selected.isHuman;
+
+    return showGeneralDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: isCorrect ? '答对了' : '答错了',
+      barrierColor: Colors.black.withValues(alpha: 0.24),
+      transitionDuration: const Duration(milliseconds: 580),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 680),
+            child: Material(
+              color: Colors.transparent,
+              child: AlertDialog(
+                backgroundColor: isCorrect
+                    ? theme.colorScheme.primaryContainer.withValues(alpha: 0.98)
+                    : theme.colorScheme.errorContainer.withValues(alpha: 0.96),
+                title: Row(
+                  children: [
+                    Text(isCorrect ? '🎉' : '🫶', style: const TextStyle(fontSize: 28)),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        isCorrect ? '答对了' : '这题真的有点像',
+                        style: theme.textTheme.headlineSmall,
+                      ),
+                    ),
+                  ],
+                ),
+                content: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 560),
+                  child: Text(
+                    isCorrect
+                        ? '你这次判断得很稳，抓到了更接近真人创作的那个选项。\n\n揭晓解释：${challenge.explanation}'
+                        : '答错也没关系，这题本来就比较像。真正重要的是慢慢建立自己的判断理由。\n\n揭晓解释：${challenge.explanation}',
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                ),
+                actions: [
+                  OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {
+                        _selectedOptionId = null;
+                      });
+                    },
+                    child: const Text('再试一次'),
+                  ),
+                  FilledButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('继续看看'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curved = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+          reverseCurve: Curves.easeInCubic,
+        );
+
+        return FadeTransition(
+          opacity: curved,
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.93, end: 1).animate(curved),
+            child: child,
+          ),
+        );
+      },
+    );
+  }
 }
 
 class _OptionCard extends StatelessWidget {
   const _OptionCard({
     required this.option,
-    required this.revealed,
     required this.selected,
     required this.onTap,
   });
 
   final ChallengeOption option;
-  final bool revealed;
   final bool selected;
   final VoidCallback onTap;
 
@@ -211,76 +242,43 @@ class _OptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final cardColor = selected
-        ? theme.colorScheme.primaryContainer.withValues(alpha: 0.62)
-        : revealed && option.isHuman
-            ? theme.colorScheme.primaryContainer.withValues(alpha: 0.9)
-            : theme.colorScheme.surface;
-
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 280),
+      duration: const Duration(milliseconds: 420),
       curve: Curves.easeOutCubic,
       child: Card(
-        color: cardColor,
+        color: selected
+            ? theme.colorScheme.primaryContainer.withValues(alpha: 0.68)
+            : theme.colorScheme.surface,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: revealed ? null : onTap,
+          onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(22),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 42,
-                      width: 42,
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Center(
-                        child: Text(
-                          option.label,
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
+                Container(
+                  height: 38,
+                  width: 38,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Center(
+                    child: Text(
+                      option.label,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: theme.colorScheme.primary,
                       ),
                     ),
-                    const Spacer(),
-                    if (selected)
-                      Icon(Icons.check_circle, color: theme.colorScheme.primary),
-                  ],
+                  ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 16),
                 if (option.asset != null)
                   Expanded(
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.asset(option.asset!, fit: BoxFit.cover),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: 0.9),
-                                  borderRadius: BorderRadius.circular(999),
-                                ),
-                                child: Text(
-                                  option.sourceType == 'human' ? '看起来像真人？' : '会不会是 AI？',
-                                  style: theme.textTheme.labelLarge,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(option.asset!, fit: BoxFit.cover, width: double.infinity),
                     ),
                   )
                 else
@@ -289,110 +287,29 @@ class _OptionCard extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [Color(0xFFF9FBFF), Color(0xFFEFF5FF)],
+                          colors: theme.brightness == Brightness.dark
+                              ? [
+                                  theme.colorScheme.surfaceContainerHigh,
+                                  theme.colorScheme.surfaceContainerHighest,
+                                ]
+                              : const [Color(0xFFF9FBFF), Color(0xFFEFF5FF)],
                         ),
-                        borderRadius: BorderRadius.circular(24),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: SingleChildScrollView(
                         child: Text(
                           option.text ?? '',
-                          style: theme.textTheme.titleMedium?.copyWith(height: 1.7),
+                          style: theme.textTheme.titleMedium?.copyWith(height: 1.8),
                         ),
                       ),
                     ),
                   ),
-                if (option.credit != null) ...[
-                  const SizedBox(height: 12),
-                  Text(
-                    '素材说明：${option.credit!}',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ],
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ResultPanel extends StatelessWidget {
-  const _ResultPanel({
-    required this.selectedOptionId,
-    required this.challenge,
-  });
-
-  final String selectedOptionId;
-  final Challenge challenge;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final selected = challenge.options.firstWhere((option) => option.id == selectedOptionId);
-    final isCorrect = selected.isHuman;
-
-    return Card(
-      color: isCorrect
-          ? theme.colorScheme.primaryContainer.withValues(alpha: 0.96)
-          : theme.colorScheme.errorContainer.withValues(alpha: 0.92),
-      child: Padding(
-        padding: const EdgeInsets.all(22),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 54,
-              width: 54,
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.65),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Center(
-                child: Text(
-                  isCorrect ? '🎉' : '🫶',
-                  style: const TextStyle(fontSize: 26),
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    isCorrect ? '答对了，你抓到了关键线索。' : '这题真的有点像，能犹豫很正常。',
-                    style: theme.textTheme.headlineSmall?.copyWith(fontSize: 28),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    isCorrect
-                        ? '这次你的判断更接近“真人创作”。继续保持这种慢慢观察的节奏。'
-                        : '别急着把答错当成失败，这其实正是学习观察力的时候。',
-                    style: theme.textTheme.bodyLarge,
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.55),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      '揭晓解释：${challenge.explanation}',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
         ),
       ),
     );

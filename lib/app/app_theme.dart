@@ -6,15 +6,23 @@ ThemeData buildAppTheme(Brightness brightness) {
     brightness: brightness,
   );
 
+  const serifFamily = 'NotoSerifSC';
+  const serifFallback = <String>[
+    'SourceSerif4',
+    'Georgia',
+  ];
+
   const serifDisplay = TextStyle(
-    fontFamily: 'Georgia',
+    fontFamily: serifFamily,
+    fontFamilyFallback: serifFallback,
     fontWeight: FontWeight.w700,
     height: 1.08,
     letterSpacing: -0.6,
   );
 
   const serifTitle = TextStyle(
-    fontFamily: 'Georgia',
+    fontFamily: serifFamily,
+    fontFamilyFallback: serifFallback,
     fontWeight: FontWeight.w700,
     height: 1.18,
     letterSpacing: -0.35,
@@ -36,60 +44,81 @@ ThemeData buildAppTheme(Brightness brightness) {
     headlineMedium: baseTextTheme.headlineMedium?.merge(serifTitle),
     headlineSmall: baseTextTheme.headlineSmall?.merge(serifTitle),
     titleLarge: baseTextTheme.titleLarge?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
       fontWeight: FontWeight.w700,
       letterSpacing: -0.2,
     ),
     titleMedium: baseTextTheme.titleMedium?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
       fontWeight: FontWeight.w600,
     ),
-    bodyLarge: baseTextTheme.bodyLarge?.copyWith(height: 1.55),
-    bodyMedium: baseTextTheme.bodyMedium?.copyWith(height: 1.55),
+    bodyLarge: baseTextTheme.bodyLarge?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
+      height: 1.55,
+    ),
+    bodyMedium: baseTextTheme.bodyMedium?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
+      height: 1.55,
+    ),
+    bodySmall: baseTextTheme.bodySmall?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
+      height: 1.5,
+    ),
     labelLarge: baseTextTheme.labelLarge?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
       fontWeight: FontWeight.w700,
       letterSpacing: 0.2,
+    ),
+    labelMedium: baseTextTheme.labelMedium?.copyWith(
+      fontFamily: serifFamily,
+      fontFamilyFallback: serifFallback,
+      fontWeight: FontWeight.w600,
     ),
   );
 
   final buttonShape = RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(999),
+    borderRadius: BorderRadius.circular(18),
   );
 
   return ThemeData(
     useMaterial3: true,
     brightness: brightness,
     colorScheme: baseScheme,
-    scaffoldBackgroundColor: brightness == Brightness.light
-        ? const Color(0xFFF5F7FB)
-        : const Color(0xFF11141A),
+    scaffoldBackgroundColor:
+        brightness == Brightness.light ? const Color(0xFFF5F7FB) : const Color(0xFF11141A),
+    fontFamily: serifFamily,
     textTheme: textTheme,
     cardTheme: CardThemeData(
       elevation: 0,
       color: baseScheme.surface,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(32),
-        side: BorderSide(
-          color: baseScheme.outlineVariant,
-        ),
+        borderRadius: BorderRadius.circular(24),
       ),
       margin: EdgeInsets.zero,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 22),
         shape: buttonShape,
       ),
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 22),
         shape: buttonShape,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 22),
         shape: buttonShape,
         side: BorderSide(color: baseScheme.outline),
       ),
@@ -101,7 +130,21 @@ ThemeData buildAppTheme(Brightness brightness) {
       foregroundColor: baseScheme.onSurface,
       titleTextStyle: textTheme.titleLarge?.copyWith(
         color: baseScheme.onSurface,
-        fontFamily: 'Georgia',
+        fontFamily: serifFamily,
+      ),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: baseScheme.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        padding: const EdgeInsets.all(18),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18),
+        ),
       ),
     ),
     chipTheme: ThemeData(brightness: brightness).chipTheme.copyWith(
