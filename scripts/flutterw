@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if command -v flutter >/dev/null 2>&1; then
+  exec flutter "$@"
+fi
+
+LOCAL_FLUTTER="/tmp/flutter-sdk/bin/flutter"
+
+if [[ -x "$LOCAL_FLUTTER" ]]; then
+  mkdir -p /tmp/pub-cache /tmp/flutter-home
+  exec env PUB_CACHE=/tmp/pub-cache HOME=/tmp/flutter-home "$LOCAL_FLUTTER" "$@"
+fi
+
+echo "Flutter is not available in PATH, and no local SDK was found at $LOCAL_FLUTTER." >&2
+echo "You can either:" >&2
+echo "  1. install Flutter officially and add it to PATH" >&2
+echo "  2. re-download the temporary SDK to /tmp/flutter-sdk" >&2
+exit 1

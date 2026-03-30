@@ -9,7 +9,7 @@
 - 图片挑战模式
 - 本地预置题库
 - Pixabay 占位图片资源
-- 随机挑战、十题列表、换一批、答题反馈
+- 随机挑战、六题列表、换一批、答题反馈
 
 ## 本地运行
 
@@ -20,10 +20,30 @@ flutter pub get
 flutter run
 ```
 
+如果本机没有把 Flutter 加到 `PATH`，这个仓库提供了一个本地包装脚本：
+
+```bash
+./scripts/flutterw --version
+./scripts/build_web.sh
+python3 -m http.server 7357 --directory build/web
+```
+
+然后打开：
+
+```text
+http://127.0.0.1:7357
+```
+
+每次改完 UI，如果你是用 `python3 -m http.server` 预览，都需要重新执行一次：
+
+```bash
+./scripts/build_web.sh
+```
+
 ## 当前题库
 
-- 文字题：3 条
-- 图片题：4 条
+- 文字题：10 条
+- 图片题：10 条
 - 视频模式：预留入口，暂未开放
 
 ## 资源说明
