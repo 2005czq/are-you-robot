@@ -35,7 +35,7 @@ class ChallengeRepository {
 
   Future<List<Challenge>> randomBatch(
     ChallengeMode mode, {
-    int count = 10,
+    int count = 6,
     Set<String> excludeIds = const {},
   }) async {
     final matches = (await loadByMode(mode))

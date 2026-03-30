@@ -5,19 +5,19 @@
     "title": "第一次学骑车",
     "prompt": "你第一次学骑自行车的时候是什么感觉？",
     "difficulty": "easy",
-    "explanation": "真人回答里有一点点慌张和很具体的小动作，AI 回答虽然自然，但组织得更完整一些。",
+    "explanation": "真人回答里有更具体的身体感觉和现场细节，AI 回答虽然自然，但更像一段整理过的回忆。",
     "options": [
       {
         "id": "text-001-a",
         "label": "A",
         "sourceType": "human",
-        "text": "我一开始特别怕摔，脚一直不敢离地。后来我爸在后面扶着，我以为他还抓着，结果一回头发现他早就松手了，那一下又紧张又开心。"
+        "text": "我第一次学骑车的时候其实有点想装作不害怕，可是脚一踩上去就知道自己在紧张。车头一直晃，我总觉得下一秒就会歪到旁边去。那时候我爸在后面扶着，我一边骑一边问他有没有松手，他一直说没有。后来我骑出去一小段，回头一看，才发现他已经站在很后面了。那一秒我脑子是空的，先是慌，接着就特别想笑，感觉自己好像忽然真的会骑了。"
       },
       {
         "id": "text-001-b",
         "label": "B",
         "sourceType": "ai",
-        "text": "我记得刚开始的时候心里有点发抖，总觉得车子会歪到一边。可是等我慢慢骑出去几米之后，又觉得风吹在脸上特别有意思，好像突然学会了一件很厉害的事。"
+        "text": "我记得第一次学骑自行车的时候，心里一直悬着，不太敢把重心完全交给车子。刚开始总觉得自己会往一边倒，所以手抓得特别紧。可是慢慢骑出去几米以后，风吹在脸上的感觉突然让我放松了一点。我当时既紧张又兴奋，好像在做一件以前觉得很难、但现在终于快要学会的事情。"
       }
     ]
   },
@@ -27,19 +27,19 @@
     "title": "最喜欢的下雨天",
     "prompt": "如果让你描述一个你喜欢的下雨天，你会怎么说？",
     "difficulty": "normal",
-    "explanation": "真人回答里有一点随口想到哪里说到哪里的感觉，AI 回答更像一段整理过的小作文。",
+    "explanation": "真人回答更像生活片段，AI 回答更完整、更像写景文字。",
     "options": [
       {
         "id": "text-002-a",
         "label": "A",
         "sourceType": "ai",
-        "text": "我喜欢那种下午慢慢变暗、窗户上有小雨点往下滑的下雨天。屋子里会变得特别安静，外面像盖了一层灰蓝色的薄纱，让人很想坐下来发呆或者看书。"
+        "text": "我喜欢那种下午慢慢变暗、窗户上有小雨点往下滑的下雨天。屋子里会变得特别安静，外面的颜色像被水洗过一样，什么都变柔和了。坐在窗边的时候，能听见雨打在树叶和地面上的声音，感觉时间也变慢了。那种天气会让人很自然地想坐下来，看书、发呆，或者只是安静地待一会儿。"
       },
       {
         "id": "text-002-b",
         "label": "B",
         "sourceType": "human",
-        "text": "我喜欢放学刚到家就下雨的那种天。鞋子有点湿，客厅灯一开就暖暖的，外面雨一直响，感觉今天就不用再跑来跑去了，可以安心吃东西。"
+        "text": "我喜欢那种放学刚到家、书包还没来得及完全放下，外面就开始下雨的天。鞋子有一点湿，袜子边边也凉凉的，但是家里的灯一开，整个客厅就变得特别暖。厨房里如果刚好有饭菜的味道，就会更舒服。外面的雨一直下，窗户有一点雾，我会觉得今天好像终于可以不用再跑来跑去了，就待在家里慢慢吃东西，什么都不用赶。"
       }
     ]
   },
@@ -49,19 +49,173 @@
     "title": "早餐偏好",
     "prompt": "如果只能选一种早餐吃一个月，你会选什么？为什么？",
     "difficulty": "easy",
-    "explanation": "真人回答会更直接，也会带一点个人小习惯；AI 回答通常会把理由讲得更平衡。",
+    "explanation": "真人回答里有习惯和场景感，AI 回答更均衡、更像做选择题。",
     "options": [
       {
         "id": "text-003-a",
         "label": "A",
         "sourceType": "ai",
-        "text": "如果只能选一种早餐，我会选鸡蛋三明治，因为它吃起来方便，味道也比较稳定，还能搭配不同的酱料和蔬菜，不容易觉得太单调。"
+        "text": "如果只能选一种早餐，我会选鸡蛋三明治，因为它吃起来方便，也比较稳定，不太容易出错。里面可以加生菜、番茄或者不同的酱料，所以就算连续吃很多天，变化也还算够。它既不会太重，也不会太单调，感觉是那种比较保险、每天早上都能接受的选择。"
       },
       {
         "id": "text-003-b",
         "label": "B",
         "sourceType": "human",
-        "text": "我 probably 还是会选豆浆和小包子，因为我早上真的不太清醒，吃这个最省事，而且天冷的时候手里拿着热热的杯子会很舒服。"
+        "text": "我大概还是会选豆浆和小包子。不是因为它多特别，而是因为早上我真的不太清醒，脑子像还没开机一样，这种早餐完全不用想太多。包子拿着就能吃，豆浆热热的，冬天特别舒服。要是让我一个月都吃同一种，我会选那种最省事、最不会让我烦的，毕竟早餐这件事对我来说第一重要是别太麻烦。"
+      }
+    ]
+  },
+  {
+    "id": "text-004",
+    "mode": "text",
+    "title": "暑假里的一天",
+    "prompt": "如果要讲一个你记得很清楚的暑假下午，你会怎么讲？",
+    "difficulty": "normal",
+    "explanation": "真人回答更像回忆流，细节有轻微跳跃；AI 回答连贯但更规整。",
+    "options": [
+      {
+        "id": "text-004-a",
+        "label": "A",
+        "sourceType": "human",
+        "text": "我记得有一个暑假下午特别热，风扇一直在转，可是屋子里还是闷闷的。那天我本来想写作业，结果一点都写不进去，就趴在桌子边上看外面的树。后来楼下有人在卖冰棍，我听到那个声音一下子就精神了，赶紧拿着零钱跑下去。回来的时候冰棍已经有点化了，我站在楼道口边吃边吹风，手上全是黏的，但是那时候真的觉得特别爽。现在想起来，好像那整个下午也没干什么大事，可是画面一直记得很清楚。"
+      },
+      {
+        "id": "text-004-b",
+        "label": "B",
+        "sourceType": "ai",
+        "text": "如果要讲一个记得很清楚的暑假下午，我会想到那种空气很热、连窗外的光都白得发亮的时候。屋子里安安静静的，只能听见风扇转动和偶尔从楼下传来的声音。明明没有发生特别大的事情，可是因为天气、气味和光线都很鲜明，所以那段时间会被记得很牢。那种下午会让人觉得日子被拉长了，一切都慢下来，甚至连发呆都很具体。"
+      }
+    ]
+  },
+  {
+    "id": "text-005",
+    "mode": "text",
+    "title": "最喜欢的老师",
+    "prompt": "你最喜欢什么样的老师？为什么？",
+    "difficulty": "normal",
+    "explanation": "真人回答更偏真实课堂经验，AI 回答更像理想型总结。",
+    "options": [
+      {
+        "id": "text-005-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "我最喜欢那种会认真听学生说话的老师。不是只会讲课，而是真的愿意理解学生哪里没听懂、哪里在紧张、哪里需要一点鼓励。这样的老师会让人觉得课堂不只是完成任务，而是一个可以安心提问、慢慢学会东西的地方。比起总是很严厉的老师，我更喜欢温和但有分寸、会让人愿意靠近的老师。"
+      },
+      {
+        "id": "text-005-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "我比较喜欢那种上课不会一直让人提心吊胆的老师。不是说完全不严格，而是就算你答错了，她也不会马上让整个教室都变得很尴尬。我以前有个老师就是这样，她讲题的时候很清楚，谁卡住了她会再讲一遍，而且不会用那种“这个你都不会吗”的语气。那种感觉其实差很多，会让人真的敢问问题，不会只想假装听懂。"
+      }
+    ]
+  },
+  {
+    "id": "text-006",
+    "mode": "text",
+    "title": "最喜欢的味道",
+    "prompt": "有没有一种味道会让你一下子想到某个地方？",
+    "difficulty": "hard",
+    "explanation": "真人回答有更突发的联想和生活碎片，AI 回答偏整洁。",
+    "options": [
+      {
+        "id": "text-006-a",
+        "label": "A",
+        "sourceType": "human",
+        "text": "有，就是那种太阳晒过的被子味。其实它也不算特别明显，可是我一闻到就会想到以前外婆家楼顶。那边会晒很多衣服和被单，风一吹整个楼顶都是那种热热的、干净的味道。我小时候特别喜欢把脸埋进去，因为那种味道会让人觉得很安心。现在有时候路过别人家阳台，风里飘过来一点，我都会突然停一下，脑子里先想到的不是具体画面，是那种很安静的下午。"
+      },
+      {
+        "id": "text-006-b",
+        "label": "B",
+        "sourceType": "ai",
+        "text": "有些味道确实会让人立刻想起一个地方。对我来说，像刚洗干净又晒过太阳的布料味，就很容易让人联想到安静、温暖的家庭空间。味道有时候比画面还快，它不会先让人想到一句完整的话，而是先把情绪带回来。等那种情绪出现以后，记忆里的房间、天气和当时在做什么，才会慢慢跟着浮出来。"
+      }
+    ]
+  },
+  {
+    "id": "text-007",
+    "mode": "text",
+    "title": "想养什么宠物",
+    "prompt": "如果现在可以养一种宠物，你会选什么？",
+    "difficulty": "easy",
+    "explanation": "真人回答更会提到照顾成本和真实担心，AI 回答更偏理想描述。",
+    "options": [
+      {
+        "id": "text-007-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "如果现在可以养一种宠物，我会想养一只猫。猫有一种很特别的安静感，它不会一直黏着你，但又会在某些时候突然靠近，感觉很有自己的个性。而且猫待在窗边晒太阳、慢慢走来走去的样子，会让整个房间都变得柔和一点。比起太吵闹的宠物，我更喜欢这种安静但有存在感的陪伴。"
+      },
+      {
+        "id": "text-007-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "我应该会想养猫，但前提是有人能帮我一起照顾。因为我虽然很喜欢猫那种爱理不理的样子，可是我也知道自己有时候连水杯都懒得洗，真要养的话就不能只想着可爱。以前去别人家看猫，猫跳到沙发背上坐着不动，我都会看很久，感觉它像在自己过日子。要是真的能养，我可能会选那种看起来有点凶、但其实很懒的。"
+      }
+    ]
+  },
+  {
+    "id": "text-008",
+    "mode": "text",
+    "title": "印象深的操场",
+    "prompt": "你印象里最特别的操场是什么样子的？",
+    "difficulty": "hard",
+    "explanation": "真人回答有更多偶然和不规则细节，AI 回答更像整理后的描述。",
+    "options": [
+      {
+        "id": "text-008-a",
+        "label": "A",
+        "sourceType": "human",
+        "text": "我印象最深的操场其实不是什么特别新的那种，反而有点旧。跑道边上有几块地方颜色都不一样了，远看就像补丁。下午太阳斜着照的时候，球门后面那块地总是亮得很刺眼。下课以后大家会一下子冲出去，鞋底踩在地上的声音乱七八糟的，我反而很喜欢那个感觉。尤其是冬天快天黑的时候，操场边的树影子会拉得很长，站在那儿会觉得学校突然变得有点陌生，但又很好看。"
+      },
+      {
+        "id": "text-008-b",
+        "label": "B",
+        "sourceType": "ai",
+        "text": "我印象里最特别的操场，不一定是最整齐或者最新的，而是那种一看就知道很多人用过、很多时间在那里发生过的地方。它可能有褪色的跑道、有风吹得一直在动的树影，还有下午时分特别斜的光。一个操场特别不特别，有时候不是因为它本身有多漂亮，而是因为它会把声音、天气、运动和放学前的情绪都一起装进去。"
+      }
+    ]
+  },
+  {
+    "id": "text-009",
+    "mode": "text",
+    "title": "难忘的一顿饭",
+    "prompt": "有没有一顿饭你记得特别清楚？",
+    "difficulty": "normal",
+    "explanation": "真人回答中记忆点更具体、更偶然，AI 回答更偏总结式回忆。",
+    "options": [
+      {
+        "id": "text-009-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "有些难忘的一顿饭，并不是因为菜特别贵或者特别复杂，而是因为当时的气氛刚好和食物一起被记住了。也许是天气、一起吃饭的人、说过的话，或者某种非常普通但刚好很对胃口的味道。食物本身会被记住，可真正留下来的，往往是那顿饭让人觉得安心、热闹或者很想停在当下的感觉。"
+      },
+      {
+        "id": "text-009-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "我记得有一次很晚才回家，外面特别冷，手都僵了。回去以后家里其实没做什么复杂的东西，就是一碗热汤面，加了鸡蛋和一点青菜。按理说这种面平时也经常吃，可是那次我坐下来的时候，眼镜上都是热气，筷子拿在手里都觉得暖，第一口进去整个人都像慢慢活过来了一样。现在想想，那顿饭特别好吃不一定是因为味道，而是那时候真的太需要一碗热的东西了。"
+      }
+    ]
+  },
+  {
+    "id": "text-010",
+    "mode": "text",
+    "title": "如果有一台时光机",
+    "prompt": "如果你只有一次机会坐时光机，你会想去看哪一刻？",
+    "difficulty": "hard",
+    "explanation": "真人回答更像一个立即想到的私人物件，AI 回答更平衡、抽象。",
+    "options": [
+      {
+        "id": "text-010-a",
+        "label": "A",
+        "sourceType": "ai",
+        "text": "如果只有一次机会坐时光机，我可能不会去看特别宏大的历史时刻，反而会想去看一个离自己生活更近、但已经回不去的瞬间。也许是小时候一个很普通的下午，或者一家人都还年轻的时候。因为真正让人舍不得的，往往不是大场面，而是那些当时没有意识到珍贵、后来却越来越难再遇见的日常。"
+      },
+      {
+        "id": "text-010-b",
+        "label": "B",
+        "sourceType": "human",
+        "text": "如果真的只有一次，我可能会想去看小时候某个大家都在的晚上。不是为了改变什么，就是想站在旁边看一眼。可能桌上有水果，电视在放我现在已经不记得名字的节目，灯有点黄，大家都还很年轻。我觉得奇怪的是，人有时候会特别想回去的，并不是那些明确的大事件，而是某个你当时完全没觉得重要的普通时刻。可等你真的想回去的时候，通常已经连它具体是哪一天都说不出来了。"
       }
     ]
   },
@@ -158,6 +312,150 @@
         "sourceType": "human",
         "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
         "credit": "Pixabay sample image"
+      }
+    ]
+  },
+  {
+    "id": "image-005",
+    "mode": "image",
+    "title": "花园近景",
+    "prompt": "哪张近景花朵图更像真实照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片的焦点更明确，AI 风格图的颜色层次更刻意。",
+    "options": [
+      {
+        "id": "image-005-a",
+        "label": "A",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_flower_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      },
+      {
+        "id": "image-005-b",
+        "label": "B",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_flower.jpg",
+        "credit": "Pixabay sample image"
+      }
+    ]
+  },
+  {
+    "id": "image-006",
+    "mode": "image",
+    "title": "公园远景",
+    "prompt": "如果是公园远景画面，哪一张更可能来自真实镜头？",
+    "difficulty": "normal",
+    "explanation": "真实图的远处细节分布更自然，AI 图看起来更像被均匀抹平。",
+    "options": [
+      {
+        "id": "image-006-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_medium.jpg",
+        "credit": "Pixabay sample thumbnail"
+      },
+      {
+        "id": "image-006-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      }
+    ]
+  },
+  {
+    "id": "image-007",
+    "mode": "image",
+    "title": "高亮天空镜头",
+    "prompt": "这两张带天空光线的画面里，哪一张更像真实拍摄？",
+    "difficulty": "hard",
+    "explanation": "真实图的高光和阴影衔接更可信，AI 图更容易有整体过亮的感觉。",
+    "options": [
+      {
+        "id": "image-007-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
+        "credit": "Pixabay sample thumbnail"
+      },
+      {
+        "id": "image-007-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      }
+    ]
+  },
+  {
+    "id": "image-008",
+    "mode": "image",
+    "title": "头像边缘观察",
+    "prompt": "看人物头像边缘时，哪一张更像真实照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片的头发和脸部边缘更稳定，AI 图更容易有软化过度。",
+    "options": [
+      {
+        "id": "image-008-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
+        "credit": "Pixabay sample image"
+      },
+      {
+        "id": "image-008-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      }
+    ]
+  },
+  {
+    "id": "image-009",
+    "mode": "image",
+    "title": "柔焦人像",
+    "prompt": "哪一张柔焦人像更像真实镜头下拍到的？",
+    "difficulty": "normal",
+    "explanation": "真实图的模糊通常更有方向性，AI 风格图则容易整体都柔。",
+    "options": [
+      {
+        "id": "image-009-a",
+        "label": "A",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      },
+      {
+        "id": "image-009-b",
+        "label": "B",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
+        "credit": "Pixabay sample image"
+      }
+    ]
+  },
+  {
+    "id": "image-010",
+    "mode": "image",
+    "title": "封面截图判断",
+    "prompt": "如果这是某段视频的封面截图，哪一张更像真实取帧？",
+    "difficulty": "hard",
+    "explanation": "真实截图的细节通常不那么平均，AI 图则更容易每一块都很“像样”。",
+    "options": [
+      {
+        "id": "image-010-a",
+        "label": "A",
+        "sourceType": "ai",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
+        "credit": "Derived placeholder from Pixabay sample"
+      },
+      {
+        "id": "image-010-b",
+        "label": "B",
+        "sourceType": "human",
+        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
+        "credit": "Pixabay sample thumbnail"
       }
     ]
   }
