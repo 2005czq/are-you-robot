@@ -42,100 +42,72 @@ http://127.0.0.1:7357
 
 ## 部署到 GitHub Pages
 
-这个项目可以直接部署为静态网站，最简单的方式就是发布到 GitHub Pages。
+这个仓库已经包含 GitHub Actions 工作流，会在每次 push 到 `main` 后自动构建并发布到 GitHub Pages。
 
-### 1. 先确认部署地址
+当前目标地址是：
 
-GitHub Pages 常见有两种地址：
-
-- 用户页：`https://你的用户名.github.io/`
-- 仓库页：`https://你的用户名.github.io/仓库名/`
-
-如果你是把这个项目作为普通仓库页面发布，通常是第二种，也就是带仓库名子路径。
-
-### 2. 本地构建静态文件
-
-如果最终访问地址是根路径，例如：`https://yourname.github.io/`
-
-```bash
-./scripts/build_web.sh
+```text
+https://2005czq.github.io/are-you-robot/
 ```
 
-如果最终访问地址带仓库名，例如：`https://yourname.github.io/are-you-robot/`
+工作流文件在：
+
+```text
+.github/workflows/deploy-pages.yml
+```
+
+### 1. 首次启用
+
+把代码推到 GitHub 后，到仓库页面打开：
+
+- `Settings -> Pages`
+- `Build and deployment -> Source`
+- 选择 `GitHub Actions`
+
+保存后，之后每次 push 到 `main`，GitHub 都会自动执行构建和部署。
+
+### 2. 这个仓库的发布路径
+
+因为这个项目会发布到仓库子路径而不是根路径，所以工作流里已经固定使用：
+
+```bash
+flutter build web --release --base-href /are-you-robot/
+```
+
+这样生成出的静态资源路径会和 `https://2005czq.github.io/are-you-robot/` 匹配。
+
+### 3. 更新网站
+
+以后每次改完代码，只需要：
+
+```bash
+git add .
+git commit -m "Update site"
+git push origin main
+```
+
+然后等待 GitHub Actions 跑完，页面就会自动更新。
+
+### 4. 本地预览
+
+如果你想先在本地确认网页效果，可以继续使用：
 
 ```bash
 ./scripts/build_web.sh --base-href /are-you-robot/
+python3 -m http.server 7357 --directory build/web
 ```
 
-构建完成后，静态文件会出现在：
+然后打开：
 
 ```text
-build/web
+http://127.0.0.1:7357/are-you-robot/
 ```
 
-### 3. 上传到 GitHub
+### 5. 自定义域名说明
 
-你可以任选一种做法：
+这个仓库目前不会写入 `CNAME`，也不会覆盖你博客根站点的域名配置。
 
-- 把 `build/web` 里的内容发布到专门的 `gh-pages` 分支
-- 或者把静态文件放到仓库里的某个分支/目录，再在 GitHub Pages 设置里选择来源
-
-如果你只是想先快速上线，常见做法是：
-
-- 代码继续放在主分支
-- 把 `build/web` 产物发布到 `gh-pages` 分支
-- 然后在 GitHub 仓库的 `Settings -> Pages` 里选择 `Deploy from a branch`
-- Branch 选 `gh-pages`
-- Folder 选 `/ (root)`
-
-### 4. GitHub Pages 里需要设置什么
-
-如果你用的是 `gh-pages` 分支放构建产物，GitHub 上主要就是设置发布来源。
-
-但要注意：
-
-- GitHub Pages 里的路径设置，只决定“网站从哪里读文件”
-- Flutter Web 的 `--base-href`，决定“网页里的资源路径怎么解析”
-
-这两个要匹配，不然首页可能能打开，但 JS、字体、图片会 404。
-
-### 5. 一个最常见的例子
-
-假设你的仓库叫 `are-you-robot`，页面地址会是：
-
-```text
-https://你的用户名.github.io/are-you-robot/
-```
-
-那你构建时就应该使用：
-
-```bash
-./scripts/build_web.sh --base-href /are-you-robot/
-```
-
-然后把 `build/web` 中的内容发布到 GitHub Pages 对应分支，再去 GitHub 页面里启用 Pages。
-
-### 6. 更新网站
-
-以后每次改完页面，重复这几个动作就行：
-
-```bash
-./scripts/build_web.sh --base-href /你的仓库名/
-```
-
-然后把新的 `build/web` 内容重新发布到 GitHub Pages。
-
-### 7. 结论
-
-可以理解成“先把项目代码推到 GitHub 仓库”，但还不完全等于“剩下只在 GitHub 上配路径就行”。
-
-你还需要确保：
-
-- Flutter Web 是按最终访问路径构建的
-- GitHub Pages 选择了正确的发布分支/目录
-- 发布的是 `build/web` 里的静态文件，而不是 `lib`、`assets` 这些源码目录
-
-如果你后面想省掉手动上传 `build/web` 的步骤，可以再加一个 GitHub Actions，让每次 push 后自动构建并发布到 GitHub Pages。
+如果你的自定义域名 `zihim.me` 已经绑定在博客仓库或根站点上，这个项目仓库可以不管它，继续按 GitHub 默认二级地址发布即可。
 
 ## 当前题库
 
