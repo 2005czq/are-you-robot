@@ -8,3 +8,5 @@ ios/Pods/
 android/.gradle/
 .idea/
 *.iml
+.env
+.env.local

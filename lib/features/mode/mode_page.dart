@@ -58,9 +58,10 @@ class _ModePageState extends State<ModePage> {
     if (!mounted || challenge == null) {
       return;
     }
+    final preparedChallenge = widget.repository.prepareChallengeForPlay(challenge);
     await Navigator.of(context).push(
       AppPageRoute<void>(
-        builder: (context) => ChallengePage(challenge: challenge),
+        builder: (context) => ChallengePage(challenge: preparedChallenge),
       ),
     );
   }
@@ -213,9 +214,12 @@ class _ModePageState extends State<ModePage> {
                                     child: _ChallengePreviewCard(
                                       challenge: challenge,
                                       onTap: () {
+                                        final preparedChallenge =
+                                            widget.repository.prepareChallengeForPlay(challenge);
                                         Navigator.of(context).push(
                                           AppPageRoute<void>(
-                                            builder: (context) => ChallengePage(challenge: challenge),
+                                            builder: (context) =>
+                                                ChallengePage(challenge: preparedChallenge),
                                           ),
                                         );
                                       },

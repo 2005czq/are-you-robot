@@ -7,9 +7,10 @@
 - 首页与模式入口
 - 文字挑战模式
 - 图片挑战模式
-- 本地预置题库
+- 本地数据库题库
 - Pixabay 占位图片资源
 - 随机挑战、六题列表、换一批、答题反馈
+- 批量生成文字题工作流
 
 ## 本地运行
 
@@ -134,9 +135,57 @@ http://127.0.0.1:7357/are-you-robot/
 
 ## 当前题库
 
-- 文字题：10 条
+- 文字题：60 条
 - 图片题：10 条
 - 视频模式：预留入口，暂未开放
+
+## 批量生成文字题
+
+项目现在会在启动时把 `assets/bootstrap/*.json` 里的题库导入本地轻量数据库，后续新增题目不需要改页面逻辑。
+
+### 1. 配置接口
+
+把下面三个值放进仓库根目录的 `.env`：
+
+```text
+OPENAI_BASE_URL=...
+OPENAI_API_KEY=...
+OPENAI_MODEL=gpt-5.4
+```
+
+仓库里提供了 `.env.example`，真正的 `.env` 已经加入 `.gitignore`，不会被提交。
+
+### 2. 生成 50 组文字题
+
+```bash
+node scripts/generate_text_challenges.mjs
+```
+
+这个脚本会：
+
+- 通过 `chat/completions` 调用模型
+- 优先使用 structured output
+- 给每次请求注入运行标签、随机盐和请求指纹，尽量避开缓存命中
+- 自动把返回结果归一化成应用题库格式
+- 生成完成后写入 `assets/bootstrap/generated_text_challenges.json`
+- 自动更新 `assets/bootstrap/seed_manifest.json` 的签名和校验值
+
+### 3. 校验生成结果
+
+```bash
+node scripts/validate_generated_challenges.mjs
+```
+
+会检查：
+
+- 是否正好生成 2 个选项
+- 是否一条是 `human`、一条是 `ai`
+- 每个回答是否足够长
+- `id` 和 `title` 是否重复
+
+### 4. 应用里怎么生效
+
+应用启动时会读取 `assets/bootstrap/seed_manifest.json`。只要签名变了，就会把新的种子题库重新导入本地数据库，所以生成完重新启动应用即可看到新增文字题。
 
 ## 资源说明
 

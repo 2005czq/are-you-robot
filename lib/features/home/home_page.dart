@@ -6,10 +6,23 @@ import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
 import '../mode/mode_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.repository});
 
   final ChallengeRepository repository;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final Future<ChallengeStats> _statsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _statsFuture = widget.repository.loadStats();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,17 +176,27 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: compactHeight ? 10 : 14),
-                            const FadeSlideIn(
-                              delay: Duration(milliseconds: 320),
-                              duration: Duration(milliseconds: 1100),
-                              child: Wrap(
-                                spacing: 12,
-                                runSpacing: 12,
-                                children: [
-                                  _FactChip(text: '10 条文字题'),
-                                  _FactChip(text: '10 条图片题'),
-                                  _FactChip(text: '答题后立即揭晓'),
-                                ],
+                            FadeSlideIn(
+                              delay: const Duration(milliseconds: 320),
+                              duration: const Duration(milliseconds: 1100),
+                              child: FutureBuilder<ChallengeStats>(
+                                future: _statsFuture,
+                                builder: (context, snapshot) {
+                                  final stats = snapshot.data;
+                                  return Wrap(
+                                    spacing: 12,
+                                    runSpacing: 12,
+                                    children: [
+                                      _FactChip(
+                                        text: '${stats?.countFor(ChallengeMode.text) ?? '--'} 条文字题',
+                                      ),
+                                      _FactChip(
+                                        text: '${stats?.countFor(ChallengeMode.image) ?? '--'} 条图片题',
+                                      ),
+                                      const _FactChip(text: '答题后立即揭晓'),
+                                    ],
+                                  );
+                                },
                               ),
                             ),
                           ],
@@ -193,7 +216,7 @@ class HomePage extends StatelessWidget {
   void _openMode(BuildContext context, ChallengeMode mode) {
     Navigator.of(context).push(
       AppPageRoute<void>(
-        builder: (context) => ModePage(mode: mode, repository: repository),
+        builder: (context) => ModePage(mode: mode, repository: widget.repository),
       ),
     );
   }

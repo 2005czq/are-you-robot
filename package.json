@@ -1,0 +1,9 @@
+{
+  "name": "are-you-robot-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:text-challenges": "node scripts/generate_text_challenges.mjs",
+    "validate:text-challenges": "node scripts/validate_generated_challenges.mjs"
+  }
+}

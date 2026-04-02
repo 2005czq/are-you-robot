@@ -2,13 +2,29 @@ import 'dart:math';
 
 import 'package:are_you_robot/models/challenge.dart';
 import 'package:are_you_robot/repositories/challenge_repository.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sembast/sembast_memory.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  late Database database;
 
-  const sampleJson = '''
+  const manifestJson = '''
+{
+  "signature": "test-seed-signature",
+  "seeds": [
+    {
+      "assetPath": "assets/bootstrap/challenges.json",
+      "kind": "bootstrap"
+    },
+    {
+      "assetPath": "assets/bootstrap/generated_text_challenges.json",
+      "kind": "generated-text"
+    }
+  ]
+}
+''';
+
+  const bootstrapJson = '''
 [
   {
     "id": "text-1",
@@ -37,36 +53,63 @@ void main() {
 ]
 ''';
 
+  const generatedJson = '''
+[
+  {
+    "id": "generated-text-001",
+    "mode": "text",
+    "title": "Generated",
+    "prompt": "Say more?",
+    "difficulty": "hard",
+    "explanation": "Generated explanation.",
+    "options": [
+      {"id": "g-a", "label": "A", "sourceType": "ai", "text": "Long ai text"},
+      {"id": "g-b", "label": "B", "sourceType": "human", "text": "Long human text"}
+    ]
+  }
+]
+''';
+
   setUp(() async {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMessageHandler('flutter/assets', (message) async {
-      final key = const StringCodec().decodeMessage(message);
-      if (key == 'assets/bootstrap/challenges.json') {
-        return const StringCodec().encodeMessage(sampleJson);
-      }
-      return null;
-    });
+    database = await newDatabaseFactoryMemory().openDatabase('challenge-test.db');
   });
 
   tearDown(() async {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-        .setMockMessageHandler('flutter/assets', null);
+    await database.close();
   });
 
-  test('loads and filters challenges by mode', () async {
-    final repository = ChallengeRepository(random: Random(1));
+  ChallengeRepository buildRepository({Random? random}) {
+    return ChallengeRepository(
+      random: random,
+      databaseFuture: Future<Database>.value(database),
+      assetLoader: (assetPath) async {
+        return switch (assetPath) {
+          'assets/bootstrap/seed_manifest.json' => manifestJson,
+          'assets/bootstrap/challenges.json' => bootstrapJson,
+          'assets/bootstrap/generated_text_challenges.json' => generatedJson,
+          _ => throw StateError('Unexpected asset path: $assetPath'),
+        };
+      },
+    );
+  }
+
+  test('loads seeded challenges from manifest and filters by mode', () async {
+    final repository = buildRepository(random: Random(1));
 
     final all = await repository.loadAll();
     final text = await repository.loadByMode(ChallengeMode.text);
     final image = await repository.loadByMode(ChallengeMode.image);
+    final stats = await repository.loadStats();
 
-    expect(all, hasLength(2));
-    expect(text.single.id, 'text-1');
+    expect(all, hasLength(3));
+    expect(text, hasLength(2));
     expect(image.single.id, 'image-1');
+    expect(stats.countFor(ChallengeMode.text), 2);
+    expect(stats.countFor(ChallengeMode.image), 1);
   });
 
   test('returns random challenge and batch', () async {
-    final repository = ChallengeRepository(random: Random(3));
+    final repository = buildRepository(random: Random(3));
 
     final challenge = await repository.randomChallenge(ChallengeMode.text);
     final batch = await repository.randomBatch(ChallengeMode.image, count: 10);
@@ -75,5 +118,22 @@ void main() {
     expect(challenge!.mode, ChallengeMode.text);
     expect(batch, hasLength(1));
     expect(batch.single.mode, ChallengeMode.image);
+  });
+
+  test('prepareChallengeForPlay reshuffles labels without changing source types', () async {
+    final repository = buildRepository(random: Random(5));
+    final original = (await repository.loadById('generated-text-001'))!;
+
+    final prepared = repository.prepareChallengeForPlay(original);
+
+    expect(prepared.options.map((option) => option.label), orderedEquals(['A', 'B']));
+    expect(
+      prepared.options.map((option) => option.sourceType).toSet(),
+      equals({'human', 'ai'}),
+    );
+    expect(
+      prepared.options.map((option) => option.id).toSet(),
+      equals(original.options.map((option) => option.id).toSet()),
+    );
   });
 }

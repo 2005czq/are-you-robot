@@ -1,0 +1,14 @@
+{
+  "signature": "bootstrap-v2-f236f923bf22a77f",
+  "seeds": [
+    {
+      "assetPath": "assets/bootstrap/challenges.json",
+      "kind": "bootstrap"
+    },
+    {
+      "assetPath": "assets/bootstrap/generated_text_challenges.json",
+      "kind": "generated-text",
+      "checksum": "f236f923bf22a77f"
+    }
+  ]
+}
