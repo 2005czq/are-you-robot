@@ -109,6 +109,29 @@ http://127.0.0.1:7357/are-you-robot/
 
 如果你的自定义域名 `zihim.me` 已经绑定在博客仓库或根站点上，这个项目仓库可以不管它，继续按 GitHub 默认二级地址发布即可。
 
+## GitHub Actions 构建产物
+
+仓库还包含一个额外的构建工作流：
+
+```text
+.github/workflows/build-artifacts.yml
+```
+
+它会在每次 push 到 `main` 后自动构建并上传：
+
+- Windows 发布包
+- Android APK
+
+构建完成后，你可以到 GitHub 仓库的 `Actions` 页面，打开对应的 workflow run，在页面底部的 `Artifacts` 区域下载：
+
+- `are-you-robot-windows-release`
+- `are-you-robot-android-apk`
+
+说明：
+
+- Windows 产物是一个完整运行目录，不是单个 exe，下载后需要把整个目录一起解压使用
+- Android 产物当前是仓库默认配置下生成的 release apk，适合测试分发；如果后面要正式上架应用商店，还需要补签名配置和正式包名
+
 ## 当前题库
 
 - 文字题：10 条
