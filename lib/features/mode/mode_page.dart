@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/widgets/app_page_route.dart';
+import '../../app/widgets/emoji_pattern.dart';
+import '../../app/widgets/emoji_text.dart';
 import '../../app/widgets/fade_slide_in.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
@@ -58,10 +60,15 @@ class _ModePageState extends State<ModePage> {
     if (!mounted || challenge == null) {
       return;
     }
-    final preparedChallenge = widget.repository.prepareChallengeForPlay(challenge);
+
+    final preparedChallenge =
+        widget.repository.prepareChallengeForPlay(challenge);
     await Navigator.of(context).push(
       AppPageRoute<void>(
-        builder: (context) => ChallengePage(challenge: preparedChallenge),
+        builder: (context) => ChallengePage(
+          challenge: preparedChallenge,
+          repository: widget.repository,
+        ),
       ),
     );
   }
@@ -69,12 +76,13 @@ class _ModePageState extends State<ModePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     final topColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF0F1F31)
-        : const Color(0xFFF0F7FF);
+        ? const Color(0xFF1D1511)
+        : const Color(0xFFF7ECDD);
     final bottomColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF0B1522)
-        : const Color(0xFFF8FBFF);
+        ? const Color(0xFF120F0C)
+        : const Color(0xFFFDF8F1);
 
     return Scaffold(
       body: DecoratedBox(
@@ -85,165 +93,217 @@ class _ModePageState extends State<ModePage> {
             colors: [topColor, bottomColor],
           ),
         ),
-        child: SafeArea(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1160),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final wide = constraints.maxWidth >= 900;
-                  final compactHeader = constraints.maxWidth < 820;
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: EmojiPattern(
+                emojis: widget.mode == ChallengeMode.text
+                    ? const ['📝', '✍️', '💬', '🔎']
+                    : const ['🖼️', '📸', '✨', '🫧'],
+                size: 22,
+                spacing: 24,
+                opacity: 0.07,
+                rotation: widget.mode == ChallengeMode.text ? -0.12 : 0.12,
+              ),
+            ),
+            SafeArea(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1160),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final wide = constraints.maxWidth >= 900;
+                      final compactHeader = constraints.maxWidth < 820;
 
-                  return Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FadeSlideIn(
-                          child: compactHeader
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            FadeSlideIn(
+                              child: compactHeader
+                                  ? Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            IconButton.outlined(
+                                              onPressed: () =>
+                                                  Navigator.of(context).pop(),
+                                              icon: const Icon(
+                                                  Icons.arrow_back_rounded),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            EmojiText(widget.mode.emoji,
+                                                size: 26),
+                                            const SizedBox(width: 10),
+                                            Expanded(
+                                              child: Text(
+                                                widget.mode.label,
+                                                style: theme
+                                                    .textTheme.headlineMedium,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 14),
+                                        Wrap(
+                                          spacing: 12,
+                                          runSpacing: 12,
+                                          children: [
+                                            OutlinedButton.icon(
+                                              onPressed: _refreshBatch,
+                                              icon: const Icon(
+                                                  Icons.refresh_rounded),
+                                              label: const Text('换一批'),
+                                            ),
+                                            FilledButton.icon(
+                                              onPressed: _openRandomChallenge,
+                                              icon: const Icon(
+                                                  Icons.casino_outlined),
+                                              label: const Text('随机挑战'),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  : Row(
                                       children: [
                                         IconButton.outlined(
-                                          onPressed: () => Navigator.of(context).pop(),
-                                          icon: const Icon(Icons.arrow_back_rounded),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          icon: const Icon(
+                                              Icons.arrow_back_rounded),
                                         ),
+                                        const SizedBox(width: 12),
+                                        EmojiText(widget.mode.emoji, size: 28),
                                         const SizedBox(width: 12),
                                         Expanded(
                                           child: Text(
                                             widget.mode.label,
-                                            style: theme.textTheme.headlineMedium,
+                                            style:
+                                                theme.textTheme.headlineMedium,
                                           ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        OutlinedButton.icon(
+                                          onPressed: _refreshBatch,
+                                          icon:
+                                              const Icon(Icons.refresh_rounded),
+                                          label: const Text('换一批'),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        FilledButton.icon(
+                                          onPressed: _openRandomChallenge,
+                                          icon:
+                                              const Icon(Icons.casino_outlined),
+                                          label: const Text('随机挑战'),
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 12),
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Wrap(
-                                        spacing: 12,
-                                        runSpacing: 12,
-                                        alignment: WrapAlignment.end,
-                                        children: [
-                                          OutlinedButton.icon(
-                                            onPressed: _refreshBatch,
-                                            icon: const Icon(Icons.refresh_rounded),
-                                            label: const Text('换一批'),
-                                          ),
-                                          FilledButton.icon(
-                                            onPressed: _openRandomChallenge,
-                                            icon: const Icon(Icons.casino_outlined),
-                                            label: const Text('随机挑战'),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  children: [
-                                    IconButton.outlined(
-                                      onPressed: () => Navigator.of(context).pop(),
-                                      icon: const Icon(Icons.arrow_back_rounded),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Text(
-                                        widget.mode.label,
-                                        style: theme.textTheme.headlineMedium,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    OutlinedButton.icon(
-                                      onPressed: _refreshBatch,
-                                      icon: const Icon(Icons.refresh_rounded),
-                                      label: const Text('换一批'),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    FilledButton.icon(
-                                      onPressed: _openRandomChallenge,
-                                      icon: const Icon(Icons.casino_outlined),
-                                      label: const Text('随机挑战'),
-                                    ),
-                                  ],
-                                ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          widget.mode == ChallengeMode.text
-                              ? '从下面 6 个问题里挑一个，点进去再判断哪一段更像真人写的。'
-                              : '从下面 6 个标题里挑一个，点进去之后再看图片。',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Expanded(
-                          child: FutureBuilder<List<Challenge>>(
-                            future: _batchFuture,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState != ConnectionState.done) {
-                                return const Center(child: CircularProgressIndicator());
-                              }
-
-                              final challenges = snapshot.data ?? <Challenge>[];
-                              if (challenges.isEmpty) {
-                                return Center(
-                                  child: Text(
-                                    '这个模式暂时还没有可玩的题目。',
-                                    style: theme.textTheme.titleMedium,
+                            ),
+                            const SizedBox(height: 18),
+                            FadeSlideIn(
+                              delay: const Duration(milliseconds: 120),
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: scheme.surface.withValues(alpha: 0.78),
+                                  borderRadius: BorderRadius.circular(28),
+                                  border: Border.all(
+                                    color:
+                                        scheme.outline.withValues(alpha: 0.4),
                                   ),
-                                );
-                              }
-
-                              return GridView.builder(
-                                padding: EdgeInsets.zero,
-                                itemCount: challenges.length,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: wide ? 2 : 1,
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16,
-                                  childAspectRatio: wide ? 3.2 : 2.85,
                                 ),
-                                itemBuilder: (context, index) {
-                                  final challenge = challenges[index];
-                                  return FadeSlideIn(
-                                    delay: Duration(milliseconds: 90 + index * 40),
-                                    child: _ChallengePreviewCard(
-                                      challenge: challenge,
-                                      onTap: () {
-                                        final preparedChallenge =
-                                            widget.repository.prepareChallengeForPlay(challenge);
-                                        Navigator.of(context).push(
-                                          AppPageRoute<void>(
-                                            builder: (context) =>
-                                                ChallengePage(challenge: preparedChallenge),
-                                          ),
-                                        );
-                                      },
+                                child: Text(
+                                  widget.mode == ChallengeMode.text
+                                      ? '从下面 6 个题目里挑一个，进去以后看两段文字，判断哪一段更像真人写的。'
+                                      : '从下面 6 个题目里挑一个，进去以后看两张图片，判断哪一张更像真实镜头。',
+                                  style: theme.textTheme.bodyLarge?.copyWith(
+                                    color: scheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 18),
+                            Expanded(
+                              child: FutureBuilder<List<Challenge>>(
+                                future: _batchFuture,
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState !=
+                                      ConnectionState.done) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  }
+
+                                  final challenges =
+                                      snapshot.data ?? <Challenge>[];
+                                  if (challenges.isEmpty) {
+                                    return Center(
+                                      child: Text(
+                                        '这个模式暂时还没有可玩的题目。',
+                                        style: theme.textTheme.titleMedium,
+                                      ),
+                                    );
+                                  }
+
+                                  return GridView.builder(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: challenges.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: wide ? 2 : 1,
+                                      crossAxisSpacing: 16,
+                                      mainAxisSpacing: 16,
+                                      childAspectRatio: wide ? 2.65 : 2.15,
                                     ),
+                                    itemBuilder: (context, index) {
+                                      final challenge = challenges[index];
+                                      return FadeSlideIn(
+                                        delay: Duration(
+                                            milliseconds: 80 + index * 40),
+                                        child: _ChallengePreviewCard(
+                                          challenge: challenge,
+                                          onTap: () {
+                                            final preparedChallenge = widget
+                                                .repository
+                                                .prepareChallengeForPlay(
+                                                    challenge);
+                                            Navigator.of(context).push(
+                                              AppPageRoute<void>(
+                                                builder: (context) =>
+                                                    ChallengePage(
+                                                  challenge: preparedChallenge,
+                                                  repository: widget.repository,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
-                          ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                },
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _ChallengePreviewCard extends StatelessWidget {
+class _ChallengePreviewCard extends StatefulWidget {
   const _ChallengePreviewCard({
     required this.challenge,
     required this.onTap,
@@ -253,38 +313,111 @@ class _ChallengePreviewCard extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
+  State<_ChallengePreviewCard> createState() => _ChallengePreviewCardState();
+}
+
+class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
+  var _hovering = false;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    final challenge = widget.challenge;
     final hint = challenge.mode == ChallengeMode.text
         ? challenge.prompt
         : '进入后查看两张图片，再判断哪张更像真实镜头。';
 
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                challenge.title,
-                style: theme.textTheme.headlineSmall?.copyWith(fontSize: 26),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                hint,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovering = true),
+      onExit: (_) => setState(() => _hovering = false),
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 220),
+        curve: Curves.easeOutCubic,
+        scale: _hovering ? 1.01 : 1,
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: widget.onTap,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          (challenge.mode == ChallengeMode.text
+                                  ? scheme.primary
+                                  : scheme.secondary)
+                              .withValues(alpha: 0.16),
+                          scheme.surface.withValues(alpha: 0.98),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+                Positioned.fill(
+                  child: EmojiPattern(
+                    emojis: challenge.mode == ChallengeMode.text
+                        ? const ['📝', '✍️', '💬', '🔎']
+                        : const ['🖼️', '📸', '✨', '🫧'],
+                    size: 18,
+                    spacing: 18,
+                    opacity: 0.07,
+                    rotation:
+                        challenge.mode == ChallengeMode.text ? -0.11 : 0.11,
+                    padding: const EdgeInsets.all(8),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: scheme.surface.withValues(alpha: 0.82),
+                              borderRadius: BorderRadius.circular(18),
+                              border: Border.all(
+                                color: scheme.outline.withValues(alpha: 0.38),
+                              ),
+                            ),
+                            child: EmojiText(challenge.mode.emoji, size: 24),
+                          ),
+                          const Spacer(),
+                          Icon(Icons.arrow_forward_rounded,
+                              color: scheme.primary),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        challenge.title,
+                        style: theme.textTheme.headlineSmall
+                            ?.copyWith(fontSize: 26),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        hint,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: scheme.onSurfaceVariant,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

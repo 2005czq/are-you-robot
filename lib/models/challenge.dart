@@ -16,6 +16,12 @@ extension ChallengeModeX on ChallengeMode {
         ChallengeMode.video => '视频挑战',
       };
 
+  String get emoji => switch (this) {
+        ChallengeMode.text => '📝',
+        ChallengeMode.image => '📸',
+        ChallengeMode.video => '🎬',
+      };
+
   static ChallengeMode fromKey(String value) => switch (value) {
         'text' => ChallengeMode.text,
         'image' => ChallengeMode.image,
@@ -132,8 +138,9 @@ class Challenge {
       difficulty: json['difficulty'] as String,
       explanation: json['explanation'] as String,
       options: (json['options'] as List<dynamic>)
-          .map((option) => ChallengeOption.fromJson(option as Map<String, dynamic>))
-        .toList(),
+          .map((option) =>
+              ChallengeOption.fromJson(option as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -154,7 +161,8 @@ class Challenge {
       options.length,
       (index) => String.fromCharCode(65 + index),
     );
-    final shuffled = List<ChallengeOption>.from(options)..shuffle(random ?? Random());
+    final shuffled = List<ChallengeOption>.from(options)
+      ..shuffle(random ?? Random());
 
     return copyWith(
       options: [

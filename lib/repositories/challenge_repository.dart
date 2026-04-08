@@ -28,7 +28,8 @@ class ChallengeRepository {
     Future<Database>? databaseFuture,
     ChallengeAssetLoader? assetLoader,
   })  : _random = random ?? Random(),
-        _databaseFuture = databaseFuture ?? openChallengeDatabase(_databaseName),
+        _databaseFuture =
+            databaseFuture ?? openChallengeDatabase(_databaseName),
         _assetLoader = assetLoader ?? rootBundle.loadString;
 
   static const _databaseName = 'are_you_robot.db';
@@ -86,7 +87,9 @@ class ChallengeRepository {
         final challenges = Challenge.decodeList(raw);
 
         for (final challenge in challenges) {
-          await _challengeStore.record(challenge.id).put(txn, challenge.toJson());
+          await _challengeStore
+              .record(challenge.id)
+              .put(txn, challenge.toJson());
         }
       }
 
@@ -103,7 +106,9 @@ class ChallengeRepository {
       db,
       finder: Finder(sortOrders: [SortOrder('id')]),
     );
-    return snapshots.map((snapshot) => Challenge.fromJson(snapshot.value)).toList();
+    return snapshots
+        .map((snapshot) => Challenge.fromJson(snapshot.value))
+        .toList();
   }
 
   Future<List<Challenge>> loadByMode(ChallengeMode mode) async {
@@ -116,7 +121,9 @@ class ChallengeRepository {
         sortOrders: [SortOrder('id')],
       ),
     );
-    return snapshots.map((snapshot) => Challenge.fromJson(snapshot.value)).toList();
+    return snapshots
+        .map((snapshot) => Challenge.fromJson(snapshot.value))
+        .toList();
   }
 
   Future<Challenge?> loadById(String id) async {
@@ -129,8 +136,18 @@ class ChallengeRepository {
     return Challenge.fromJson(raw);
   }
 
-  Future<Challenge?> randomChallenge(ChallengeMode mode) async {
-    final matches = await loadByMode(mode);
+  Future<Challenge?> randomChallenge(
+    ChallengeMode mode, {
+    Set<String> excludeIds = const {},
+  }) async {
+    var matches = (await loadByMode(mode))
+        .where((challenge) => !excludeIds.contains(challenge.id))
+        .toList();
+
+    if (matches.isEmpty && excludeIds.isNotEmpty) {
+      matches = await loadByMode(mode);
+    }
+
     if (matches.isEmpty) {
       return null;
     }
