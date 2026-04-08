@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 ThemeData buildAppTheme(Brightness brightness) {
@@ -6,13 +7,13 @@ ThemeData buildAppTheme(Brightness brightness) {
     brightness: brightness,
   );
 
-  const serifFamily = 'NotoSerifSC';
+  final serifFamily = kIsWeb ? 'Noto Serif SC' : 'NotoSerifSC';
   const serifFallback = <String>[
     'SourceSerif4',
     'Georgia',
   ];
 
-  const serifDisplay = TextStyle(
+  final serifDisplay = TextStyle(
     fontFamily: serifFamily,
     fontFamilyFallback: serifFallback,
     fontWeight: FontWeight.w700,
@@ -20,7 +21,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     letterSpacing: -0.6,
   );
 
-  const serifTitle = TextStyle(
+  final serifTitle = TextStyle(
     fontFamily: serifFamily,
     fontFamilyFallback: serifFallback,
     fontWeight: FontWeight.w700,
