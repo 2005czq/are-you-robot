@@ -41,6 +41,8 @@ http://127.0.0.1:7357
 ./scripts/build_web.sh
 ```
 
+这个脚本也会在构建完成后，把 Web 端已经改为远程加载的本地 `NotoSerifSC` 字体从 `build/web` 产物里剔除，避免把几十 MB 的中文字体一起部署上去。
+
 ## 部署到 GitHub Pages
 
 这个仓库已经包含 GitHub Actions 工作流，会在每次 push 到 `main` 后自动构建并发布到 GitHub Pages。

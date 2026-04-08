@@ -7,6 +7,7 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$PROJECT_ROOT"
 
 "$SCRIPT_DIR/flutterw" build web "$@"
+node "$SCRIPT_DIR/strip_web_fonts.mjs" "$PROJECT_ROOT/build/web"
 
 echo
 echo "Build complete: $PROJECT_ROOT/build/web"

@@ -37,7 +37,5 @@ flutter:
       fonts:
         - asset: assets/fonts/SourceSerif4-Regular.ttf
           weight: 400
-        - asset: assets/fonts/SourceSerif4-SemiBold.ttf
-          weight: 600
         - asset: assets/fonts/SourceSerif4-Bold.ttf
           weight: 700
