@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../app/widgets/emoji_pattern.dart';
+import '../../app/widgets/celebration_overlay.dart';
 import '../../app/widgets/emoji_text.dart';
 import '../../app/widgets/fade_slide_in.dart';
 import '../../models/challenge.dart';
@@ -56,17 +56,6 @@ class _ChallengePageState extends State<ChallengePage> {
         ),
         child: Stack(
           children: [
-            Positioned.fill(
-              child: EmojiPattern(
-                emojis: challenge.mode == ChallengeMode.text
-                    ? const ['📝', '✍️', '💬', '🔎']
-                    : const ['🖼️', '📸', '✨', '🫧'],
-                size: 20,
-                spacing: 22,
-                opacity: 0.06,
-                rotation: challenge.mode == ChallengeMode.text ? -0.12 : 0.12,
-              ),
-            ),
             SafeArea(
               child: Center(
                 child: ConstrainedBox(
@@ -234,6 +223,9 @@ class _ChallengePageState extends State<ChallengePage> {
                 ),
               ),
             ),
+            CelebrationOverlay(
+              play: _result?.isCorrect ?? false,
+            ),
           ],
         ),
       ),
@@ -392,18 +384,6 @@ class _OptionCard extends StatelessWidget {
           onTap: locked ? null : onTap,
           child: Stack(
             children: [
-              Positioned.fill(
-                child: EmojiPattern(
-                  emojis: option.asset != null
-                      ? const ['📸', '🖼️', '✨', '🫧']
-                      : const ['📝', '✍️', '💭', '🔎'],
-                  size: 18,
-                  spacing: 18,
-                  opacity: 0.06,
-                  rotation: option.asset != null ? 0.08 : -0.08,
-                  padding: const EdgeInsets.all(10),
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(22),
                 child: Column(
@@ -431,23 +411,9 @@ class _OptionCard extends StatelessWidget {
                           Icon(Icons.radio_button_checked_rounded,
                               color: accent)
                         else if (result == _OptionResult.correct)
-                          const AnimatedEmoji(
-                            '✅',
-                            size: 24,
-                            motion: EmojiMotion.loop,
-                            duration: Duration(milliseconds: 1500),
-                            scaleBoost: 0.08,
-                            lift: 4,
-                          )
+                          Icon(Icons.check_circle_rounded, color: accent)
                         else if (result == _OptionResult.wrong)
-                          const AnimatedEmoji(
-                            '❌',
-                            size: 24,
-                            motion: EmojiMotion.loop,
-                            duration: Duration(milliseconds: 1380),
-                            scaleBoost: 0.08,
-                            lift: 4,
-                          ),
+                          Icon(Icons.cancel_rounded, color: accent),
                       ],
                     ),
                     const SizedBox(height: 16),

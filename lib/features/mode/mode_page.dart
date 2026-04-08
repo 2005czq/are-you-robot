@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../app/widgets/app_page_route.dart';
-import '../../app/widgets/emoji_pattern.dart';
-import '../../app/widgets/emoji_text.dart';
 import '../../app/widgets/fade_slide_in.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
@@ -93,82 +91,26 @@ class _ModePageState extends State<ModePage> {
             colors: [topColor, bottomColor],
           ),
         ),
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: EmojiPattern(
-                emojis: widget.mode == ChallengeMode.text
-                    ? const ['📝', '✍️', '💬', '🔎']
-                    : const ['🖼️', '📸', '✨', '🫧'],
-                size: 22,
-                spacing: 24,
-                opacity: 0.07,
-                rotation: widget.mode == ChallengeMode.text ? -0.12 : 0.12,
-              ),
-            ),
-            SafeArea(
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1160),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final wide = constraints.maxWidth >= 900;
-                      final compactHeader = constraints.maxWidth < 820;
+        child: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1160),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final wide = constraints.maxWidth >= 900;
+                  final compactHeader = constraints.maxWidth < 820;
 
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            FadeSlideIn(
-                              child: compactHeader
-                                  ? Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            IconButton.outlined(
-                                              onPressed: () =>
-                                                  Navigator.of(context).pop(),
-                                              icon: const Icon(
-                                                  Icons.arrow_back_rounded),
-                                            ),
-                                            const SizedBox(width: 12),
-                                            EmojiText(widget.mode.emoji,
-                                                size: 26),
-                                            const SizedBox(width: 10),
-                                            Expanded(
-                                              child: Text(
-                                                widget.mode.label,
-                                                style: theme
-                                                    .textTheme.headlineMedium,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 14),
-                                        Wrap(
-                                          spacing: 12,
-                                          runSpacing: 12,
-                                          children: [
-                                            OutlinedButton.icon(
-                                              onPressed: _refreshBatch,
-                                              icon: const Icon(
-                                                  Icons.refresh_rounded),
-                                              label: const Text('换一批'),
-                                            ),
-                                            FilledButton.icon(
-                                              onPressed: _openRandomChallenge,
-                                              icon: const Icon(
-                                                  Icons.casino_outlined),
-                                              label: const Text('随机挑战'),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    )
-                                  : Row(
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadeSlideIn(
+                          child: compactHeader
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
                                       children: [
                                         IconButton.outlined(
                                           onPressed: () =>
@@ -176,9 +118,6 @@ class _ModePageState extends State<ModePage> {
                                           icon: const Icon(
                                               Icons.arrow_back_rounded),
                                         ),
-                                        const SizedBox(width: 12),
-                                        EmojiText(widget.mode.emoji, size: 28),
-                                        const SizedBox(width: 12),
                                         Expanded(
                                           child: Text(
                                             widget.mode.label,
@@ -186,14 +125,19 @@ class _ModePageState extends State<ModePage> {
                                                 theme.textTheme.headlineMedium,
                                           ),
                                         ),
-                                        const SizedBox(width: 12),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 14),
+                                    Wrap(
+                                      spacing: 12,
+                                      runSpacing: 12,
+                                      children: [
                                         OutlinedButton.icon(
                                           onPressed: _refreshBatch,
                                           icon:
                                               const Icon(Icons.refresh_rounded),
                                           label: const Text('换一批'),
                                         ),
-                                        const SizedBox(width: 12),
                                         FilledButton.icon(
                                           onPressed: _openRandomChallenge,
                                           icon:
@@ -202,101 +146,115 @@ class _ModePageState extends State<ModePage> {
                                         ),
                                       ],
                                     ),
-                            ),
-                            const SizedBox(height: 18),
-                            FadeSlideIn(
-                              delay: const Duration(milliseconds: 120),
-                              child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  color: scheme.surface.withValues(alpha: 0.78),
-                                  borderRadius: BorderRadius.circular(28),
-                                  border: Border.all(
-                                    color:
-                                        scheme.outline.withValues(alpha: 0.4),
-                                  ),
-                                ),
-                                child: Text(
-                                  widget.mode == ChallengeMode.text
-                                      ? '从下面 6 个题目里挑一个，进去以后看两段文字，判断哪一段更像真人写的。'
-                                      : '从下面 6 个题目里挑一个，进去以后看两张图片，判断哪一张更像真实镜头。',
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                    color: scheme.onSurfaceVariant,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 18),
-                            Expanded(
-                              child: FutureBuilder<List<Challenge>>(
-                                future: _batchFuture,
-                                builder: (context, snapshot) {
-                                  if (snapshot.connectionState !=
-                                      ConnectionState.done) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-
-                                  final challenges =
-                                      snapshot.data ?? <Challenge>[];
-                                  if (challenges.isEmpty) {
-                                    return Center(
-                                      child: Text(
-                                        '这个模式暂时还没有可玩的题目。',
-                                        style: theme.textTheme.titleMedium,
-                                      ),
-                                    );
-                                  }
-
-                                  return GridView.builder(
-                                    padding: EdgeInsets.zero,
-                                    itemCount: challenges.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: wide ? 2 : 1,
-                                      crossAxisSpacing: 16,
-                                      mainAxisSpacing: 16,
-                                      childAspectRatio: wide ? 2.65 : 2.15,
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    IconButton.outlined(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      icon:
+                                          const Icon(Icons.arrow_back_rounded),
                                     ),
-                                    itemBuilder: (context, index) {
-                                      final challenge = challenges[index];
-                                      return FadeSlideIn(
-                                        delay: Duration(
-                                            milliseconds: 80 + index * 40),
-                                        child: _ChallengePreviewCard(
-                                          challenge: challenge,
-                                          onTap: () {
-                                            final preparedChallenge = widget
-                                                .repository
-                                                .prepareChallengeForPlay(
-                                                    challenge);
-                                            Navigator.of(context).push(
-                                              AppPageRoute<void>(
-                                                builder: (context) =>
-                                                    ChallengePage(
-                                                  challenge: preparedChallenge,
-                                                  repository: widget.repository,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
+                                    Expanded(
+                                      child: Text(
+                                        widget.mode.label,
+                                        style: theme.textTheme.headlineMedium,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    OutlinedButton.icon(
+                                      onPressed: _refreshBatch,
+                                      icon: const Icon(Icons.refresh_rounded),
+                                      label: const Text('换一批'),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    FilledButton.icon(
+                                      onPressed: _openRandomChallenge,
+                                      icon: const Icon(Icons.casino_outlined),
+                                      label: const Text('随机挑战'),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                        const SizedBox(height: 14),
+                        FadeSlideIn(
+                          delay: const Duration(milliseconds: 120),
+                          child: Text(
+                            widget.mode == ChallengeMode.text
+                                ? '从下面挑一个题目，进去以后看两段文字，判断哪一段更像真人写的。'
+                                : '从下面挑一个题目，进去以后看两张图片，判断哪一张更像真实镜头。',
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: scheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Expanded(
+                          child: FutureBuilder<List<Challenge>>(
+                            future: _batchFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState !=
+                                  ConnectionState.done) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+
+                              final challenges = snapshot.data ?? <Challenge>[];
+                              if (challenges.isEmpty) {
+                                return Center(
+                                  child: Text(
+                                    '这个模式暂时还没有可玩的题目。',
+                                    style: theme.textTheme.titleMedium,
+                                  ),
+                                );
+                              }
+
+                              return GridView.builder(
+                                padding: EdgeInsets.zero,
+                                itemCount: challenges.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: wide ? 2 : 1,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: wide ? 2.65 : 2.15,
+                                ),
+                                itemBuilder: (context, index) {
+                                  final challenge = challenges[index];
+                                  return FadeSlideIn(
+                                    delay:
+                                        Duration(milliseconds: 80 + index * 40),
+                                    child: _ChallengePreviewCard(
+                                      challenge: challenge,
+                                      onTap: () {
+                                        final preparedChallenge = widget
+                                            .repository
+                                            .prepareChallengeForPlay(challenge);
+                                        Navigator.of(context).push(
+                                          AppPageRoute<void>(
+                                            builder: (context) => ChallengePage(
+                                              challenge: preparedChallenge,
+                                              repository: widget.repository,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   );
                                 },
-                              ),
-                            ),
-                          ],
+                              );
+                            },
+                          ),
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -358,19 +316,6 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                     ),
                   ),
                 ),
-                Positioned.fill(
-                  child: EmojiPattern(
-                    emojis: challenge.mode == ChallengeMode.text
-                        ? const ['📝', '✍️', '💬', '🔎']
-                        : const ['🖼️', '📸', '✨', '🫧'],
-                    size: 18,
-                    spacing: 18,
-                    opacity: 0.07,
-                    rotation:
-                        challenge.mode == ChallengeMode.text ? -0.11 : 0.11,
-                    padding: const EdgeInsets.all(8),
-                  ),
-                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -380,17 +325,6 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                     children: [
                       Row(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: scheme.surface.withValues(alpha: 0.82),
-                              borderRadius: BorderRadius.circular(18),
-                              border: Border.all(
-                                color: scheme.outline.withValues(alpha: 0.38),
-                              ),
-                            ),
-                            child: EmojiText(challenge.mode.emoji, size: 24),
-                          ),
                           const Spacer(),
                           Icon(Icons.arrow_forward_rounded,
                               color: scheme.primary),
