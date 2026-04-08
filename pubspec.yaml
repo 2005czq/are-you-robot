@@ -27,6 +27,9 @@ flutter:
     - assets/bootstrap/seed_manifest.json
     - assets/images/placeholders/
   fonts:
+    - family: NotoColorEmoji
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji.ttf
     - family: NotoSerifSC
       fonts:
         - asset: assets/fonts/NotoSerifSC-Regular.ttf
