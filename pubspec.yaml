@@ -31,8 +31,6 @@ flutter:
       fonts:
         - asset: assets/fonts/NotoSerifSC-Regular.ttf
           weight: 400
-        - asset: assets/fonts/NotoSerifSC-SemiBold.ttf
-          weight: 600
         - asset: assets/fonts/NotoSerifSC-Bold.ttf
           weight: 700
     - family: SourceSerif4

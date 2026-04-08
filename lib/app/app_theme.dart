@@ -52,7 +52,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     titleMedium: baseTextTheme.titleMedium?.copyWith(
       fontFamily: serifFamily,
       fontFamilyFallback: serifFallback,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     ),
     bodyLarge: baseTextTheme.bodyLarge?.copyWith(
       fontFamily: serifFamily,
@@ -78,7 +78,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     labelMedium: baseTextTheme.labelMedium?.copyWith(
       fontFamily: serifFamily,
       fontFamilyFallback: serifFallback,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     ),
   );
 
