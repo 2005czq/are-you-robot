@@ -1,46 +1,30 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../app/widgets/app_page_route.dart';
 import '../../app/widgets/emoji_pattern.dart';
-import '../../app/widgets/emoji_text.dart';
 import '../../app/widgets/fade_slide_in.dart';
+import '../../app/widgets/noto_animated_emoji.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
 import '../mode/mode_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.repository});
 
   final ChallengeRepository repository;
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late final Future<ChallengeStats> _statsFuture;
-
-  static const _heroEmojis = ['🤖', '🧠', '🧐', '✨', '🫧', '💭'];
-
-  @override
-  void initState() {
-    super.initState();
-    _statsFuture = widget.repository.loadStats();
-  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final topColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF211813)
-        : const Color(0xFFF7E7D8);
-    final midColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF17120F)
-        : const Color(0xFFFDF7F0);
+        ? const Color(0xFF1C1611)
+        : const Color(0xFFF4E7D8);
     final bottomColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF110D0B)
-        : const Color(0xFFF2E6D8);
+        ? const Color(0xFF100C09)
+        : const Color(0xFFFBF5ED);
 
     return Scaffold(
       body: DecoratedBox(
@@ -48,81 +32,80 @@ class _HomePageState extends State<HomePage> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [topColor, midColor, bottomColor],
+            colors: [topColor, bottomColor],
           ),
         ),
         child: Stack(
           children: [
-            const Positioned.fill(
-              child: EmojiPattern(
-                emojis: ['✨', '🫧', '🧠', '🤖', '💡'],
-                size: 26,
-                spacing: 26,
-                opacity: 0.07,
-                rotation: -0.15,
-                padding: EdgeInsets.all(8),
-              ),
-            ),
-            Positioned(
-              top: -60,
-              right: -30,
-              child: _GlowOrb(
-                size: 230,
-                color: scheme.secondary.withValues(alpha: 0.22),
-              ),
-            ),
-            Positioned(
-              left: -30,
-              bottom: 20,
-              child: _GlowOrb(
-                size: 180,
-                color: scheme.primary.withValues(alpha: 0.18),
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Align(
+                  alignment: const Alignment(0.82, -0.2),
+                  child: Transform.rotate(
+                    angle: 0.34,
+                    child: Opacity(
+                      opacity: theme.brightness == Brightness.dark ? 0.12 : 0.1,
+                      child: const SizedBox(
+                        width: 520,
+                        height: 520,
+                        child: NotoAnimatedEmoji(
+                          asset: 'assets/animations/noto/robot.json',
+                          size: 520,
+                          repeat: true,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
             SafeArea(
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1180),
+                  constraints: const BoxConstraints(maxWidth: 1160),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       final compact = constraints.maxWidth < 920;
-                      final cardColumns = constraints.maxWidth >= 860 ? 2 : 1;
-                      final heroSize = constraints.maxWidth >= 1080
-                          ? 82.0
+                      final titleSize = constraints.maxWidth >= 1050
+                          ? 72.0
                           : constraints.maxWidth >= 760
-                              ? 66.0
-                              : 54.0;
-                      final titleSize = constraints.maxWidth >= 1080
-                          ? 66.0
-                          : constraints.maxWidth >= 760
-                              ? 56.0
-                              : 44.0;
+                              ? 60.0
+                              : 46.0;
 
                       return SingleChildScrollView(
-                        padding: EdgeInsets.fromLTRB(
-                          24,
-                          compact ? 22 : 30,
-                          24,
-                          28,
-                        ),
+                        padding: const EdgeInsets.fromLTRB(24, 28, 24, 28),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             FadeSlideIn(
-                              duration: const Duration(milliseconds: 980),
                               child: compact
                                   ? Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        _HeroBlock(
-                                          titleSize: titleSize,
-                                          heroSize: heroSize,
-                                          heroEmojis: _heroEmojis,
+                                        _HeroBlock(titleSize: titleSize),
+                                        const SizedBox(height: 28),
+                                        OutlinedButton.icon(
+                                          onPressed: () =>
+                                              _showIntroDialog(context),
+                                          icon: const Icon(
+                                              Icons.menu_book_rounded),
+                                          label: const Text('了解图灵测试'),
                                         ),
-                                        const SizedBox(height: 24),
-                                        Align(
-                                          alignment: Alignment.centerLeft,
+                                      ],
+                                    )
+                                  : Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child:
+                                              _HeroBlock(titleSize: titleSize),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
                                           child: OutlinedButton.icon(
                                             onPressed: () =>
                                                 _showIntroDialog(context),
@@ -132,88 +115,46 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       ],
-                                    )
-                                  : Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: _HeroBlock(
-                                            titleSize: titleSize,
-                                            heroSize: heroSize,
-                                            heroEmojis: _heroEmojis,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 24),
-                                        OutlinedButton.icon(
-                                          onPressed: () =>
-                                              _showIntroDialog(context),
-                                          icon: const Icon(
-                                              Icons.menu_book_rounded),
-                                          label: const Text('了解图灵测试'),
-                                        ),
-                                      ],
                                     ),
                             ),
-                            const SizedBox(height: 28),
+                            const SizedBox(height: 40),
                             FadeSlideIn(
                               delay: const Duration(milliseconds: 120),
-                              duration: const Duration(milliseconds: 980),
-                              child: FutureBuilder<ChallengeStats>(
-                                future: _statsFuture,
-                                builder: (context, snapshot) {
-                                  final stats = snapshot.data;
-                                  return Wrap(
-                                    spacing: 12,
-                                    runSpacing: 12,
-                                    children: [
-                                      _FactChip(
-                                        emoji: '📝',
-                                        text:
-                                            '${stats?.countFor(ChallengeMode.text) ?? '--'} 条文字题',
-                                      ),
-                                      _FactChip(
-                                        emoji: '🖼️',
-                                        text:
-                                            '${stats?.countFor(ChallengeMode.image) ?? '--'} 条图片题',
-                                      ),
-                                      const _FactChip(
-                                        emoji: '🎯',
-                                        text: '每次都会随机出题',
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
-                            const SizedBox(height: 26),
-                            FadeSlideIn(
-                              delay: const Duration(milliseconds: 220),
-                              duration: const Duration(milliseconds: 1040),
                               child: GridView.count(
-                                crossAxisCount: cardColumns,
-                                crossAxisSpacing: 18,
-                                mainAxisSpacing: 18,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
-                                childAspectRatio:
-                                    cardColumns == 2 ? 1.12 : 0.96,
+                                crossAxisCount: compact ? 1 : 2,
+                                crossAxisSpacing: 22,
+                                mainAxisSpacing: 22,
+                                childAspectRatio: compact ? 1.08 : 1.12,
                                 children: [
                                   _ModeCard(
-                                    emoji: '✍️',
-                                    pattern: const ['✍️', '📝', '💬', '🔎'],
                                     title: '文字挑战',
-                                    subtitle: '看语气、停顿、细节和表达习惯，判断哪一段更像真人写出来的。',
+                                    subtitle: '看语气、停顿和细节，判断哪一段更像真人写出来的。',
                                     accent: scheme.primary,
+                                    emojiChoices: const [
+                                      '✍️',
+                                      '📖',
+                                      '📝',
+                                      '💬'
+                                    ],
+                                    heroAsset:
+                                        'assets/animations/noto/writing_hand.json',
                                     onTap: () =>
                                         _openMode(context, ChallengeMode.text),
                                   ),
                                   _ModeCard(
-                                    emoji: '🖼️',
-                                    pattern: const ['🖼️', '📸', '✨', '🫧'],
                                     title: '图片挑战',
-                                    subtitle: '从光线、边缘、质感和构图里找线索，看看哪张更接近真实镜头。',
+                                    subtitle: '看光线、边缘和质感，判断哪一张更接近真实镜头。',
                                     accent: scheme.secondary,
+                                    emojiChoices: const [
+                                      '📸',
+                                      '🖼️',
+                                      '🌤️',
+                                      '🔍'
+                                    ],
+                                    heroAsset:
+                                        'assets/animations/noto/camera.json',
                                     onTap: () =>
                                         _openMode(context, ChallengeMode.image),
                                   ),
@@ -237,23 +178,16 @@ class _HomePageState extends State<HomePage> {
   void _openMode(BuildContext context, ChallengeMode mode) {
     Navigator.of(context).push(
       AppPageRoute<void>(
-        builder: (context) =>
-            ModePage(mode: mode, repository: widget.repository),
+        builder: (context) => ModePage(mode: mode, repository: repository),
       ),
     );
   }
 }
 
 class _HeroBlock extends StatelessWidget {
-  const _HeroBlock({
-    required this.titleSize,
-    required this.heroSize,
-    required this.heroEmojis,
-  });
+  const _HeroBlock({required this.titleSize});
 
   final double titleSize;
-  final double heroSize;
-  final List<String> heroEmojis;
 
   @override
   Widget build(BuildContext context) {
@@ -263,89 +197,25 @@ class _HeroBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          decoration: BoxDecoration(
-            color: scheme.surface.withValues(alpha: 0.76),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(color: scheme.outline.withValues(alpha: 0.5)),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Wrap(
-                spacing: 4,
-                children: [
-                  for (var i = 0; i < heroEmojis.length; i++)
-                    Transform.translate(
-                      offset: Offset(i.isOdd ? 0 : 0, i.isOdd ? 2 : -1),
-                      child: AnimatedEmoji(
-                        heroEmojis[i],
-                        size: 24,
-                        motion: EmojiMotion.loop,
-                        duration: Duration(milliseconds: 1600 + i * 130),
-                        scaleBoost: 0.07,
-                        lift: 4,
-                        turns: 0.008,
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(width: 10),
-              Text(
-                '一起找线索',
-                style: theme.textTheme.labelLarge?.copyWith(
-                  color: scheme.primary,
-                  letterSpacing: 0.6,
-                ),
-              ),
-            ],
-          ),
+        Text(
+          '你是人类还是机器人？',
+          style: theme.textTheme.displaySmall?.copyWith(fontSize: titleSize),
         ),
-        const SizedBox(height: 24),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AnimatedEmoji(
-              '🤖',
-              size: heroSize,
-              motion: EmojiMotion.hover,
-              duration: const Duration(milliseconds: 1300),
-              scaleBoost: 0.12,
-              lift: 10,
-              turns: 0.018,
-              shadows: [
-                Shadow(
-                  color: scheme.primary.withValues(alpha: 0.18),
-                  blurRadius: 24,
-                ),
-              ],
-            ),
-            const SizedBox(width: 18),
-            Expanded(
-              child: Text(
-                '你是人类还是机器人？',
-                style:
-                    theme.textTheme.displaySmall?.copyWith(fontSize: titleSize),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 12),
         Text(
           '图灵测试小游戏',
           style: theme.textTheme.titleLarge?.copyWith(
             color: scheme.onSurfaceVariant,
           ),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 22),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 760),
+          constraints: const BoxConstraints(maxWidth: 620),
           child: Text(
-            '从文字和图片里找出更像真人创作的那一个。慢一点观察也没关系，答案揭晓后会立刻进入下一道随机题。',
+            '从文字和图片里找出更像真人创作的那一个。放慢一点观察细节，很多线索都藏在看似普通的地方。',
             style: theme.textTheme.titleMedium?.copyWith(
               color: scheme.onSurfaceVariant,
-              height: 1.6,
+              height: 1.75,
             ),
           ),
         ),
@@ -356,19 +226,19 @@ class _HeroBlock extends StatelessWidget {
 
 class _ModeCard extends StatefulWidget {
   const _ModeCard({
-    required this.emoji,
-    required this.pattern,
     required this.title,
     required this.subtitle,
     required this.accent,
+    required this.emojiChoices,
+    required this.heroAsset,
     required this.onTap,
   });
 
-  final String emoji;
-  final List<String> pattern;
   final String title;
   final String subtitle;
   final Color accent;
+  final List<String> emojiChoices;
+  final String heroAsset;
   final VoidCallback onTap;
 
   @override
@@ -376,7 +246,17 @@ class _ModeCard extends StatefulWidget {
 }
 
 class _ModeCardState extends State<_ModeCard> {
+  late final List<String> _pattern;
   var _hovering = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final random = Random(widget.title.hashCode);
+    _pattern = List.generate(22, (index) {
+      return widget.emojiChoices[random.nextInt(widget.emojiChoices.length)];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -387,9 +267,9 @@ class _ModeCardState extends State<_ModeCard> {
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
       child: AnimatedScale(
-        duration: const Duration(milliseconds: 220),
+        duration: const Duration(milliseconds: 180),
         curve: Curves.easeOutCubic,
-        scale: _hovering ? 1.012 : 1,
+        scale: _hovering ? 1.008 : 1,
         child: Card(
           clipBehavior: Clip.antiAlias,
           child: InkWell(
@@ -403,9 +283,8 @@ class _ModeCardState extends State<_ModeCard> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          widget.accent.withValues(alpha: 0.18),
-                          scheme.surface.withValues(alpha: 0.94),
-                          scheme.surface.withValues(alpha: 0.98),
+                          widget.accent.withValues(alpha: 0.1),
+                          scheme.surface.withValues(alpha: 0.97),
                         ],
                       ),
                     ),
@@ -413,84 +292,53 @@ class _ModeCardState extends State<_ModeCard> {
                 ),
                 Positioned.fill(
                   child: EmojiPattern(
-                    emojis: widget.pattern,
-                    size: 22,
-                    spacing: 20,
-                    opacity: 0.08,
-                    rotation: widget.title == '文字挑战' ? -0.14 : 0.12,
-                    padding: const EdgeInsets.all(10),
+                    emojis: _pattern,
+                    size: 36,
+                    spacing: 34,
+                    opacity: 0.04,
+                    rotation: widget.title == '文字挑战' ? -0.08 : 0.08,
+                    padding: const EdgeInsets.all(18),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(28),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(14),
-                            decoration: BoxDecoration(
-                              color: scheme.surface.withValues(alpha: 0.82),
-                              borderRadius: BorderRadius.circular(22),
-                              border: Border.all(
-                                color: widget.accent.withValues(alpha: 0.26),
-                              ),
-                            ),
-                            child: AnimatedEmoji(
-                              widget.emoji,
-                              size: 40,
-                              motion: EmojiMotion.hover,
-                              duration: const Duration(milliseconds: 1280),
-                              scaleBoost: 0.12,
-                              lift: 7,
-                              turns: 0.016,
-                            ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: SizedBox(
+                          width: 110,
+                          height: 110,
+                          child: NotoAnimatedEmoji(
+                            asset: widget.heroAsset,
+                            size: 110,
+                            repeat: _hovering,
                           ),
-                          const Spacer(),
-                          Icon(
-                            Icons.arrow_outward_rounded,
-                            color: widget.accent,
-                          ),
-                        ],
+                        ),
                       ),
                       const Spacer(),
                       Text(
                         widget.title,
                         style: theme.textTheme.headlineSmall
-                            ?.copyWith(fontSize: 32),
+                            ?.copyWith(fontSize: 34),
                       ),
-                      const SizedBox(height: 10),
-                      Text(
-                        widget.subtitle,
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: scheme.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 14, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: scheme.surface.withValues(alpha: 0.8),
-                          borderRadius: BorderRadius.circular(999),
-                          border: Border.all(
-                            color: scheme.outline.withValues(alpha: 0.46),
+                      const SizedBox(height: 12),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 380),
+                        child: Text(
+                          widget.subtitle,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: scheme.onSurfaceVariant,
+                            height: 1.65,
                           ),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            EmojiText(widget.emoji, size: 18),
-                            const SizedBox(width: 8),
-                            Text(
-                              '进入挑战',
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                color: widget.accent,
-                              ),
-                            ),
-                          ],
+                      ),
+                      const SizedBox(height: 22),
+                      Text(
+                        '进入挑战',
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: widget.accent,
                         ),
                       ),
                     ],
@@ -498,63 +346,6 @@ class _ModeCardState extends State<_ModeCard> {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _FactChip extends StatelessWidget {
-  const _FactChip({required this.emoji, required this.text});
-
-  final String emoji;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        color: scheme.surface.withValues(alpha: 0.8),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: scheme.outline.withValues(alpha: 0.45)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          EmojiText(emoji, size: 18),
-          const SizedBox(width: 8),
-          Text(text, style: theme.textTheme.labelLarge),
-        ],
-      ),
-    );
-  }
-}
-
-class _GlowOrb extends StatelessWidget {
-  const _GlowOrb({required this.size, required this.color});
-
-  final double size;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        height: size,
-        width: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: [
-              color,
-              color.withValues(alpha: 0.06),
-              Colors.transparent,
-            ],
           ),
         ),
       ),
@@ -579,27 +370,28 @@ Future<void> _showIntroDialog(BuildContext context) {
           child: Material(
             color: Colors.transparent,
             child: AlertDialog(
-              titlePadding: const EdgeInsets.fromLTRB(26, 24, 26, 8),
-              contentPadding: const EdgeInsets.fromLTRB(26, 6, 26, 0),
-              actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 18),
+              titlePadding: const EdgeInsets.fromLTRB(30, 28, 30, 12),
+              contentPadding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+              actionsPadding: const EdgeInsets.fromLTRB(24, 8, 24, 22),
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const AnimatedEmoji(
-                    '📘',
-                    size: 34,
-                    motion: EmojiMotion.loop,
-                    duration: Duration(milliseconds: 1700),
-                    scaleBoost: 0.08,
-                    lift: 4,
-                    turns: 0.01,
+                  const SizedBox(
+                    width: 44,
+                    height: 44,
+                    child: NotoAnimatedEmoji(
+                      asset: 'assets/animations/noto/robot.json',
+                      size: 44,
+                      repeat: true,
+                    ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 14),
                   Expanded(
                     child: Text(
                       '了解图灵测试',
-                      style:
-                          theme.textTheme.headlineSmall?.copyWith(fontSize: 30),
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        fontSize: 30,
+                      ),
                     ),
                   ),
                 ],
@@ -608,10 +400,10 @@ Future<void> _showIntroDialog(BuildContext context) {
                 constraints: const BoxConstraints(maxWidth: 600),
                 child: SingleChildScrollView(
                   child: Text(
-                    '图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能分辨出它是不是机器吗？\n\n'
+                    '图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能不能分辨出它是不是机器？\n\n'
                     '今天这个问题不只出现在文字里。AI 也会生成图片、声音和视频，所以我们的观察方式也要一起升级。\n\n'
-                    '这个小游戏更像一场观察训练。看语气是不是太整齐、看细节是不是太滑顺、看光线和边缘是不是自然。能慢慢说出自己的判断理由，比只答对更重要。',
-                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.72),
+                    '这个小游戏更像一场观察训练。看看语气是不是太整齐，看看细节是不是太滑顺，看看光线和边缘是不是自然。慢慢建立自己的判断理由，比只选对更重要。',
+                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.82),
                   ),
                 ),
               ),
