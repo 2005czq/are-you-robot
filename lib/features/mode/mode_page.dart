@@ -55,6 +55,12 @@ class _ModePageState extends State<ModePage> {
     });
   }
 
+  void _handleChallengeExit() {
+    setState(() {
+      _batchFuture = _loadBatch();
+    });
+  }
+
   Future<void> _openRandomChallenge() async {
     final challenge = await widget.repository.randomChallenge(widget.mode);
     if (!mounted || challenge == null) {
@@ -68,6 +74,7 @@ class _ModePageState extends State<ModePage> {
         builder: (context) => ChallengePage(
           challenge: preparedChallenge,
           repository: widget.repository,
+          onExit: _handleChallengeExit,
         ),
       ),
     );
@@ -78,11 +85,10 @@ class _ModePageState extends State<ModePage> {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final topColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF1D1511)
-        : const Color(0xFFF7ECDD);
-    final bottomColor = theme.brightness == Brightness.dark
-        ? const Color(0xFF120F0C)
-        : const Color(0xFFFDF8F1);
+        ? scheme.surfaceContainerLowest
+        : scheme.surfaceContainerLow;
+    final bottomColor =
+        theme.brightness == Brightness.dark ? scheme.surface : scheme.surface;
 
     return Scaffold(
       body: DecoratedBox(
@@ -101,9 +107,12 @@ class _ModePageState extends State<ModePage> {
                 builder: (context, constraints) {
                   final wide = constraints.maxWidth >= 900;
                   final compactHeader = constraints.maxWidth < 820;
+                  final helperText = widget.mode == ChallengeMode.text
+                      ? '从下面挑一个题目，进去以后看两段文字，判断哪一段更像真人写的。'
+                      : '从下面挑一个题目，进去以后看两张图片，判断哪一张更像真实镜头。';
 
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 28),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -153,16 +162,25 @@ class _ModePageState extends State<ModePage> {
                         const SizedBox(height: 14),
                         FadeSlideIn(
                           delay: const Duration(milliseconds: 120),
-                          child: Text(
-                            widget.mode == ChallengeMode.text
-                                ? '从下面挑一个题目，进去以后看两段文字，判断哪一段更像真人写的。'
-                                : '从下面挑一个题目，进去以后看两张图片，判断哪一张更像真实镜头。',
-                            style: theme.textTheme.bodyLarge?.copyWith(
-                              color: scheme.onSurfaceVariant,
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 780),
+                                child: Text(
+                                  helperText,
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                    color: scheme.onSurfaceVariant,
+                                    height: 1.55,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 22),
                         Expanded(
                           child: FutureBuilder<List<Challenge>>(
                             future: _batchFuture,
@@ -190,9 +208,9 @@ class _ModePageState extends State<ModePage> {
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: wide ? 2 : 1,
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16,
-                                  childAspectRatio: wide ? 2.65 : 2.15,
+                                  crossAxisSpacing: 18,
+                                  mainAxisSpacing: 18,
+                                  childAspectRatio: wide ? 2.72 : 2.18,
                                 ),
                                 itemBuilder: (context, index) {
                                   final challenge = challenges[index];
@@ -211,6 +229,7 @@ class _ModePageState extends State<ModePage> {
                                               challenge: preparedChallenge,
                                               repository: widget.repository,
                                               session: const ChallengeSession(),
+                                              onExit: _handleChallengeExit,
                                             ),
                                           ),
                                         );
@@ -259,14 +278,17 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
     final hint = challenge.mode == ChallengeMode.text
         ? challenge.prompt
         : '进入后查看两张图片，再判断哪张更像真实镜头。';
+    final accent = challenge.mode == ChallengeMode.text
+        ? scheme.primary
+        : scheme.secondary;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
       child: AnimatedScale(
-        duration: const Duration(milliseconds: 220),
+        duration: const Duration(milliseconds: 180),
         curve: Curves.easeOutCubic,
-        scale: _hovering ? 1.01 : 1,
+        scale: _hovering ? 1.008 : 1,
         child: Card(
           clipBehavior: Clip.antiAlias,
           child: InkWell(
@@ -276,23 +298,38 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                 Positioned.fill(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          (challenge.mode == ChallengeMode.text
-                                  ? scheme.primary
-                                  : scheme.secondary)
-                              .withValues(alpha: 0.16),
-                          scheme.surface.withValues(alpha: 0.98),
-                        ],
+                      color: scheme.surfaceContainerLowest,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: scheme.outlineVariant.withValues(alpha: 0.58),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.035),
+                          blurRadius: 22,
+                          offset: const Offset(0, 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: -34,
+                  right: -10,
+                  child: IgnorePointer(
+                    child: Container(
+                      width: 132,
+                      height: 132,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: accent.withValues(alpha: 0.12),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                      const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -304,19 +341,24 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                             child: Text(
                               challenge.title,
                               style: theme.textTheme.headlineSmall
-                                  ?.copyWith(fontSize: 26),
+                                  ?.copyWith(fontSize: 28, height: 1.12),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Icon(
-                            challenge.mode == ChallengeMode.text
-                                ? Icons.short_text_rounded
-                                : Icons.image_outlined,
-                            color: scheme.primary,
+                          const SizedBox(width: 18),
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              color: accent.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Icon(
+                              Icons.arrow_forward_rounded,
+                              color: accent,
+                            ),
                           ),
-                          const Spacer(),
                         ],
                       ),
                       const SizedBox(height: 14),
@@ -324,6 +366,7 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                         hint,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: scheme.onSurfaceVariant,
+                          height: 1.62,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
