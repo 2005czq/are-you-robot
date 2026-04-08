@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../app/widgets/app_page_route.dart';
 import '../../app/widgets/fade_slide_in.dart';
+import '../../app/widgets/page_header_bar.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
 import '../challenge/challenge_page.dart';
+import '../challenge/challenge_session.dart';
 
 class ModePage extends StatefulWidget {
   const ModePage({
@@ -110,24 +112,8 @@ class _ModePageState extends State<ModePage> {
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(
-                                      children: [
-                                        IconButton.outlined(
-                                          onPressed: () =>
-                                              Navigator.of(context).pop(),
-                                          icon: const Icon(
-                                              Icons.arrow_back_rounded),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            widget.mode.label,
-                                            style:
-                                                theme.textTheme.headlineMedium,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 14),
+                                    PageHeaderBar(title: widget.mode.label),
+                                    const SizedBox(height: 16),
                                     Wrap(
                                       spacing: 12,
                                       runSpacing: 12,
@@ -148,27 +134,14 @@ class _ModePageState extends State<ModePage> {
                                     ),
                                   ],
                                 )
-                              : Row(
-                                  children: [
-                                    IconButton.outlined(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                      icon:
-                                          const Icon(Icons.arrow_back_rounded),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        widget.mode.label,
-                                        style: theme.textTheme.headlineMedium,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 12),
+                              : PageHeaderBar(
+                                  title: widget.mode.label,
+                                  trailing: [
                                     OutlinedButton.icon(
                                       onPressed: _refreshBatch,
                                       icon: const Icon(Icons.refresh_rounded),
                                       label: const Text('换一批'),
                                     ),
-                                    const SizedBox(width: 12),
                                     FilledButton.icon(
                                       onPressed: _openRandomChallenge,
                                       icon: const Icon(Icons.casino_outlined),
@@ -237,6 +210,7 @@ class _ModePageState extends State<ModePage> {
                                             builder: (context) => ChallengePage(
                                               challenge: preparedChallenge,
                                               repository: widget.repository,
+                                              session: const ChallengeSession(),
                                             ),
                                           ),
                                         );
@@ -321,24 +295,31 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          Expanded(
+                            child: Text(
+                              challenge.title,
+                              style: theme.textTheme.headlineSmall
+                                  ?.copyWith(fontSize: 26),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Icon(
+                            challenge.mode == ChallengeMode.text
+                                ? Icons.short_text_rounded
+                                : Icons.image_outlined,
+                            color: scheme.primary,
+                          ),
                           const Spacer(),
-                          Icon(Icons.arrow_forward_rounded,
-                              color: scheme.primary),
                         ],
                       ),
                       const SizedBox(height: 14),
-                      Text(
-                        challenge.title,
-                        style: theme.textTheme.headlineSmall
-                            ?.copyWith(fontSize: 26),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 6),
                       Text(
                         hint,
                         style: theme.textTheme.bodyLarge?.copyWith(

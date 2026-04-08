@@ -3,35 +3,102 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../app/widgets/celebration_overlay.dart';
-import '../../app/widgets/emoji_text.dart';
 import '../../app/widgets/fade_slide_in.dart';
+import '../../app/widgets/noto_animated_emoji.dart';
+import '../../app/widgets/page_header_bar.dart';
 import '../../models/challenge.dart';
 import '../../repositories/challenge_repository.dart';
+import 'challenge_session.dart';
 
 class ChallengePage extends StatefulWidget {
   const ChallengePage({
     super.key,
     required this.challenge,
     required this.repository,
+    this.session = const ChallengeSession(),
   });
 
   final Challenge challenge;
   final ChallengeRepository repository;
+  final ChallengeSession session;
 
   @override
   State<ChallengePage> createState() => _ChallengePageState();
 }
 
-class _ChallengePageState extends State<ChallengePage> {
-  static const _correctEmojis = ['🎉', '✨', '🥳', '🌟'];
-  static const _wrongEmojis = ['🫢', '🤏', '🙃', '😵‍💫'];
-  static const _correctTitles = ['答得漂亮', '这次很稳', '观察力不错', '你抓到线索了'];
-  static const _wrongTitles = ['这题有点会伪装', '差一点点', '它确实很像', '再看一题试试'];
+class _ChallengePageState extends State<ChallengePage>
+    with SingleTickerProviderStateMixin {
+  static const _correctResults = [
+    _ResultPreset(
+      title: '答得漂亮',
+      descriptionPrefix: '你抓住了更像真人的那一项。',
+      asset: 'assets/animations/noto/party_popper.json',
+    ),
+    _ResultPreset(
+      title: '这次很稳',
+      descriptionPrefix: '你的判断很准，线索抓得很到位。',
+      asset: 'assets/animations/noto/partying_face.json',
+    ),
+    _ResultPreset(
+      title: '观察力不错',
+      descriptionPrefix: '这题的细节你看到了。',
+      asset: 'assets/animations/noto/glowing_star.json',
+    ),
+    _ResultPreset(
+      title: '你抓到线索了',
+      descriptionPrefix: '这个选择更接近真人创作。',
+      asset: 'assets/animations/noto/trophy.json',
+    ),
+  ];
+
+  static const _wrongResults = [
+    _ResultPreset(
+      title: '这题有点会伪装',
+      descriptionPrefix: '这次被它骗到也很正常。',
+      asset: 'assets/animations/noto/thinking_face.json',
+    ),
+    _ResultPreset(
+      title: '差一点点',
+      descriptionPrefix: '这题本来就挺像，别灰心。',
+      asset: 'assets/animations/noto/open_mouth_face.json',
+    ),
+    _ResultPreset(
+      title: '它确实很像',
+      descriptionPrefix: '这类题最容易让人犹豫。',
+      asset: 'assets/animations/noto/woozy_face.json',
+    ),
+    _ResultPreset(
+      title: '再看一题试试',
+      descriptionPrefix: '这次没选中真人创作的那一个。',
+      asset: 'assets/animations/noto/dizzy.json',
+    ),
+  ];
 
   final Random _random = Random();
+  late final AnimationController _streakController;
+
   String? _selectedOptionId;
   _ResultPresentation? _result;
-  var _loadingNext = false;
+  CelebrationVariant _celebrationVariant = CelebrationVariant.confetti;
+  Color? _celebrationColor;
+  bool _loadingNext = false;
+  late int _streak;
+
+  @override
+  void initState() {
+    super.initState();
+    _streak = widget.session.streak;
+    _streakController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 860),
+    );
+  }
+
+  @override
+  void dispose() {
+    _streakController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,188 +112,209 @@ class _ChallengePageState extends State<ChallengePage> {
         ? const Color(0xFF100D0B)
         : const Color(0xFFFFFBF5);
 
-    return Scaffold(
-      body: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [topColor, bottomColor],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          return;
+        }
+        _exitToHome(clearSession: true);
+      },
+      child: Scaffold(
+        body: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [topColor, bottomColor],
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            SafeArea(
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1220),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FadeSlideIn(
-                          child: Row(
-                            children: [
-                              IconButton.outlined(
-                                onPressed: () => Navigator.of(context).pop(),
-                                icon: const Icon(Icons.arrow_back_rounded),
-                              ),
-                              const SizedBox(width: 12),
-                              EmojiText(challenge.mode.emoji, size: 28),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        FadeSlideIn(
-                          delay: const Duration(milliseconds: 120),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Column(
-                              children: [
-                                Text(
-                                  challenge.title,
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.headlineLarge
-                                      ?.copyWith(fontSize: 36),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  challenge.prompt,
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    color: scheme.onSurfaceVariant,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  '选出你觉得更像真人创作的那一个。',
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.bodyLarge?.copyWith(
-                                    color: scheme.onSurfaceVariant,
-                                  ),
-                                ),
-                              ],
+          child: Stack(
+            children: [
+              SafeArea(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1220),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FadeSlideIn(
+                            child: PageHeaderBar(
+                              title: challenge.mode.label,
+                              onBack: () => _exitToHome(clearSession: true),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 18),
-                        FadeSlideIn(
-                          delay: const Duration(milliseconds: 180),
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 320),
-                            switchInCurve: Curves.easeOutCubic,
-                            switchOutCurve: Curves.easeInCubic,
-                            child: _result == null
-                                ? const SizedBox(
-                                    height: 0, width: double.infinity)
-                                : _ResultBanner(
-                                    key: ValueKey(
-                                        '${_result!.title}-${_result!.emoji}'),
-                                    result: _result!,
+                          const SizedBox(height: 18),
+                          FadeSlideIn(
+                            delay: const Duration(milliseconds: 120),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    challenge.title,
+                                    textAlign: TextAlign.center,
+                                    style: theme.textTheme.headlineLarge
+                                        ?.copyWith(fontSize: 36),
                                   ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    challenge.prompt,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        theme.textTheme.titleMedium?.copyWith(
+                                      color: scheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                        if (_result != null) const SizedBox(height: 16),
-                        Expanded(
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              final horizontal = constraints.maxWidth >= 920;
-                              final optionWidgets = <Widget>[];
+                          const SizedBox(height: 18),
+                          FadeSlideIn(
+                            delay: const Duration(milliseconds: 180),
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 320),
+                              switchInCurve: Curves.easeOutCubic,
+                              switchOutCurve: Curves.easeInCubic,
+                              child: _result == null
+                                  ? const SizedBox(
+                                      height: 0,
+                                      width: double.infinity,
+                                    )
+                                  : _ResultBanner(
+                                      key: ValueKey(_result!.title),
+                                      result: _result!,
+                                    ),
+                            ),
+                          ),
+                          if (_result != null) const SizedBox(height: 16),
+                          Expanded(
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                final horizontal = constraints.maxWidth >= 920;
+                                final optionWidgets = <Widget>[];
 
-                              for (var i = 0;
-                                  i < challenge.options.length;
-                                  i++) {
-                                final option = challenge.options[i];
-                                final isSelected =
-                                    _selectedOptionId == option.id;
-                                final optionResult =
-                                    _result == null || !isSelected
-                                        ? null
-                                        : _result!.isCorrect
-                                            ? _OptionResult.correct
-                                            : _OptionResult.wrong;
+                                for (var i = 0;
+                                    i < challenge.options.length;
+                                    i++) {
+                                  final option = challenge.options[i];
+                                  final isSelected =
+                                      _selectedOptionId == option.id;
+                                  final optionResult =
+                                      _result == null || !isSelected
+                                          ? null
+                                          : _result!.isCorrect
+                                              ? _OptionResult.correct
+                                              : _OptionResult.wrong;
 
-                                optionWidgets.add(
-                                  Expanded(
-                                    child: FadeSlideIn(
-                                      delay:
-                                          Duration(milliseconds: 220 + i * 90),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                          right: horizontal && i == 0 ? 10 : 0,
-                                          left: horizontal && i == 1 ? 10 : 0,
-                                          bottom: horizontal ? 0 : 12,
-                                        ),
-                                        child: _OptionCard(
-                                          option: option,
-                                          selected: isSelected,
-                                          result: optionResult,
-                                          locked: _result != null,
-                                          onTap: () {
-                                            _selectOption(option.id);
-                                          },
+                                  optionWidgets.add(
+                                    Expanded(
+                                      child: FadeSlideIn(
+                                        delay: Duration(
+                                            milliseconds: 220 + i * 90),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                            right:
+                                                horizontal && i == 0 ? 10 : 0,
+                                            left: horizontal && i == 1 ? 10 : 0,
+                                            bottom: horizontal ? 0 : 12,
+                                          ),
+                                          child: _OptionCard(
+                                            option: option,
+                                            selected: isSelected,
+                                            result: optionResult,
+                                            locked: _result != null,
+                                            onTap: () =>
+                                                _selectOption(option.id),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }
+                                  );
+                                }
 
-                              return horizontal
-                                  ? Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: optionWidgets)
-                                  : Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: optionWidgets);
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 18),
-                        FadeSlideIn(
-                          delay: const Duration(milliseconds: 260),
-                          child: FilledButton.icon(
-                            style: FilledButton.styleFrom(
-                              backgroundColor: _result == null
-                                  ? null
-                                  : _result!.isCorrect
-                                      ? scheme.tertiary
-                                      : scheme.error,
-                              foregroundColor: _result == null
-                                  ? null
-                                  : _result!.isCorrect
-                                      ? scheme.onTertiary
-                                      : scheme.onError,
+                                return horizontal
+                                    ? Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: optionWidgets,
+                                      )
+                                    : Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: optionWidgets,
+                                      );
+                              },
                             ),
-                            onPressed: _result == null || _loadingNext
-                                ? null
-                                : _goToNextRandomChallenge,
-                            icon: _loadingNext
-                                ? const SizedBox(
-                                    height: 18,
-                                    width: 18,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2.2,
-                                    ),
-                                  )
-                                : const Icon(
-                                    Icons.check_circle_outline_rounded),
-                            label: Text(_loadingNext ? '准备中...' : '确定'),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 18),
+                          FadeSlideIn(
+                            delay: const Duration(milliseconds: 260),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                FilledButton.icon(
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: _result == null
+                                        ? null
+                                        : _result!.isCorrect
+                                            ? scheme.tertiary
+                                            : scheme.error,
+                                    foregroundColor: _result == null
+                                        ? null
+                                        : _result!.isCorrect
+                                            ? scheme.onTertiary
+                                            : scheme.onError,
+                                  ),
+                                  onPressed: _result == null || _loadingNext
+                                      ? null
+                                      : _confirmResult,
+                                  icon: _loadingNext
+                                      ? const SizedBox(
+                                          height: 18,
+                                          width: 18,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2.2,
+                                          ),
+                                        )
+                                      : const Icon(Icons.check_rounded),
+                                  label: Text(_loadingNext ? '准备中...' : '确定'),
+                                ),
+                                const SizedBox(width: 18),
+                                Expanded(
+                                  child: Text(
+                                    '选出你觉得更像真人创作的那一个。',
+                                    style: theme.textTheme.bodyLarge?.copyWith(
+                                      color: scheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                ),
+                                if (_streak > 0) ...[
+                                  const SizedBox(width: 16),
+                                  _StreakBadge(
+                                    streak: _streak,
+                                    controller: _streakController,
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            CelebrationOverlay(
-              play: _result?.isCorrect ?? false,
-            ),
-          ],
+              CelebrationOverlay(
+                play: _result?.isCorrect ?? false,
+                variant: _celebrationVariant,
+                colorSeed: _celebrationColor,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -252,17 +340,50 @@ class _ChallengePageState extends State<ChallengePage> {
     final selected = widget.challenge.options
         .firstWhere((option) => option.id == selectedId);
     final isCorrect = selected.isHuman;
+    final preset = _pickOne(isCorrect ? _correctResults : _wrongResults);
 
     setState(() {
       _result = _ResultPresentation(
         isCorrect: isCorrect,
-        emoji: _pickOne(isCorrect ? _correctEmojis : _wrongEmojis),
-        title: _pickOne(isCorrect ? _correctTitles : _wrongTitles),
-        description: isCorrect
-            ? '你选中了更像真人创作的选项。${widget.challenge.explanation}'
-            : '这次没有选中真人创作的选项。${widget.challenge.explanation}',
+        title: preset.title,
+        asset: preset.asset,
+        description:
+            '${preset.descriptionPrefix}${widget.challenge.explanation}',
       );
+      if (isCorrect) {
+        _streak += 1;
+        _streakController
+          ..reset()
+          ..forward();
+        _celebrationVariant = _pickOne(const [
+          CelebrationVariant.confetti,
+          CelebrationVariant.balloons,
+          CelebrationVariant.fireworks,
+        ]);
+        _celebrationColor = _pickOne(const [
+          Color(0xFFF15C4D),
+          Color(0xFFF4B942),
+          Color(0xFF5AC18E),
+          Color(0xFF56B0F4),
+          Color(0xFFF48FB1),
+        ]);
+      }
     });
+  }
+
+  Future<void> _confirmResult() async {
+    final result = _result;
+    if (result == null) {
+      return;
+    }
+
+    if (result.isCorrect) {
+      await _goToNextRandomChallenge();
+      return;
+    }
+
+    final streakBeforeReset = _streak;
+    await _showGameOverDialog(streakBeforeReset);
   }
 
   Future<void> _goToNextRandomChallenge() async {
@@ -297,10 +418,13 @@ class _ChallengePageState extends State<ChallengePage> {
         pageBuilder: (context, animation, secondaryAnimation) => ChallengePage(
           challenge: prepared,
           repository: widget.repository,
+          session: ChallengeSession(streak: _streak),
         ),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          final curved =
-              CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+          final curved = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeOutCubic,
+          );
           return FadeTransition(
             opacity: curved,
             child: SlideTransition(
@@ -316,11 +440,97 @@ class _ChallengePageState extends State<ChallengePage> {
     );
   }
 
-  String _pickOne(List<String> values) =>
-      values[_random.nextInt(values.length)];
-}
+  Future<void> _showGameOverDialog(int streak) async {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    final message = switch (streak) {
+      <= 1 => '没关系，可以再试一次。',
+      <= 9 => '哎哟，连续对了 $streak 个，不错哦。',
+      _ => '哇！你好厉害，比游戏作者对的都多。',
+    };
 
-enum _OptionResult { correct, wrong }
+    await showGeneralDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      barrierLabel: '游戏结束',
+      barrierColor: Colors.black.withValues(alpha: 0.26),
+      transitionDuration: const Duration(milliseconds: 320),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 640),
+            child: Material(
+              color: Colors.transparent,
+              child: AlertDialog(
+                titlePadding: const EdgeInsets.fromLTRB(28, 28, 28, 10),
+                contentPadding: const EdgeInsets.fromLTRB(28, 12, 28, 0),
+                actionsPadding: const EdgeInsets.fromLTRB(24, 12, 24, 22),
+                title: Text(
+                  '游戏结束',
+                  style: theme.textTheme.headlineSmall,
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '本轮连胜：$streak',
+                      style: theme.textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      '$message\n\n找工作人员领取奖品。',
+                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.7),
+                    ),
+                  ],
+                ),
+                actions: [
+                  FilledButton(
+                    style: FilledButton.styleFrom(
+                      backgroundColor: scheme.error,
+                      foregroundColor: scheme.onError,
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('确定'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curved =
+            CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+        return FadeTransition(
+          opacity: curved,
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.94, end: 1).animate(curved),
+            child: child,
+          ),
+        );
+      },
+    );
+
+    if (!mounted) {
+      return;
+    }
+
+    _exitToHome(clearSession: true);
+  }
+
+  void _exitToHome({required bool clearSession}) {
+    if (!mounted) {
+      return;
+    }
+    if (clearSession) {
+      _streak = 0;
+    }
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
+  T _pickOne<T>(List<T> values) => values[_random.nextInt(values.length)];
+}
 
 class _OptionCard extends StatelessWidget {
   const _OptionCard({
@@ -342,19 +552,17 @@ class _OptionCard extends StatelessWidget {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final accent = switch (result) {
-      _OptionResult.correct => theme.colorScheme.tertiary,
-      _OptionResult.wrong => theme.colorScheme.error,
-      null => selected ? theme.colorScheme.primary : theme.colorScheme.outline,
+      _OptionResult.correct => scheme.tertiary,
+      _OptionResult.wrong => scheme.error,
+      null => selected ? scheme.primary : scheme.outline,
     };
 
     final background = switch (result) {
-      _OptionResult.correct =>
-        theme.colorScheme.tertiaryContainer.withValues(alpha: 0.76),
-      _OptionResult.wrong =>
-        theme.colorScheme.errorContainer.withValues(alpha: 0.84),
+      _OptionResult.correct => scheme.tertiaryContainer.withValues(alpha: 0.76),
+      _OptionResult.wrong => scheme.errorContainer.withValues(alpha: 0.84),
       null => selected
-          ? theme.colorScheme.primaryContainer.withValues(alpha: 0.74)
-          : theme.colorScheme.surface.withValues(alpha: 0.94),
+          ? scheme.primaryContainer.withValues(alpha: 0.74)
+          : scheme.surface.withValues(alpha: 0.94),
     };
 
     return AnimatedContainer(
@@ -377,95 +585,95 @@ class _OptionCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
           side: BorderSide(
-              color: accent.withValues(alpha: 0.42),
-              width: selected || result != null ? 1.6 : 1),
+            color: accent.withValues(alpha: 0.42),
+            width: selected || result != null ? 1.6 : 1,
+          ),
         ),
         child: InkWell(
           onTap: locked ? null : onTap,
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(22),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 42,
-                          width: 42,
-                          decoration: BoxDecoration(
-                            color: accent.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: Center(
-                            child: Text(
-                              option.label,
-                              style: theme.textTheme.titleMedium
-                                  ?.copyWith(color: accent),
-                            ),
-                          ),
-                        ),
-                        const Spacer(),
-                        if (selected && result == null)
-                          Icon(Icons.radio_button_checked_rounded,
-                              color: accent)
-                        else if (result == _OptionResult.correct)
-                          Icon(Icons.check_circle_rounded, color: accent)
-                        else if (result == _OptionResult.wrong)
-                          Icon(Icons.cancel_rounded, color: accent),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    if (option.asset != null)
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(22),
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              Image.asset(option.asset!,
-                                  fit: BoxFit.cover, width: double.infinity),
-                              DecoratedBox(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [
-                                      Colors.black.withValues(alpha: 0.08),
-                                      Colors.transparent,
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    else
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(18),
-                          decoration: BoxDecoration(
-                            color: scheme.surface.withValues(alpha: 0.7),
-                            borderRadius: BorderRadius.circular(22),
-                            border: Border.all(
-                                color: scheme.outline.withValues(alpha: 0.26)),
-                          ),
-                          child: SingleChildScrollView(
-                            child: Text(
-                              option.text ?? '',
-                              style: theme.textTheme.titleMedium
-                                  ?.copyWith(height: 1.8),
-                            ),
-                          ),
+                    Container(
+                      height: 42,
+                      width: 42,
+                      decoration: BoxDecoration(
+                        color: accent.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Center(
+                        child: Text(
+                          option.label,
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(color: accent),
                         ),
                       ),
+                    ),
+                    const Spacer(),
+                    if (selected && result == null)
+                      Icon(Icons.radio_button_checked_rounded, color: accent)
+                    else if (result == _OptionResult.correct)
+                      Icon(Icons.check_circle_rounded, color: accent)
+                    else if (result == _OptionResult.wrong)
+                      Icon(Icons.cancel_rounded, color: accent),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 16),
+                if (option.asset != null)
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(22),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.asset(
+                            option.asset!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  Colors.black.withValues(alpha: 0.08),
+                                  Colors.transparent,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                        color: scheme.surface.withValues(alpha: 0.7),
+                        borderRadius: BorderRadius.circular(22),
+                        border: Border.all(
+                          color: scheme.outline.withValues(alpha: 0.26),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        child: Text(
+                          option.text ?? '',
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(height: 1.8),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -473,17 +681,70 @@ class _OptionCard extends StatelessWidget {
   }
 }
 
+class _StreakBadge extends StatelessWidget {
+  const _StreakBadge({
+    required this.streak,
+    required this.controller,
+  });
+
+  final int streak;
+  final AnimationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        final pulse = 1 + sin(controller.value * pi * 2) * 0.06;
+        return Transform.scale(
+          scale: pulse,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: scheme.surface.withValues(alpha: 0.9),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: scheme.outline.withValues(alpha: 0.4)),
+            ),
+            child: Text(
+              '$streak 连胜',
+              style:
+                  theme.textTheme.labelLarge?.copyWith(color: scheme.primary),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+enum _OptionResult { correct, wrong }
+
+class _ResultPreset {
+  const _ResultPreset({
+    required this.title,
+    required this.descriptionPrefix,
+    required this.asset,
+  });
+
+  final String title;
+  final String descriptionPrefix;
+  final String asset;
+}
+
 class _ResultPresentation {
   const _ResultPresentation({
     required this.isCorrect,
-    required this.emoji,
     required this.title,
+    required this.asset,
     required this.description,
   });
 
   final bool isCorrect;
-  final String emoji;
   final String title;
+  final String asset;
   final String description;
 }
 
@@ -512,16 +773,12 @@ class _ResultBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AnimatedEmoji(
-            result.emoji,
-            size: 38,
-            motion: EmojiMotion.loop,
-            duration: const Duration(milliseconds: 1420),
-            scaleBoost: 0.12,
-            lift: 5,
-            turns: 0.012,
+          NotoAnimatedEmoji(
+            asset: result.asset,
+            size: 54,
+            repeat: true,
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -537,6 +794,7 @@ class _ResultBanner extends StatelessWidget {
                     color: result.isCorrect
                         ? scheme.onTertiaryContainer
                         : scheme.onErrorContainer,
+                    height: 1.65,
                   ),
                 ),
               ],

@@ -372,7 +372,7 @@ Future<void> _showIntroDialog(BuildContext context) {
             child: AlertDialog(
               titlePadding: const EdgeInsets.fromLTRB(30, 28, 30, 12),
               contentPadding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-              actionsPadding: const EdgeInsets.fromLTRB(24, 8, 24, 22),
+              actionsPadding: const EdgeInsets.fromLTRB(24, 18, 24, 22),
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
