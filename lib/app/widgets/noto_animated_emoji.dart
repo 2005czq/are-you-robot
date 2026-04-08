@@ -26,7 +26,7 @@ class NotoAnimatedEmoji extends StatelessWidget {
           child: Lottie.asset(
             asset,
             repeat: repeat,
-            frameRate: FrameRate.max,
+            frameRate: FrameRate.composition,
             fit: BoxFit.contain,
           ),
         ),

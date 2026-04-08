@@ -23,11 +23,13 @@ class PageHeaderBar extends StatelessWidget {
           onPressed: onBack ?? () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back_rounded),
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 18),
         Expanded(
           child: Text(
             title,
-            style: theme.textTheme.headlineMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.headlineSmall?.copyWith(height: 1.08),
           ),
         ),
         if (trailing.isNotEmpty) ...[

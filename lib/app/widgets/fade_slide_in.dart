@@ -6,7 +6,7 @@ class FadeSlideIn extends StatefulWidget {
     required this.child,
     this.delay = Duration.zero,
     this.offset = const Offset(0, 0.035),
-    this.duration = const Duration(milliseconds: 880),
+    this.duration = const Duration(milliseconds: 420),
     this.beginScale = 0.985,
   });
 

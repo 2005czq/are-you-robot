@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
                                 crossAxisCount: compact ? 1 : 2,
                                 crossAxisSpacing: 22,
                                 mainAxisSpacing: 22,
-                                childAspectRatio: compact ? 1.08 : 1.12,
+                                childAspectRatio: compact ? 1.08 : 1.18,
                                 children: [
                                   _ModeCard(
                                     title: '文字挑战',
@@ -136,7 +136,11 @@ class HomePage extends StatelessWidget {
                                       '✍️',
                                       '📖',
                                       '📝',
-                                      '💬'
+                                      '💬',
+                                      '🔤',
+                                      '📚',
+                                      '🖋️',
+                                      '📓',
                                     ],
                                     heroAsset:
                                         'assets/animations/noto/writing_hand.json',
@@ -151,7 +155,11 @@ class HomePage extends StatelessWidget {
                                       '📸',
                                       '🖼️',
                                       '🌤️',
-                                      '🔍'
+                                      '🔍',
+                                      '🎞️',
+                                      '🌈',
+                                      '🧿',
+                                      '🪄',
                                     ],
                                     heroAsset:
                                         'assets/animations/noto/camera.json',
@@ -210,7 +218,7 @@ class _HeroBlock extends StatelessWidget {
         ),
         const SizedBox(height: 22),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 620),
+          constraints: const BoxConstraints(maxWidth: 760),
           child: Text(
             '从文字和图片里找出更像真人创作的那一个。放慢一点观察细节，很多线索都藏在看似普通的地方。',
             style: theme.textTheme.titleMedium?.copyWith(
@@ -253,7 +261,7 @@ class _ModeCardState extends State<_ModeCard> {
   void initState() {
     super.initState();
     final random = Random(widget.title.hashCode);
-    _pattern = List.generate(22, (index) {
+    _pattern = List.generate(26, (index) {
       return widget.emojiChoices[random.nextInt(widget.emojiChoices.length)];
     });
   }
@@ -293,9 +301,9 @@ class _ModeCardState extends State<_ModeCard> {
                 Positioned.fill(
                   child: EmojiPattern(
                     emojis: _pattern,
-                    size: 36,
-                    spacing: 34,
-                    opacity: 0.04,
+                    size: 42,
+                    spacing: 40,
+                    opacity: 0.03,
                     rotation: widget.title == '文字挑战' ? -0.08 : 0.08,
                     padding: const EdgeInsets.all(18),
                   ),
@@ -308,11 +316,11 @@ class _ModeCardState extends State<_ModeCard> {
                       Align(
                         alignment: Alignment.topRight,
                         child: SizedBox(
-                          width: 110,
-                          height: 110,
+                          width: 118,
+                          height: 118,
                           child: NotoAnimatedEmoji(
                             asset: widget.heroAsset,
-                            size: 110,
+                            size: 118,
                             repeat: _hovering,
                           ),
                         ),
@@ -324,14 +332,11 @@ class _ModeCardState extends State<_ModeCard> {
                             ?.copyWith(fontSize: 34),
                       ),
                       const SizedBox(height: 12),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 380),
-                        child: Text(
-                          widget.subtitle,
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: scheme.onSurfaceVariant,
-                            height: 1.65,
-                          ),
+                      Text(
+                        widget.subtitle,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: scheme.onSurfaceVariant,
+                          height: 1.65,
                         ),
                       ),
                       const SizedBox(height: 22),
@@ -362,7 +367,7 @@ Future<void> _showIntroDialog(BuildContext context) {
     barrierDismissible: true,
     barrierLabel: '了解图灵测试',
     barrierColor: Colors.black.withValues(alpha: 0.24),
-    transitionDuration: const Duration(milliseconds: 420),
+    transitionDuration: const Duration(milliseconds: 240),
     pageBuilder: (context, animation, secondaryAnimation) {
       return Center(
         child: ConstrainedBox(
@@ -372,7 +377,7 @@ Future<void> _showIntroDialog(BuildContext context) {
             child: AlertDialog(
               titlePadding: const EdgeInsets.fromLTRB(30, 28, 30, 12),
               contentPadding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-              actionsPadding: const EdgeInsets.fromLTRB(24, 18, 24, 22),
+              actionsPadding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
               title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -400,9 +405,9 @@ Future<void> _showIntroDialog(BuildContext context) {
                 constraints: const BoxConstraints(maxWidth: 600),
                 child: SingleChildScrollView(
                   child: Text(
-                    '图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能不能分辨出它是不是机器？\n\n'
-                    '今天这个问题不只出现在文字里。AI 也会生成图片、声音和视频，所以我们的观察方式也要一起升级。\n\n'
-                    '这个小游戏更像一场观察训练。看看语气是不是太整齐，看看细节是不是太滑顺，看看光线和边缘是不是自然。慢慢建立自己的判断理由，比只选对更重要。',
+                    '🤖 图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能不能分辨出它是不是机器？\n\n'
+                    '🧠 今天这个问题不只出现在文字里。AI 也会生成图片和声音，所以我们的观察方式也得一起升级。\n\n'
+                    '🔍 这个小游戏更像一场观察训练。看看语气是不是太整齐，看看细节是不是太滑顺，看看光线和边缘是不是自然。慢一点没关系，能说出理由比只选对更重要。',
                     style: theme.textTheme.bodyLarge?.copyWith(height: 1.82),
                   ),
                 ),
