@@ -17,6 +17,10 @@ void main() {
       "kind": "bootstrap"
     },
     {
+      "assetPath": "assets/bootstrap/generated_image_challenges.json",
+      "kind": "generated-image"
+    },
+    {
       "assetPath": "assets/bootstrap/generated_text_challenges.json",
       "kind": "generated-text"
     }
@@ -38,18 +42,6 @@ void main() {
       {"id": "b", "label": "B", "sourceType": "ai", "text": "Hi"}
     ]
   },
-  {
-    "id": "image-1",
-    "mode": "image",
-    "title": "Image",
-    "prompt": "Which is human?",
-    "difficulty": "normal",
-    "explanation": "Details.",
-    "options": [
-      {"id": "c", "label": "A", "sourceType": "human", "asset": "foo.jpg"},
-      {"id": "d", "label": "B", "sourceType": "ai", "asset": "bar.jpg"}
-    ]
-  }
 ]
 ''';
 
@@ -65,6 +57,23 @@ void main() {
     "options": [
       {"id": "g-a", "label": "A", "sourceType": "ai", "text": "Long ai text"},
       {"id": "g-b", "label": "B", "sourceType": "human", "text": "Long human text"}
+    ]
+  }
+]
+''';
+
+  const generatedImageJson = '''
+[
+  {
+    "id": "image-1",
+    "mode": "image",
+    "title": "Image",
+    "prompt": "Which is human?",
+    "difficulty": "normal",
+    "explanation": "Details.",
+    "options": [
+      {"id": "c", "label": "A", "sourceType": "human", "asset": "pic/true1.jpg"},
+      {"id": "d", "label": "B", "sourceType": "ai", "asset": "pic/false1.png"}
     ]
   }
 ]
@@ -86,6 +95,7 @@ void main() {
         return switch (assetPath) {
           'assets/bootstrap/seed_manifest.json' => manifestJson,
           'assets/bootstrap/challenges.json' => bootstrapJson,
+          'assets/bootstrap/generated_image_challenges.json' => generatedImageJson,
           'assets/bootstrap/generated_text_challenges.json' => generatedJson,
           _ => throw StateError('Unexpected asset path: $assetPath'),
         };

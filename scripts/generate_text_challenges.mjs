@@ -3,6 +3,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { updateSeedManifest } from './bootstrap_manifest.mjs';
+
 const currentFilePath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFilePath), '..');
 const envPath = path.join(repoRoot, '.env');
@@ -90,7 +92,14 @@ async function main() {
 
   validateChallengeSet(challenges);
 
-  await updateSeedManifest(manifestPath, outputPath);
+  await updateSeedManifest(manifestPath, {
+    ensureSeeds: [
+      {
+        assetPath: 'assets/bootstrap/generated_text_challenges.json',
+        kind: 'generated-text',
+      },
+    ],
+  });
 
   console.log(`wrote ${challenges.length} challenges to ${path.relative(repoRoot, outputPath)}`);
 }
@@ -384,27 +393,6 @@ function validateChallengeSet(challenges) {
       }
     }
   }
-}
-
-async function updateSeedManifest(manifestFilePath, generatedFilePath) {
-  const raw = await fs.readFile(manifestFilePath, 'utf8');
-  const manifest = JSON.parse(raw);
-  const generatedRaw = await fs.readFile(generatedFilePath, 'utf8');
-  const checksum = crypto.createHash('sha256').update(generatedRaw).digest('hex').slice(0, 16);
-  const signature = `bootstrap-v2-${checksum}`;
-
-  manifest.signature = signature;
-  manifest.seeds = manifest.seeds.map((seed) => {
-    if (seed.assetPath === 'assets/bootstrap/generated_text_challenges.json') {
-      return {
-        ...seed,
-        checksum,
-      };
-    }
-    return seed;
-  });
-
-  await fs.writeFile(manifestFilePath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 }
 
 function normalizeText(value) {

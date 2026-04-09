@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate:image-challenges": "node scripts/generate_image_challenges.mjs",
     "generate:text-challenges": "node scripts/generate_text_challenges.mjs",
+    "validate:image-challenges": "node scripts/validate_generated_image_challenges.mjs",
     "validate:text-challenges": "node scripts/validate_generated_challenges.mjs"
   }
 }

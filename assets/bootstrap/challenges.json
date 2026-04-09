@@ -5,13 +5,13 @@
     "title": "第一次学骑车",
     "prompt": "你第一次学骑自行车的时候是什么感觉？",
     "difficulty": "easy",
-    "explanation": "真人回答里有更具体的身体感觉和现场细节，AI 回答虽然自然，但更像一段整理过的回忆。",
+    "explanation": "一段写到逞强、喊爸爸别撒手、手心冒汗，细节一串串冒出来，像当场边想边说；另一段更平顺，主要在整理紧张和兴奋的感受。",
     "options": [
       {
         "id": "text-001-a",
         "label": "A",
         "sourceType": "human",
-        "text": "我第一次学骑车的时候其实有点想装作不害怕，可是脚一踩上去就知道自己在紧张。车头一直晃，我总觉得下一秒就会歪到旁边去。那时候我爸在后面扶着，我一边骑一边问他有没有松手，他一直说没有。后来我骑出去一小段，回头一看，才发现他已经站在很后面了。那一秒我脑子是空的，先是慌，接着就特别想笑，感觉自己好像忽然真的会骑了。"
+        "text": "我记得我第一次学骑车的时候，一直装作不害怕的样子，跟我爸说“这有啥难的，你别扶了我自己来”，但是我爸还是在后面帮我扶着车座，结果我脚一踩上去，就狠狠打脸了。我真的紧张到不行，手心全是汗，车头一直晃来晃去，总感觉下一秒我就要摔个狗吃屎，吓得我把手把攥得死紧，胳膊都僵住在那了。我实在是装不下去了，一路喊着“你可千万别撒手啊！绝对别撒手！”，结果他不知道什么时候偷偷松了手，我晃了好半天居然没摔，等反应过来的时候已经骑出去老远了，我又惊又喜，还有点后怕。那种感觉我到现在都还记得，还挺怀念的呢。"
       },
       {
         "id": "text-001-b",
@@ -49,7 +49,7 @@
     "title": "早餐偏好",
     "prompt": "如果只能选一种早餐吃一个月，你会选什么？为什么？",
     "difficulty": "easy",
-    "explanation": "真人回答里有习惯和场景感，AI 回答更均衡、更像做选择题。",
+    "explanation": "一段会把一个月早餐要顾到的营养、饱腹感和赶时间都一股脑写出来，像真在盘算长期怎么吃；另一段虽然自然，但更像概括一个稳妥选项。",
     "options": [
       {
         "id": "text-003-a",
@@ -61,7 +61,7 @@
         "id": "text-003-b",
         "label": "B",
         "sourceType": "human",
-        "text": "我大概还是会选豆浆和小包子。不是因为它多特别，而是因为早上我真的不太清醒，脑子像还没开机一样，这种早餐完全不用想太多。包子拿着就能吃，豆浆热热的，冬天特别舒服。要是让我一个月都吃同一种，我会选那种最省事、最不会让我烦的，毕竟早餐这件事对我来说第一重要是别太麻烦。"
+        "text": "对于一个月的长期早餐来说，我会尽量避免多油多盐和营养不均衡的情况，因此我选择荞麦面包加适量水果再搭配一杯热牛奶的组合。这样一顿早餐里蛋白质，碳水，维生素和膳食纤维都有了，吃完在健康低脂的同时也能缓慢充能、增强饱腹感，足以支持一上午的活动。制作简单方便，让上班上学可以放心睡多一会懒觉再起来做早餐口味；清淡不油腻，不管肠胃处于什么状态都不会造成太大的负担，绝对是一个月早餐的绝佳选择！"
       }
     ]
   },
@@ -71,13 +71,13 @@
     "title": "暑假里的一天",
     "prompt": "如果要讲一个你记得很清楚的暑假下午，你会怎么讲？",
     "difficulty": "normal",
-    "explanation": "真人回答更像回忆流，细节有轻微跳跃；AI 回答连贯但更规整。",
+    "explanation": "一段有疯跑、冰西瓜、树荫和奶奶喊吃饭这些连续小画面，像想到哪儿写到哪儿；另一段更多在写天气和气氛，句子更整齐，像整理过的回想。",
     "options": [
       {
         "id": "text-004-a",
         "label": "A",
         "sourceType": "human",
-        "text": "我记得有一个暑假下午特别热，风扇一直在转，可是屋子里还是闷闷的。那天我本来想写作业，结果一点都写不进去，就趴在桌子边上看外面的树。后来楼下有人在卖冰棍，我听到那个声音一下子就精神了，赶紧拿着零钱跑下去。回来的时候冰棍已经有点化了，我站在楼道口边吃边吹风，手上全是黏的，但是那时候真的觉得特别爽。现在想起来，好像那整个下午也没干什么大事，可是画面一直记得很清楚。"
+        "text": "我记得最清楚的一个暑假，就是小学那会，天热得离谱，蝉还叫得人脑壳疼。那天我跟我发小在外面疯跑了一上午，满头大汗冲回家，我妈就从冰箱里拿出冰镇西瓜，从中间劈两半，让我两一人一半，我一口下去最中间的那勺，直接凉到了天灵盖。吃完我俩就搬着小凳子躲在树荫底下，啃着五毛一根的冰棒看动画片，凉凉的风吹过来，真的特别爽，连时间都慢下来了。舒服得我们都困了，我们就去趴在凉席上睡午觉，醒来的时候夕阳都斜了，只听见奶奶在厨房喊我们吃饭。那种懒洋洋、全是甜味的下午，到现在想起来都觉得暖乎乎的。"
       },
       {
         "id": "text-004-b",
@@ -216,246 +216,6 @@
         "label": "B",
         "sourceType": "human",
         "text": "如果真的只有一次，我可能会想去看小时候某个大家都在的晚上。不是为了改变什么，就是想站在旁边看一眼。可能桌上有水果，电视在放我现在已经不记得名字的节目，灯有点黄，大家都还很年轻。我觉得奇怪的是，人有时候会特别想回去的，并不是那些明确的大事件，而是某个你当时完全没觉得重要的普通时刻。可等你真的想回去的时候，通常已经连它具体是哪一天都说不出来了。"
-      }
-    ]
-  },
-  {
-    "id": "image-001",
-    "mode": "image",
-    "title": "花朵照片",
-    "prompt": "哪一张更像真实拍到的花朵照片？",
-    "difficulty": "easy",
-    "explanation": "真实照片里的景深和边缘过渡更自然，AI 风格图的颜色更饱和，花瓣边缘也稍微有点发糊。",
-    "options": [
-      {
-        "id": "image-001-a",
-        "label": "A",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_flower.jpg",
-        "credit": "Pixabay sample image"
-      },
-      {
-        "id": "image-001-b",
-        "label": "B",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_flower_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      }
-    ]
-  },
-  {
-    "id": "image-002",
-    "mode": "image",
-    "title": "公园视频封面",
-    "prompt": "如果这是一段公园里拍到的短视频封面，哪一张更可能来自真实镜头？",
-    "difficulty": "normal",
-    "explanation": "真实封面的光线过渡和远处细节更统一，AI 风格图虽然也很像，但局部颜色和纹理显得更“抹开”。",
-    "options": [
-      {
-        "id": "image-002-a",
-        "label": "A",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      },
-      {
-        "id": "image-002-b",
-        "label": "B",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_medium.jpg",
-        "credit": "Pixabay sample thumbnail"
-      }
-    ]
-  },
-  {
-    "id": "image-003",
-    "mode": "image",
-    "title": "高清镜头感",
-    "prompt": "下面两张图里，哪一张更像相机真实拍到的画面？",
-    "difficulty": "normal",
-    "explanation": "真实图里光影和细节分布更稳定，AI 风格图更容易在边缘和颜色上显得过度处理。",
-    "options": [
-      {
-        "id": "image-003-a",
-        "label": "A",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
-        "credit": "Pixabay sample thumbnail"
-      },
-      {
-        "id": "image-003-b",
-        "label": "B",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      }
-    ]
-  },
-  {
-    "id": "image-004",
-    "mode": "image",
-    "title": "人物头像占位",
-    "prompt": "如果这是用户上传的一张头像图，哪一张更像真实照片？",
-    "difficulty": "easy",
-    "explanation": "真实头像的肤色和边缘更自然，AI 风格图会有一点过度平滑和扭曲感。",
-    "options": [
-      {
-        "id": "image-004-a",
-        "label": "A",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      },
-      {
-        "id": "image-004-b",
-        "label": "B",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
-        "credit": "Pixabay sample image"
-      }
-    ]
-  },
-  {
-    "id": "image-005",
-    "mode": "image",
-    "title": "花园近景",
-    "prompt": "哪张近景花朵图更像真实照片？",
-    "difficulty": "easy",
-    "explanation": "真实照片的焦点更明确，AI 风格图的颜色层次更刻意。",
-    "options": [
-      {
-        "id": "image-005-a",
-        "label": "A",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_flower_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      },
-      {
-        "id": "image-005-b",
-        "label": "B",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_flower.jpg",
-        "credit": "Pixabay sample image"
-      }
-    ]
-  },
-  {
-    "id": "image-006",
-    "mode": "image",
-    "title": "公园远景",
-    "prompt": "如果是公园远景画面，哪一张更可能来自真实镜头？",
-    "difficulty": "normal",
-    "explanation": "真实图的远处细节分布更自然，AI 图看起来更像被均匀抹平。",
-    "options": [
-      {
-        "id": "image-006-a",
-        "label": "A",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_medium.jpg",
-        "credit": "Pixabay sample thumbnail"
-      },
-      {
-        "id": "image-006-b",
-        "label": "B",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      }
-    ]
-  },
-  {
-    "id": "image-007",
-    "mode": "image",
-    "title": "高亮天空镜头",
-    "prompt": "这两张带天空光线的画面里，哪一张更像真实拍摄？",
-    "difficulty": "hard",
-    "explanation": "真实图的高光和阴影衔接更可信，AI 图更容易有整体过亮的感觉。",
-    "options": [
-      {
-        "id": "image-007-a",
-        "label": "A",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
-        "credit": "Pixabay sample thumbnail"
-      },
-      {
-        "id": "image-007-b",
-        "label": "B",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      }
-    ]
-  },
-  {
-    "id": "image-008",
-    "mode": "image",
-    "title": "头像边缘观察",
-    "prompt": "看人物头像边缘时，哪一张更像真实照片？",
-    "difficulty": "easy",
-    "explanation": "真实照片的头发和脸部边缘更稳定，AI 图更容易有软化过度。",
-    "options": [
-      {
-        "id": "image-008-a",
-        "label": "A",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
-        "credit": "Pixabay sample image"
-      },
-      {
-        "id": "image-008-b",
-        "label": "B",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      }
-    ]
-  },
-  {
-    "id": "image-009",
-    "mode": "image",
-    "title": "柔焦人像",
-    "prompt": "哪一张柔焦人像更像真实镜头下拍到的？",
-    "difficulty": "normal",
-    "explanation": "真实图的模糊通常更有方向性，AI 风格图则容易整体都柔。",
-    "options": [
-      {
-        "id": "image-009-a",
-        "label": "A",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_user_48777_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      },
-      {
-        "id": "image-009-b",
-        "label": "B",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_user_48777.jpg",
-        "credit": "Pixabay sample image"
-      }
-    ]
-  },
-  {
-    "id": "image-010",
-    "mode": "image",
-    "title": "封面截图判断",
-    "prompt": "如果这是某段视频的封面截图，哪一张更像真实取帧？",
-    "difficulty": "hard",
-    "explanation": "真实截图的细节通常不那么平均，AI 图则更容易每一块都很“像样”。",
-    "options": [
-      {
-        "id": "image-010-a",
-        "label": "A",
-        "sourceType": "ai",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large_ai.jpg",
-        "credit": "Derived placeholder from Pixabay sample"
-      },
-      {
-        "id": "image-010-b",
-        "label": "B",
-        "sourceType": "human",
-        "asset": "assets/images/placeholders/pixabay_video_thumb_large.jpg",
-        "credit": "Pixabay sample thumbnail"
       }
     ]
   }

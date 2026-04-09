@@ -1,5 +1,5 @@
 {
-  "signature": "bootstrap-v2-f236f923bf22a77f",
+  "signature": "bootstrap-v3-832187cb7787c9ca",
   "seeds": [
     {
       "assetPath": "assets/bootstrap/challenges.json",
@@ -8,7 +8,12 @@
     {
       "assetPath": "assets/bootstrap/generated_text_challenges.json",
       "kind": "generated-text",
-      "checksum": "f236f923bf22a77f"
+      "checksum": "5f10454b98c649ae"
+    },
+    {
+      "assetPath": "assets/bootstrap/generated_image_challenges.json",
+      "kind": "generated-image",
+      "checksum": "d9172a4d4e028a8a"
     }
   ]
 }

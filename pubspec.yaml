@@ -26,9 +26,10 @@ flutter:
   assets:
     - assets/animations/noto/
     - assets/bootstrap/challenges.json
+    - assets/bootstrap/generated_image_challenges.json
     - assets/bootstrap/generated_text_challenges.json
     - assets/bootstrap/seed_manifest.json
-    - assets/images/placeholders/
+    - pic/
   fonts:
     - family: NotoColorEmoji
       fonts:

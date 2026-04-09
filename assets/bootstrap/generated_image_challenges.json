@@ -1,0 +1,156 @@
+[
+  {
+    "id": "image-001",
+    "mode": "image",
+    "title": "草地小猫",
+    "prompt": "看看这两张草地上的小猫，哪一张更像真正用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的小猫姿势更自然，脸部朝向和身体结构连贯，草叶清晰但有远近层次。AI图的眼睛更呆板，尾巴弯曲过圆，毛发和草地纹理有些发糊重复。",
+    "options": [
+      {
+        "id": "image-001-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true1.jpg"
+      },
+      {
+        "id": "image-001-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false1.png"
+      }
+    ]
+  },
+  {
+    "id": "image-002",
+    "mode": "image",
+    "title": "沙发上的小猫",
+    "prompt": "这两张都是躺在沙发上的小猫，你觉得哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里小猫眼神清亮自然，鼻口和爪子结构正常，毛发边缘有轻微虚化。AI图张嘴部分显得过深，牙齿和嘴型不太协调，毛发纹理也更均匀发糊。",
+    "options": [
+      {
+        "id": "image-002-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true2.jpg"
+      },
+      {
+        "id": "image-002-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false2.png"
+      }
+    ]
+  },
+  {
+    "id": "image-003",
+    "mode": "image",
+    "title": "月亮下的小宝宝",
+    "prompt": "看看这两张月亮主题的小宝宝照片，哪一张更像真的相机拍出来的画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的人体姿势更自然，手臂受压和皮肤褶皱细腻，帽子与毛毯纹理有轻微虚实变化。AI图里五官和手指更规整，布料褶子偏重复，边缘过于圆滑。",
+    "options": [
+      {
+        "id": "image-003-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true3.jpg"
+      },
+      {
+        "id": "image-003-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false3.png"
+      }
+    ]
+  },
+  {
+    "id": "image-004",
+    "mode": "image",
+    "title": "草地上的小狗",
+    "prompt": "看看这两张在草地上跑步的小狗，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里狗毛长短和飞起的姿势更自然，背景虚化也更像相机拍摄；AI图的毛发过于顺滑统一，四肢连接和地面阴影略显生硬。",
+    "options": [
+      {
+        "id": "image-004-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true4.jpg"
+      },
+      {
+        "id": "image-004-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false4.png"
+      }
+    ]
+  },
+  {
+    "id": "image-005",
+    "mode": "image",
+    "title": "糖果心摆拍",
+    "prompt": "看看这两张摆拍图片，哪一张更像真实相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的木纹、橙片和星形香料材质更自然，前后虚化也像镜头拍摄；AI图中彩蛋和糖果表面过于光滑，花朵与木兔边缘略软，细节有点假。",
+    "options": [
+      {
+        "id": "image-005-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true5.jpg"
+      },
+      {
+        "id": "image-005-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false5.png"
+      }
+    ]
+  },
+  {
+    "id": "image-006",
+    "mode": "image",
+    "title": "湖上的鸟",
+    "prompt": "请你找一找，哪一张更像真的在清澈湖面上拍到的水鸟画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的鸭子羽毛层次自然，水面反光和倒影细碎不规则；AI图中天鹅边缘偏软，水花和波纹重复感强，身体与水面的接触也不太真实。",
+    "options": [
+      {
+        "id": "image-006-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true6.jpg"
+      },
+      {
+        "id": "image-006-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false6.png"
+      }
+    ]
+  },
+  {
+    "id": "image-007",
+    "mode": "image",
+    "title": "草地上的红发女孩",
+    "prompt": "两张图里都有拿着小琴的红发女孩，你觉得哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片的草地和远处树林有自然虚化，人物衣裙褶皱与受光更真实。AI图颜色过暖过亮，落叶纹理重复，人物边缘和小琴细节略显生硬。",
+    "options": [
+      {
+        "id": "image-007-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true7.png"
+      },
+      {
+        "id": "image-007-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false7.png"
+      }
+    ]
+  }
+]

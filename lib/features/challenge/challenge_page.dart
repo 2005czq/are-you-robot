@@ -938,6 +938,7 @@ class _OptionCard extends StatelessWidget {
                               option.asset!,
                               fit: BoxFit.cover,
                               width: double.infinity,
+                              cacheWidth: 1800,
                             ),
                             DecoratedBox(
                               decoration: BoxDecoration(
