@@ -122,8 +122,8 @@ class _ModePageState extends State<ModePage> {
                   final wide = constraints.maxWidth >= 900;
                   final compactHeader = constraints.maxWidth < 820;
                   final helperText = widget.mode == ChallengeMode.text
-                      ? '从下面挑一个题目，进去以后看两段文字，判断哪一段更像真人写的。'
-                      : '从下面挑一个题目，进去以后看两张图片，判断哪一张更像真实镜头。';
+                      ? '挑选题目后看两段文字，判断哪一段更像真人写的。'
+                      : '挑选题目后看两张图片，判断哪一张更像真实镜头。';
 
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(24, 20, 24, 28),
