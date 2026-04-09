@@ -423,8 +423,8 @@ Future<void> _showIntroDialog(BuildContext context) {
                 constraints: const BoxConstraints(maxWidth: 600),
                 child: SingleChildScrollView(
                   child: Text(
-                    '🤖 图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能不能分辨出它是不是机器？\n\n'
-                    '🧠 今天这个问题不只出现在文字里。AI 也会生成图片和声音，所以我们的观察方式也得一起升级。\n\n'
+                    '🤖 图灵测试最早来自阿兰·图灵提出的一个经典问题：如果机器的回答已经很像人，我们还能不能分辨出它是不是机器？\n'
+                    '🧠 今天这个问题不只出现在文字里。AI 也会生成图片，所以我们的观察方式也得一起升级。\n'
                     '🔍 这个小游戏更像一场观察训练。看看语气是不是太整齐，看看细节是不是太滑顺，看看光线和边缘是不是自然。慢一点没关系，能说出理由比只选对更重要。',
                     style: theme.textTheme.bodyLarge?.copyWith(height: 1.82),
                   ),

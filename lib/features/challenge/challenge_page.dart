@@ -546,6 +546,7 @@ class _ChallengePageState extends State<ChallengePage>
   Future<void> _showGameOverDialog(int streak) async {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
+    final streakHint = _buildStreakSummary(streak);
     final message = _buildGameOverCopy(streak);
     final rewardHint = _buildRewardHint(streak);
 
@@ -596,12 +597,7 @@ class _ChallengePageState extends State<ChallengePage>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          _buildStreakSummary(streak),
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          '$message\n\n$rewardHint',
+                          '$streakHint\n$message\n$rewardHint',
                           style:
                               theme.textTheme.bodyLarge?.copyWith(height: 1.82),
                         ),
@@ -647,6 +643,9 @@ class _ChallengePageState extends State<ChallengePage>
   Future<void> _showSessionCompleteDialog(int streak) async {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
+    final streakHint = streak > 0
+        ? '🏁 本轮最好成绩：$streak 连胜'
+        : '📚 这一轮能出的题都被你刷完了。';
     final message = _buildDeckClearedCopy(streak);
 
     await showGeneralDialog<void>(
@@ -696,14 +695,7 @@ class _ChallengePageState extends State<ChallengePage>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          streak > 0
-                              ? '🏁 本轮最好成绩：$streak 连胜'
-                              : '📚 这一轮能出的题都被你刷完了。',
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          '$message\n\n✨ 回去缓一口气，换一轮题再来继续打也很酷。',
+                          '$streakHint\n$message\n✨ 回去缓一口气，换一轮题再来继续打也很酷。',
                           style:
                               theme.textTheme.bodyLarge?.copyWith(height: 1.82),
                         ),
@@ -809,11 +801,11 @@ class _ChallengePageState extends State<ChallengePage>
   String _buildRewardHint(int streak) {
     final gentle = [
       '🎁 回到现场转一圈，说不定有一份小惊喜在等你。',
-      '🎈 带着这轮的感觉去找现场老师聊聊，也许会有额外彩蛋。',
+      '🎈 带着这轮的感觉去找工作人员聊聊，也许会有小惊喜。',
     ];
     final strong = [
-      '🎁 带着这个成绩去找现场老师看看，说不定真有惊喜等着你。',
-      '🏅 这波表现已经很能打了，去现场看看有没有属于你的奖励吧。',
+      '🎁 带着这个成绩去找工作人员看看，有一份小惊喜等着你。',
+      '🏅 这波表现已经很能打了，去找工作人员领取属于你的奖励吧。',
     ];
 
     return streak >= 6 ? _pickOne(strong) : _pickOne(gentle);
