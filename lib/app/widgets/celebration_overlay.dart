@@ -73,19 +73,25 @@ class _CelebrationOverlayState extends State<CelebrationOverlay>
   List<_BurstParticle> _buildParticles() {
     final random = _seededRandom(41);
     final colors = _paletteFor(widget.colorSeed);
+    final count = 72 + random.nextInt(28);
 
-    return List.generate(84, (index) {
+    return List.generate(count, (index) {
       final fromLeft = index.isEven;
       return _BurstParticle(
         color: colors[index % colors.length],
         fromLeft: fromLeft,
+        startXFactor: fromLeft
+            ? 0.02 + random.nextDouble() * 0.1
+            : 0.88 + random.nextDouble() * 0.1,
+        startYFactor: 0.84 + random.nextDouble() * 0.1,
         dx: fromLeft
-            ? 90 + random.nextDouble() * 520
-            : -(90 + random.nextDouble() * 520),
-        dy: -(260 + random.nextDouble() * 420),
+            ? 120 + random.nextDouble() * 620
+            : -(120 + random.nextDouble() * 620),
+        dy: -(280 + random.nextDouble() * 480),
         size: 10 + random.nextDouble() * 16,
         rotation: random.nextDouble() * math.pi,
         spin: (random.nextDouble() - 0.5) * 0.36,
+        wobble: 4 + random.nextDouble() * 12,
         delay: random.nextDouble() * 0.24,
       );
     });
@@ -94,16 +100,31 @@ class _CelebrationOverlayState extends State<CelebrationOverlay>
   List<_BalloonParticle> _buildBalloons() {
     final random = _seededRandom(83);
     final colors = _paletteFor(widget.colorSeed);
+    final count = 10 + random.nextInt(7);
+    final positions = <double>[];
 
-    return List.generate(16, (index) {
+    for (var index = 0; index < count; index++) {
+      var candidate = 0.08 + random.nextDouble() * 0.84;
+      var attempts = 0;
+      while (positions.any((value) => (value - candidate).abs() < 0.07) &&
+          attempts < 14) {
+        candidate = 0.08 + random.nextDouble() * 0.84;
+        attempts += 1;
+      }
+      positions.add(candidate);
+    }
+
+    positions.sort();
+
+    return List.generate(count, (index) {
       return _BalloonParticle(
         color: colors[index % colors.length],
-        xFactor: 0.05 + random.nextDouble() * 0.9,
+        xFactor: positions[index],
         drift: -44 + random.nextDouble() * 88,
         wobble: random.nextDouble() * math.pi * 2,
-        speed: 0.42 + random.nextDouble() * 0.34,
+        speed: 0.38 + random.nextDouble() * 0.36,
         size: 28 + random.nextDouble() * 20,
-        delay: random.nextDouble() * 0.22,
+        delay: random.nextDouble() * 0.18,
       );
     });
   }
@@ -111,22 +132,76 @@ class _CelebrationOverlayState extends State<CelebrationOverlay>
   List<_FireworkBurst> _buildFireworks() {
     final random = _seededRandom(127);
     final colors = _paletteFor(widget.colorSeed);
+    final templates = [
+      const _FireworkTemplate(
+        burstCount: 2,
+        launchMin: 0.2,
+        launchMax: 0.42,
+        burstMinY: 0.2,
+        burstMaxY: 0.34,
+        sparkMin: 28,
+        sparkMax: 36,
+        radiusMin: 118,
+        radiusMax: 186,
+      ),
+      const _FireworkTemplate(
+        burstCount: 3,
+        launchMin: 0.18,
+        launchMax: 0.72,
+        burstMinY: 0.18,
+        burstMaxY: 0.3,
+        sparkMin: 24,
+        sparkMax: 34,
+        radiusMin: 110,
+        radiusMax: 178,
+      ),
+      const _FireworkTemplate(
+        burstCount: 4,
+        launchMin: 0.12,
+        launchMax: 0.82,
+        burstMinY: 0.16,
+        burstMaxY: 0.28,
+        sparkMin: 18,
+        sparkMax: 28,
+        radiusMin: 96,
+        radiusMax: 162,
+      ),
+    ];
+    final template = templates[random.nextInt(templates.length)];
+    final burstPositions = <double>[];
 
-    return List.generate(3, (index) {
-      final sparkCount = 22 + random.nextInt(7);
+    return List.generate(template.burstCount, (index) {
+      var burstX = template.launchMin +
+          random.nextDouble() * (template.launchMax - template.launchMin);
+      var attempts = 0;
+      while (burstPositions.any((value) => (value - burstX).abs() < 0.14) &&
+          attempts < 12) {
+        burstX = template.launchMin +
+            random.nextDouble() * (template.launchMax - template.launchMin);
+        attempts += 1;
+      }
+      burstPositions.add(burstX);
+
+      final sparkCount = template.sparkMin +
+          random.nextInt(template.sparkMax - template.sparkMin + 1);
       return _FireworkBurst(
         color: colors[index % colors.length],
-        launchXFactor: 0.22 + random.nextDouble() * 0.56,
-        burstXFactor: 0.22 + random.nextDouble() * 0.56,
-        burstYFactor: 0.22 + random.nextDouble() * 0.22,
+        launchXFactor: burstX + (random.nextDouble() - 0.5) * 0.08,
+        burstXFactor: burstX,
+        burstYFactor: template.burstMinY +
+            random.nextDouble() * (template.burstMaxY - template.burstMinY),
         delay: index * 0.11,
+        trailWidth: 2.8 + random.nextDouble() * 1.6,
+        glowSize: 24 + random.nextDouble() * 24,
         sparks: List.generate(sparkCount, (sparkIndex) {
           final angle = (math.pi * 2 / sparkCount) * sparkIndex +
-              random.nextDouble() * 0.22;
+              (random.nextDouble() - 0.5) * 0.2;
           return _FireworkSpark(
             angle: angle,
-            radius: 92 + random.nextDouble() * 116,
+            radius: template.radiusMin +
+                random.nextDouble() * (template.radiusMax - template.radiusMin),
             size: 2.8 + random.nextDouble() * 2.6,
+            trail: 16 + random.nextDouble() * 22,
           );
         }),
       );
@@ -215,16 +290,42 @@ class _BalloonParticle {
   final double delay;
 }
 
+class _FireworkTemplate {
+  const _FireworkTemplate({
+    required this.burstCount,
+    required this.launchMin,
+    required this.launchMax,
+    required this.burstMinY,
+    required this.burstMaxY,
+    required this.sparkMin,
+    required this.sparkMax,
+    required this.radiusMin,
+    required this.radiusMax,
+  });
+
+  final int burstCount;
+  final double launchMin;
+  final double launchMax;
+  final double burstMinY;
+  final double burstMaxY;
+  final int sparkMin;
+  final int sparkMax;
+  final double radiusMin;
+  final double radiusMax;
+}
+
 class _FireworkSpark {
   const _FireworkSpark({
     required this.angle,
     required this.radius,
     required this.size,
+    required this.trail,
   });
 
   final double angle;
   final double radius;
   final double size;
+  final double trail;
 }
 
 class _FireworkBurst {
@@ -234,6 +335,8 @@ class _FireworkBurst {
     required this.burstXFactor,
     required this.burstYFactor,
     required this.delay,
+    required this.trailWidth,
+    required this.glowSize,
     required this.sparks,
   });
 
@@ -242,6 +345,8 @@ class _FireworkBurst {
   final double burstXFactor;
   final double burstYFactor;
   final double delay;
+  final double trailWidth;
+  final double glowSize;
   final List<_FireworkSpark> sparks;
 }
 
@@ -249,21 +354,27 @@ class _BurstParticle {
   const _BurstParticle({
     required this.color,
     required this.fromLeft,
+    required this.startXFactor,
+    required this.startYFactor,
     required this.dx,
     required this.dy,
     required this.size,
     required this.rotation,
     required this.spin,
+    required this.wobble,
     required this.delay,
   });
 
   final Color color;
   final bool fromLeft;
+  final double startXFactor;
+  final double startYFactor;
   final double dx;
   final double dy;
   final double size;
   final double rotation;
   final double spin;
+  final double wobble;
   final double delay;
 }
 
@@ -305,11 +416,12 @@ class _CelebrationPainter extends CustomPainter {
       final eased = Curves.easeOutCubic.transform(localProgress);
       final gravity = Curves.easeIn.transform(localProgress) * 380;
       final start = Offset(
-        particle.fromLeft ? 18 : size.width - 18,
-        size.height - 14,
+        size.width * particle.startXFactor,
+        size.height * particle.startYFactor,
       );
       final offset = Offset(
-        particle.dx * eased + math.sin(localProgress * math.pi * 3) * 12,
+        particle.dx * eased +
+            math.sin(localProgress * math.pi * particle.wobble) * 12,
         particle.dy * eased + gravity * localProgress,
       );
       final center = start + offset;
@@ -420,7 +532,7 @@ class _CelebrationPainter extends CustomPainter {
               burst.color.withValues(alpha: 0.92),
             ],
           ).createShader(Rect.fromPoints(launchStart, launchCurrent))
-          ..strokeWidth = 3.6
+          ..strokeWidth = burst.trailWidth
           ..strokeCap = StrokeCap.round;
         canvas.drawLine(launchStart, launchCurrent, trailPaint);
         canvas.drawCircle(
@@ -439,7 +551,7 @@ class _CelebrationPainter extends CustomPainter {
 
       canvas.drawCircle(
         burstCenter,
-        24 + burstProgress * 42,
+        burst.glowSize + burstProgress * 42,
         Paint()..color = burst.color.withValues(alpha: alpha * 0.14),
       );
       canvas.drawCircle(
@@ -455,11 +567,28 @@ class _CelebrationPainter extends CustomPainter {
               math.sin(spark.angle) * spark.radius * eased +
               burstProgress * burstProgress * 52,
         );
+        final trailStart = Offset(
+          end.dx - math.cos(spark.angle) * spark.trail * burstProgress,
+          end.dy - math.sin(spark.angle) * spark.trail * burstProgress,
+        );
         final linePaint = Paint()
           ..color = burst.color.withValues(alpha: alpha)
           ..strokeWidth = 3.1 - burstProgress * 1.4
           ..strokeCap = StrokeCap.round;
         canvas.drawLine(burstCenter, end, linePaint);
+        canvas.drawLine(
+          trailStart,
+          end,
+          Paint()
+            ..shader = LinearGradient(
+              colors: [
+                burst.color.withValues(alpha: 0),
+                burst.color.withValues(alpha: alpha),
+              ],
+            ).createShader(Rect.fromPoints(trailStart, end))
+            ..strokeWidth = (2.2 - burstProgress * 0.9).clamp(0.9, 2.2)
+            ..strokeCap = StrokeCap.round,
+        );
         canvas.drawCircle(
           end,
           spark.size * (1 - burstProgress * 0.28),

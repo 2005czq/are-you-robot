@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -96,7 +96,7 @@ class _ChallengePageState extends State<ChallengePage>
     ),
   ];
 
-  final Random _random = Random();
+  final math.Random _random = math.Random();
   late final AnimationController _streakController;
 
   String? _selectedOptionId;
@@ -129,11 +129,23 @@ class _ChallengePageState extends State<ChallengePage>
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final challenge = widget.challenge;
+    final accent = challenge.mode == ChallengeMode.image
+        ? scheme.secondary
+        : scheme.primary;
+    final onAccent = challenge.mode == ChallengeMode.image
+        ? scheme.onSecondary
+        : scheme.onPrimary;
     final topColor = theme.brightness == Brightness.dark
-        ? scheme.surfaceContainerLowest
-        : scheme.surfaceContainerLow;
+        ? Color.alphaBlend(
+            accent.withValues(alpha: 0.08),
+            scheme.surfaceContainerLowest,
+          )
+        : Color.alphaBlend(
+            accent.withValues(alpha: 0.055),
+            scheme.surfaceContainerLow,
+          );
     final bottomColor =
-        theme.brightness == Brightness.dark ? scheme.surface : scheme.surface;
+        Color.alphaBlend(accent.withValues(alpha: 0.018), scheme.surface);
 
     return PopScope(
       canPop: false,
@@ -169,64 +181,18 @@ class _ChallengePageState extends State<ChallengePage>
                               onBack: () => _exitToMode(clearSession: true),
                             ),
                           ),
-                          const SizedBox(height: 22),
-                          FadeSlideIn(
-                            delay: const Duration(milliseconds: 120),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Center(
-                                child: ConstrainedBox(
-                                  constraints:
-                                      const BoxConstraints(maxWidth: 820),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        challenge.title,
-                                        textAlign: TextAlign.center,
-                                        style: theme.textTheme.headlineLarge
-                                            ?.copyWith(fontSize: 38),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        challenge.prompt,
-                                        textAlign: TextAlign.center,
-                                        style: theme.textTheme.titleMedium
-                                            ?.copyWith(
-                                          color: scheme.onSurfaceVariant,
-                                          height: 1.55,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 18),
-                          FadeSlideIn(
-                            delay: const Duration(milliseconds: 180),
-                            child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 260),
-                              switchInCurve: Curves.easeOutCubic,
-                              switchOutCurve: Curves.easeInCubic,
-                              child: _result == null
-                                  ? const SizedBox(
-                                      height: 0,
-                                      width: double.infinity,
-                                    )
-                                  : _ResultBanner(
-                                      key: ValueKey(_result!.title),
-                                      result: _result!,
-                                    ),
-                            ),
-                          ),
-                          if (_result != null) const SizedBox(height: 16),
+                          const SizedBox(height: 12),
                           Expanded(
                             child: LayoutBuilder(
                               builder: (context, constraints) {
                                 final horizontal = constraints.maxWidth >= 920;
-                                final optionWidgets = <Widget>[];
+                                final optionPanelHeight = horizontal
+                                    ? (constraints.maxHeight * 0.54)
+                                        .clamp(320.0, 520.0)
+                                    : (constraints.maxHeight * 0.74)
+                                        .clamp(560.0, 900.0);
 
+                                final optionWidgets = <Widget>[];
                                 for (var i = 0;
                                     i < challenge.options.length;
                                     i++) {
@@ -244,7 +210,7 @@ class _ChallengePageState extends State<ChallengePage>
                                     Expanded(
                                       child: FadeSlideIn(
                                         delay: Duration(
-                                          milliseconds: 220 + i * 90,
+                                          milliseconds: 60 + i * 50,
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.only(
@@ -258,6 +224,7 @@ class _ChallengePageState extends State<ChallengePage>
                                             selected: isSelected,
                                             result: optionResult,
                                             locked: _result != null,
+                                            accent: accent,
                                             onTap: () =>
                                                 _selectOption(option.id),
                                           ),
@@ -267,70 +234,163 @@ class _ChallengePageState extends State<ChallengePage>
                                   );
                                 }
 
-                                return horizontal
-                                    ? Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: optionWidgets,
-                                      )
-                                    : Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: optionWidgets,
-                                      );
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: 18),
-                          FadeSlideIn(
-                            delay: const Duration(milliseconds: 220),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                FilledButton.icon(
-                                  style: FilledButton.styleFrom(
-                                    backgroundColor: _result == null
-                                        ? null
-                                        : _result!.isCorrect
-                                            ? scheme.tertiary
-                                            : scheme.error,
-                                    foregroundColor: _result == null
-                                        ? null
-                                        : _result!.isCorrect
-                                            ? scheme.onTertiary
-                                            : scheme.onError,
-                                  ),
-                                  onPressed: _result == null || _loadingNext
-                                      ? null
-                                      : _confirmResult,
-                                  icon: _loadingNext
-                                      ? const SizedBox(
-                                          height: 18,
-                                          width: 18,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2.2,
+                                final content = Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    FadeSlideIn(
+                                      delay: const Duration(milliseconds: 50),
+                                      child: Center(
+                                        child: ConstrainedBox(
+                                          constraints: const BoxConstraints(
+                                              maxWidth: 820),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                challenge.title,
+                                                textAlign: TextAlign.center,
+                                                style: theme
+                                                    .textTheme.headlineLarge
+                                                    ?.copyWith(fontSize: 38),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Text(
+                                                challenge.prompt,
+                                                textAlign: TextAlign.center,
+                                                style: theme
+                                                    .textTheme.titleMedium
+                                                    ?.copyWith(
+                                                  color:
+                                                      scheme.onSurfaceVariant,
+                                                  height: 1.55,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        )
-                                      : const Icon(Icons.check_rounded),
-                                  label: Text(_loadingNext ? '准备中...' : '确定'),
-                                ),
-                                const SizedBox(width: 18),
-                                Expanded(
-                                  child: Text(
-                                    '选出你觉得更像真人创作的那一个。',
-                                    style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: scheme.onSurfaceVariant,
+                                        ),
+                                      ),
                                     ),
+                                    const SizedBox(height: 26),
+                                    FadeSlideIn(
+                                      delay: const Duration(milliseconds: 100),
+                                      child: AnimatedSwitcher(
+                                        duration:
+                                            const Duration(milliseconds: 220),
+                                        switchInCurve: Curves.easeOutCubic,
+                                        switchOutCurve: Curves.easeInCubic,
+                                        child: _result == null
+                                            ? const SizedBox(
+                                                height: 0,
+                                                width: double.infinity,
+                                              )
+                                            : _ResultBanner(
+                                                key: ValueKey(_result!.title),
+                                                result: _result!,
+                                              ),
+                                      ),
+                                    ),
+                                    if (_result != null)
+                                      const SizedBox(height: 18),
+                                    SizedBox(
+                                      height: optionPanelHeight,
+                                      child: horizontal
+                                          ? Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: optionWidgets,
+                                            )
+                                          : Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: optionWidgets,
+                                            ),
+                                    ),
+                                    const SizedBox(height: 18),
+                                    FadeSlideIn(
+                                      delay: const Duration(milliseconds: 130),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          FilledButton.icon(
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: _result == null
+                                                  ? accent
+                                                  : _result!.isCorrect
+                                                      ? scheme.tertiary
+                                                      : scheme.error,
+                                              foregroundColor: _result == null
+                                                  ? onAccent
+                                                  : _result!.isCorrect
+                                                      ? scheme.onTertiary
+                                                      : scheme.onError,
+                                            ),
+                                            onPressed: _loadingNext
+                                                ? null
+                                                : _result == null
+                                                    ? _selectedOptionId == null
+                                                        ? null
+                                                        : _submitSelection
+                                                    : _confirmResult,
+                                            icon: _loadingNext
+                                                ? const SizedBox(
+                                                    height: 18,
+                                                    width: 18,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      strokeWidth: 2.2,
+                                                    ),
+                                                  )
+                                                : Icon(
+                                                    _result == null
+                                                        ? Icons.check_rounded
+                                                        : Icons
+                                                            .arrow_forward_rounded,
+                                                  ),
+                                            label: Text(
+                                              _loadingNext
+                                                  ? '准备中...'
+                                                  : _result == null
+                                                      ? '确定'
+                                                      : '继续',
+                                            ),
+                                          ),
+                                          const SizedBox(width: 18),
+                                          Expanded(
+                                            child: Text(
+                                              _result == null
+                                                  ? '先选中一个你觉得更像真人创作的选项，再点确定。'
+                                                  : '看完这道题的反馈后，点继续进入下一步。',
+                                              style: theme.textTheme.bodyLarge
+                                                  ?.copyWith(
+                                                color: scheme.onSurfaceVariant,
+                                              ),
+                                            ),
+                                          ),
+                                          if (_streak > 0) ...[
+                                            const SizedBox(width: 16),
+                                            _StreakBadge(
+                                              streak: _streak,
+                                              controller: _streakController,
+                                              accent: accent,
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+
+                                return SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  padding: EdgeInsets.zero,
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minHeight: constraints.maxHeight,
+                                    ),
+                                    child: Center(child: content),
                                   ),
-                                ),
-                                if (_streak > 0) ...[
-                                  const SizedBox(width: 16),
-                                  _StreakBadge(
-                                    streak: _streak,
-                                    controller: _streakController,
-                                  ),
-                                ],
-                              ],
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -359,6 +419,14 @@ class _ChallengePageState extends State<ChallengePage>
     setState(() {
       _selectedOptionId = optionId;
     });
+  }
+
+  void _submitSelection() {
+    final selectedId = _selectedOptionId;
+    if (selectedId == null || _result != null) {
+      return;
+    }
+
     _revealSelection();
   }
 
@@ -379,7 +447,7 @@ class _ChallengePageState extends State<ChallengePage>
         title: preset.title,
         asset: preset.asset,
         description:
-            '${preset.descriptionPrefix}\n\n${widget.challenge.explanation}',
+            '${preset.descriptionPrefix}${widget.challenge.explanation}',
       );
       if (isCorrect) {
         _streak += 1;
@@ -444,8 +512,8 @@ class _ChallengePageState extends State<ChallengePage>
     final prepared = widget.repository.prepareChallengeForPlay(next);
     Navigator.of(context).pushReplacement(
       PageRouteBuilder<void>(
-        transitionDuration: const Duration(milliseconds: 240),
-        reverseTransitionDuration: const Duration(milliseconds: 180),
+        transitionDuration: const Duration(milliseconds: 200),
+        reverseTransitionDuration: const Duration(milliseconds: 140),
         pageBuilder: (context, animation, secondaryAnimation) => ChallengePage(
           challenge: prepared,
           repository: widget.repository,
@@ -464,7 +532,7 @@ class _ChallengePageState extends State<ChallengePage>
             opacity: curved,
             child: SlideTransition(
               position: Tween<Offset>(
-                begin: const Offset(0.02, 0),
+                begin: const Offset(0.014, 0),
                 end: Offset.zero,
               ).animate(curved),
               child: child,
@@ -490,31 +558,56 @@ class _ChallengePageState extends State<ChallengePage>
       pageBuilder: (context, animation, secondaryAnimation) {
         return Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 640),
+            constraints: const BoxConstraints(maxWidth: 720),
             child: Material(
               color: Colors.transparent,
               child: AlertDialog(
-                titlePadding: const EdgeInsets.fromLTRB(28, 28, 28, 10),
-                contentPadding: const EdgeInsets.fromLTRB(28, 12, 28, 0),
-                actionsPadding: const EdgeInsets.fromLTRB(24, 12, 24, 22),
-                title: Text(
-                  '😵 这轮先停一下',
-                  style: theme.textTheme.headlineSmall,
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                titlePadding: const EdgeInsets.fromLTRB(30, 28, 30, 12),
+                contentPadding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+                actionsPadding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
+                title: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      _buildStreakSummary(streak),
-                      style: theme.textTheme.titleLarge,
+                    const SizedBox(
+                      width: 46,
+                      height: 46,
+                      child: NotoAnimatedEmoji(
+                        asset: 'assets/animations/noto/dizzy.json',
+                        size: 46,
+                        repeat: true,
+                      ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      '$message\n\n$rewardHint',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.7),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Text(
+                        '这轮先停一下',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontSize: 30,
+                        ),
+                      ),
                     ),
                   ],
+                ),
+                content: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          _buildStreakSummary(streak),
+                          style: theme.textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          '$message\n\n$rewardHint',
+                          style:
+                              theme.textTheme.bodyLarge?.copyWith(height: 1.82),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 actions: [
                   FilledButton(
@@ -565,31 +658,58 @@ class _ChallengePageState extends State<ChallengePage>
       pageBuilder: (context, animation, secondaryAnimation) {
         return Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 640),
+            constraints: const BoxConstraints(maxWidth: 720),
             child: Material(
               color: Colors.transparent,
               child: AlertDialog(
-                titlePadding: const EdgeInsets.fromLTRB(28, 28, 28, 10),
-                contentPadding: const EdgeInsets.fromLTRB(28, 12, 28, 0),
-                actionsPadding: const EdgeInsets.fromLTRB(24, 12, 24, 22),
-                title: Text(
-                  '🎉 这一轮被你刷空了',
-                  style: theme.textTheme.headlineSmall,
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                titlePadding: const EdgeInsets.fromLTRB(30, 28, 30, 12),
+                contentPadding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+                actionsPadding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
+                title: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      streak > 0 ? '🏁 本轮最好成绩：$streak 连胜' : '📚 这一轮能出的题都被你刷完了。',
-                      style: theme.textTheme.titleLarge,
+                    const SizedBox(
+                      width: 46,
+                      height: 46,
+                      child: NotoAnimatedEmoji(
+                        asset: 'assets/animations/noto/trophy.json',
+                        size: 46,
+                        repeat: true,
+                      ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      '$message\n\n✨ 回去缓一口气，换一轮题再来继续打也很酷。',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.7),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Text(
+                        '这一轮被你刷空了',
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontSize: 30,
+                        ),
+                      ),
                     ),
                   ],
+                ),
+                content: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          streak > 0
+                              ? '🏁 本轮最好成绩：$streak 连胜'
+                              : '📚 这一轮能出的题都被你刷完了。',
+                          style: theme.textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 14),
+                        Text(
+                          '$message\n\n✨ 回去缓一口气，换一轮题再来继续打也很酷。',
+                          style:
+                              theme.textTheme.bodyLarge?.copyWith(height: 1.82),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 actions: [
                   FilledButton(
@@ -720,6 +840,7 @@ class _OptionCard extends StatelessWidget {
     required this.selected,
     required this.result,
     required this.locked,
+    required this.accent,
     required this.onTap,
   });
 
@@ -727,23 +848,27 @@ class _OptionCard extends StatelessWidget {
   final bool selected;
   final _OptionResult? result;
   final bool locked;
+  final Color accent;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
-    final accent = switch (result) {
+    final activeAccent = switch (result) {
       _OptionResult.correct => scheme.tertiary,
       _OptionResult.wrong => scheme.error,
-      null => selected ? scheme.primary : scheme.outlineVariant,
+      null => selected ? accent : scheme.outlineVariant,
     };
 
     final background = switch (result) {
       _OptionResult.correct => scheme.tertiaryContainer.withValues(alpha: 0.74),
       _OptionResult.wrong => scheme.errorContainer.withValues(alpha: 0.78),
       null => selected
-          ? scheme.primaryContainer.withValues(alpha: 0.48)
+          ? Color.alphaBlend(
+              accent.withValues(alpha: 0.14),
+              scheme.surfaceContainerLowest,
+            )
           : scheme.surfaceContainerLowest,
     };
 
@@ -754,8 +879,9 @@ class _OptionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: accent.withValues(
-                alpha: selected || result != null ? 0.11 : 0.028),
+            color: activeAccent.withValues(
+              alpha: selected || result != null ? 0.11 : 0.028,
+            ),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -767,8 +893,9 @@ class _OptionCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
           side: BorderSide(
-            color: accent.withValues(
-                alpha: selected || result != null ? 0.44 : 0.28),
+            color: activeAccent.withValues(
+              alpha: selected || result != null ? 0.44 : 0.28,
+            ),
             width: selected || result != null ? 1.5 : 1,
           ),
         ),
@@ -785,52 +912,55 @@ class _OptionCard extends StatelessWidget {
                       height: 42,
                       width: 42,
                       decoration: BoxDecoration(
-                        color: accent.withValues(alpha: 0.11),
+                        color: activeAccent.withValues(alpha: 0.11),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: Center(
                         child: Text(
                           option.label,
                           style: theme.textTheme.titleMedium
-                              ?.copyWith(color: accent),
+                              ?.copyWith(color: activeAccent),
                         ),
                       ),
                     ),
                     const Spacer(),
                     if (selected && result == null)
-                      Icon(Icons.radio_button_checked_rounded, color: accent)
+                      Icon(Icons.radio_button_checked_rounded,
+                          color: activeAccent)
                     else if (result == _OptionResult.correct)
-                      Icon(Icons.check_circle_rounded, color: accent)
+                      Icon(Icons.check_circle_rounded, color: activeAccent)
                     else if (result == _OptionResult.wrong)
-                      Icon(Icons.cancel_rounded, color: accent),
+                      Icon(Icons.cancel_rounded, color: activeAccent),
                   ],
                 ),
                 const SizedBox(height: 16),
                 if (option.asset != null)
                   Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(22),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.asset(
-                            option.asset!,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                          ),
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [
-                                  Colors.black.withValues(alpha: 0.08),
-                                  Colors.transparent,
-                                ],
+                    child: RepaintBoundary(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(22),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.asset(
+                              option.asset!,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                            DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.black.withValues(alpha: 0.08),
+                                    Colors.transparent,
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -847,6 +977,7 @@ class _OptionCard extends StatelessWidget {
                         ),
                       ),
                       child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
                         child: Text(
                           option.text ?? '',
                           style: theme.textTheme.titleMedium
@@ -868,35 +999,44 @@ class _StreakBadge extends StatelessWidget {
   const _StreakBadge({
     required this.streak,
     required this.controller,
+    required this.accent,
   });
 
   final int streak;
   final AnimationController controller;
+  final Color accent;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
 
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
-        final pulse = 1 + sin(controller.value * pi * 2) * 0.06;
+        final pulse = 1 + math.sin(controller.value * math.pi * 2) * 0.06;
         return Transform.scale(
           scale: pulse,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
             decoration: BoxDecoration(
-              color: scheme.primaryContainer.withValues(alpha: 0.82),
+              color: accent.withValues(alpha: 0.14),
               borderRadius: BorderRadius.circular(999),
-              border: Border.all(
-                color: scheme.primary.withValues(alpha: 0.16),
-              ),
+              border: Border.all(color: accent.withValues(alpha: 0.18)),
             ),
-            child: Text(
-              '🔥 $streak 连胜',
-              style:
-                  theme.textTheme.labelLarge?.copyWith(color: scheme.primary),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const NotoAnimatedEmoji(
+                  asset: 'assets/animations/noto/fire.json',
+                  size: 28,
+                  repeat: true,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '$streak 连胜',
+                  style: theme.textTheme.labelLarge?.copyWith(color: accent),
+                ),
+              ],
             ),
           ),
         );
