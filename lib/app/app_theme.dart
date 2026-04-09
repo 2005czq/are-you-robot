@@ -201,7 +201,9 @@ ThemeData buildAppTheme(Brightness brightness) {
         shape: buttonShape,
         side: BorderSide(color: scheme.outlineVariant),
         textStyle: buttonTextStyle,
-        backgroundColor: scheme.surfaceContainerLowest.withValues(alpha: 0.96),
+        backgroundColor: brightness == Brightness.dark
+            ? scheme.surfaceContainerHigh.withValues(alpha: 0.96)
+            : scheme.surfaceContainerLowest.withValues(alpha: 0.96),
       ),
     ),
     appBarTheme: AppBarTheme(
@@ -224,7 +226,9 @@ ThemeData buildAppTheme(Brightness brightness) {
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         padding: const EdgeInsets.all(16),
-        backgroundColor: scheme.surfaceContainerLowest,
+        backgroundColor: brightness == Brightness.dark
+            ? scheme.surfaceContainerHigh
+            : scheme.surfaceContainerLowest,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side:

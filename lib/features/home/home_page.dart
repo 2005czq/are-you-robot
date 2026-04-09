@@ -19,6 +19,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
+    final introAccent = theme.brightness == Brightness.dark
+        ? const Color(0xFFFFB08A)
+        : const Color(0xFFD96E39);
+    final onIntroAccent = theme.brightness == Brightness.dark
+        ? const Color(0xFF4F1F09)
+        : Colors.white;
     final topColor = theme.brightness == Brightness.dark
         ? const Color(0xFF1C1611)
         : const Color(0xFFF4E7D8);
@@ -49,7 +55,7 @@ class HomePage extends StatelessWidget {
                         width: 520,
                         height: 520,
                         child: NotoAnimatedEmoji(
-                          asset: 'assets/animations/noto/thinking_face.json',
+                          asset: 'assets/animations/noto/robot.json',
                           size: 520,
                           repeat: true,
                         ),
@@ -87,8 +93,8 @@ class HomePage extends StatelessWidget {
                                         const SizedBox(height: 28),
                                         FilledButton.icon(
                                           style: FilledButton.styleFrom(
-                                            backgroundColor: scheme.primary,
-                                            foregroundColor: scheme.onPrimary,
+                                            backgroundColor: introAccent,
+                                            foregroundColor: onIntroAccent,
                                           ),
                                           onPressed: () =>
                                               _showIntroDialog(context),
@@ -112,8 +118,8 @@ class HomePage extends StatelessWidget {
                                               const EdgeInsets.only(top: 10),
                                           child: FilledButton.icon(
                                             style: FilledButton.styleFrom(
-                                              backgroundColor: scheme.primary,
-                                              foregroundColor: scheme.onPrimary,
+                                              backgroundColor: introAccent,
+                                              foregroundColor: onIntroAccent,
                                             ),
                                             onPressed: () =>
                                                 _showIntroDialog(context),
@@ -141,10 +147,13 @@ class HomePage extends StatelessWidget {
                                     subtitle: '看语气、停顿和细节，判断哪一段更像真人写出来的。',
                                     accent: scheme.primary,
                                     emojiChoices: const [
+                                      '🤖',
+                                      '🧠',
                                       '✍️',
                                       '📖',
                                       '📝',
                                       '💬',
+                                      '🔎',
                                       '🔤',
                                       '📚',
                                       '🖋️',
@@ -160,6 +169,8 @@ class HomePage extends StatelessWidget {
                                     subtitle: '看光线、边缘和质感，判断哪一张更接近真实镜头。',
                                     accent: scheme.secondary,
                                     emojiChoices: const [
+                                      '🤖',
+                                      '👁️',
                                       '📸',
                                       '🖼️',
                                       '🌤️',
@@ -302,26 +313,12 @@ class _ModeCardState extends State<_ModeCard> {
                     ),
                   ),
                 ),
-                Positioned(
-                  left: -36,
-                  bottom: -46,
-                  child: IgnorePointer(
-                    child: Container(
-                      width: 170,
-                      height: 170,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: widget.accent.withValues(alpha: 0.08),
-                      ),
-                    ),
-                  ),
-                ),
                 Positioned.fill(
                   child: EmojiPattern(
                     emojis: _pattern,
                     size: 44,
                     spacing: 28,
-                    opacity: 0.032,
+                    opacity: 0.075,
                     rotation: widget.title == '文字挑战' ? -0.08 : 0.08,
                     padding: const EdgeInsets.all(18),
                   ),
@@ -378,7 +375,12 @@ class _ModeCardState extends State<_ModeCard> {
 
 Future<void> _showIntroDialog(BuildContext context) {
   final theme = Theme.of(context);
-  final scheme = theme.colorScheme;
+  final introAccent = theme.brightness == Brightness.dark
+      ? const Color(0xFFFFB08A)
+      : const Color(0xFFD96E39);
+  final onIntroAccent = theme.brightness == Brightness.dark
+      ? const Color(0xFF4F1F09)
+      : Colors.white;
 
   return showGeneralDialog<void>(
     context: context,
@@ -433,8 +435,8 @@ Future<void> _showIntroDialog(BuildContext context) {
               actions: [
                 FilledButton(
                   style: FilledButton.styleFrom(
-                    backgroundColor: scheme.primary,
-                    foregroundColor: scheme.onPrimary,
+                    backgroundColor: introAccent,
+                    foregroundColor: onIntroAccent,
                   ),
                   onPressed: () => Navigator.of(context).pop(),
                   child: const Text('继续看看'),
