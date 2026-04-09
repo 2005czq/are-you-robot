@@ -1,9 +1,11 @@
-name: Build Desktop and Android Artifacts
+name: Build and Release Desktop and Android Artifacts
 
 on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -33,11 +35,15 @@ jobs:
       - name: Build Windows app
         run: flutter build windows --release
 
+      - name: Archive Windows app
+        shell: pwsh
+        run: Compress-Archive -Path build/windows/x64/runner/Release -DestinationPath build/windows/x64/runner/are-you-robot-windows-release.zip
+
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
           name: are-you-robot-windows-release
-          path: build/windows/x64/runner/Release
+          path: build/windows/x64/runner/are-you-robot-windows-release.zip
           if-no-files-found: error
 
   android:
@@ -66,9 +72,46 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Prepare APK asset
+        run: cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/are-you-robot-android.apk
+
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: are-you-robot-android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/are-you-robot-android.apk
           if-no-files-found: error
+
+  release:
+    name: Publish GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs:
+      - windows
+      - android
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: are-you-robot-windows-release
+          path: dist/windows
+
+      - name: Download Android artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: are-you-robot-android-apk
+          path: dist/android
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          files: |
+            dist/windows/are-you-robot-windows-release.zip
+            dist/android/are-you-robot-android.apk

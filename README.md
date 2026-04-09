@@ -120,20 +120,37 @@ http://127.0.0.1:7357/are-you-robot/
 .github/workflows/build-artifacts.yml
 ```
 
-它会在每次 push 到 `main` 后自动构建并上传：
+它现在有两种触发方式：
+
+- 每次 push 到 `main`：自动构建并上传临时构建产物到 Actions Artifacts
+- 每次 push 一个形如 `v0.1.0` 的 tag：自动构建并创建 GitHub Release
+
+无论哪种方式，都会构建：
 
 - Windows 发布包
 - Android APK
 
-构建完成后，你可以到 GitHub 仓库的 `Actions` 页面，打开对应的 workflow run，在页面底部的 `Artifacts` 区域下载：
+如果是 `main` 分支上的普通提交，构建完成后你可以到 GitHub 仓库的 `Actions` 页面，打开对应的 workflow run，在页面底部的 `Artifacts` 区域下载：
 
 - `are-you-robot-windows-release`
 - `are-you-robot-android-apk`
 
+如果是 `v*` tag 发布，构建完成后可以到仓库的 `Releases` 页面下载：
+
+- `are-you-robot-windows-release.zip`
+- `are-you-robot-android.apk`
+
 说明：
 
-- Windows 产物是一个完整运行目录，不是单个 exe，下载后需要把整个目录一起解压使用
+- Windows Release 现在会自动打成一个 zip；解压后仍然需要保留整个目录一起运行，不是单个 exe
 - Android 产物当前是仓库默认配置下生成的 release apk，适合测试分发；如果后面要正式上架应用商店，还需要补签名配置和正式包名
+
+发布一个正式版本的最简单命令：
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
 
 ## 当前题库
 
