@@ -31,7 +31,8 @@ class EmojiPattern extends StatelessWidget {
           final columns =
               math.max(3, (constraints.maxWidth / stride).ceil() + 2);
           final rows = math.max(2, (constraints.maxHeight / stride).ceil() + 2);
-          final total = columns * rows;
+          final width = columns * stride;
+          final height = rows * stride;
 
           return ClipRect(
             child: Transform.rotate(
@@ -42,19 +43,33 @@ class EmojiPattern extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: padding,
-                  child: Wrap(
-                    spacing: spacing,
-                    runSpacing: spacing,
-                    children: [
-                      for (var index = 0; index < total; index++)
-                        Opacity(
-                          opacity: opacity,
-                          child: EmojiText(
-                            emojis[index % emojis.length],
-                            size: size,
-                          ),
-                        ),
-                    ],
+                  child: SizedBox(
+                    width: width,
+                    height: height,
+                    child: Stack(
+                      children: [
+                        for (var row = 0; row < rows; row++)
+                          for (var column = 0; column < columns; column++)
+                            Positioned(
+                              left: column * stride,
+                              top: row * stride,
+                              child: Opacity(
+                                opacity: opacity,
+                                child: SizedBox(
+                                  width: stride,
+                                  height: stride,
+                                  child: Center(
+                                    child: EmojiText(
+                                      emojis[(row * columns + column) %
+                                          emojis.length],
+                                      size: size,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -152,7 +152,11 @@ ThemeData buildAppTheme(Brightness brightness) {
       ? const Color(0xFF130F0D)
       : const Color(0xFFF7F1EC);
   final buttonShape = RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20),
+    borderRadius: BorderRadius.circular(22),
+  );
+  final buttonTextStyle = textTheme.titleMedium?.copyWith(
+    fontSize: 18.5,
+    height: 1.08,
   );
 
   return ThemeData(
@@ -175,25 +179,28 @@ ThemeData buildAppTheme(Brightness brightness) {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        minimumSize: const Size(0, 60),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
         shape: buttonShape,
-        textStyle: textTheme.titleMedium,
+        textStyle: buttonTextStyle,
       ),
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         elevation: 0,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        minimumSize: const Size(0, 60),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
         shape: buttonShape,
-        textStyle: textTheme.titleMedium,
+        textStyle: buttonTextStyle,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 16),
+        minimumSize: const Size(0, 60),
+        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 18),
         shape: buttonShape,
         side: BorderSide(color: scheme.outlineVariant),
-        textStyle: textTheme.titleMedium,
+        textStyle: buttonTextStyle,
         backgroundColor: scheme.surfaceContainerLowest.withValues(alpha: 0.96),
       ),
     ),

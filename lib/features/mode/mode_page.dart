@@ -84,11 +84,25 @@ class _ModePageState extends State<ModePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
+    final accent =
+        widget.mode == ChallengeMode.image ? scheme.secondary : scheme.primary;
+    final onAccent = widget.mode == ChallengeMode.image
+        ? scheme.onSecondary
+        : scheme.onPrimary;
+    final accentContainer = widget.mode == ChallengeMode.image
+        ? scheme.secondaryContainer
+        : scheme.primaryContainer;
     final topColor = theme.brightness == Brightness.dark
-        ? scheme.surfaceContainerLowest
-        : scheme.surfaceContainerLow;
+        ? Color.alphaBlend(
+            accent.withValues(alpha: 0.08),
+            scheme.surfaceContainerLowest,
+          )
+        : Color.alphaBlend(
+            accent.withValues(alpha: 0.06),
+            scheme.surfaceContainerLow,
+          );
     final bottomColor =
-        theme.brightness == Brightness.dark ? scheme.surface : scheme.surface;
+        Color.alphaBlend(accent.withValues(alpha: 0.015), scheme.surface);
 
     return Scaffold(
       body: DecoratedBox(
@@ -128,12 +142,26 @@ class _ModePageState extends State<ModePage> {
                                       runSpacing: 12,
                                       children: [
                                         OutlinedButton.icon(
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: accent,
+                                            backgroundColor: accentContainer
+                                                .withValues(alpha: 0.28),
+                                            side: BorderSide(
+                                              color: accent.withValues(
+                                                alpha: 0.18,
+                                              ),
+                                            ),
+                                          ),
                                           onPressed: _refreshBatch,
                                           icon:
                                               const Icon(Icons.refresh_rounded),
                                           label: const Text('换一批'),
                                         ),
                                         FilledButton.icon(
+                                          style: FilledButton.styleFrom(
+                                            backgroundColor: accent,
+                                            foregroundColor: onAccent,
+                                          ),
                                           onPressed: _openRandomChallenge,
                                           icon:
                                               const Icon(Icons.casino_outlined),
@@ -147,11 +175,23 @@ class _ModePageState extends State<ModePage> {
                                   title: widget.mode.label,
                                   trailing: [
                                     OutlinedButton.icon(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: accent,
+                                        backgroundColor: accentContainer
+                                            .withValues(alpha: 0.28),
+                                        side: BorderSide(
+                                          color: accent.withValues(alpha: 0.18),
+                                        ),
+                                      ),
                                       onPressed: _refreshBatch,
                                       icon: const Icon(Icons.refresh_rounded),
                                       label: const Text('换一批'),
                                     ),
                                     FilledButton.icon(
+                                      style: FilledButton.styleFrom(
+                                        backgroundColor: accent,
+                                        foregroundColor: onAccent,
+                                      ),
                                       onPressed: _openRandomChallenge,
                                       icon: const Icon(Icons.casino_outlined),
                                       label: const Text('随机挑战'),
@@ -159,28 +199,7 @@ class _ModePageState extends State<ModePage> {
                                   ],
                                 ),
                         ),
-                        const SizedBox(height: 14),
-                        FadeSlideIn(
-                          delay: const Duration(milliseconds: 120),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: Center(
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 780),
-                                child: Text(
-                                  helperText,
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.titleLarge?.copyWith(
-                                    color: scheme.onSurfaceVariant,
-                                    height: 1.55,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 22),
+                        const SizedBox(height: 8),
                         Expanded(
                           child: FutureBuilder<List<Challenge>>(
                             future: _batchFuture,
@@ -202,39 +221,117 @@ class _ModePageState extends State<ModePage> {
                                 );
                               }
 
-                              return GridView.builder(
-                                padding: EdgeInsets.zero,
-                                itemCount: challenges.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: wide ? 2 : 1,
-                                  crossAxisSpacing: 18,
-                                  mainAxisSpacing: 18,
-                                  childAspectRatio: wide ? 2.72 : 2.18,
-                                ),
-                                itemBuilder: (context, index) {
-                                  final challenge = challenges[index];
-                                  return FadeSlideIn(
-                                    delay:
-                                        Duration(milliseconds: 80 + index * 40),
-                                    child: _ChallengePreviewCard(
-                                      challenge: challenge,
-                                      onTap: () {
-                                        final preparedChallenge = widget
-                                            .repository
-                                            .prepareChallengeForPlay(challenge);
-                                        Navigator.of(context).push(
-                                          AppPageRoute<void>(
-                                            builder: (context) => ChallengePage(
-                                              challenge: preparedChallenge,
-                                              repository: widget.repository,
-                                              session: const ChallengeSession(),
-                                              onExit: _handleChallengeExit,
-                                            ),
+                              return LayoutBuilder(
+                                builder: (context, bodyConstraints) {
+                                  const gridSpacing = 18.0;
+                                  final crossAxisCount = wide ? 2 : 1;
+                                  final rows =
+                                      (challenges.length / crossAxisCount)
+                                          .ceil();
+                                  final aspectRatio = wide ? 2.72 : 2.18;
+                                  final cardWidth = (bodyConstraints.maxWidth -
+                                          (crossAxisCount - 1) * gridSpacing) /
+                                      crossAxisCount;
+                                  final cardHeight = cardWidth / aspectRatio;
+                                  final gridHeight = rows * cardHeight +
+                                      (rows - 1) * gridSpacing;
+                                  final centered = gridHeight + 132 <
+                                      bodyConstraints.maxHeight;
+
+                                  Widget buildGrid({required bool scrollable}) {
+                                    return GridView.builder(
+                                      padding: EdgeInsets.zero,
+                                      physics: scrollable
+                                          ? const BouncingScrollPhysics()
+                                          : const NeverScrollableScrollPhysics(),
+                                      itemCount: challenges.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: crossAxisCount,
+                                        crossAxisSpacing: gridSpacing,
+                                        mainAxisSpacing: gridSpacing,
+                                        childAspectRatio: aspectRatio,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        final challenge = challenges[index];
+                                        return FadeSlideIn(
+                                          delay: Duration(
+                                            milliseconds: 50 + index * 32,
+                                          ),
+                                          child: _ChallengePreviewCard(
+                                            challenge: challenge,
+                                            onTap: () {
+                                              final preparedChallenge = widget
+                                                  .repository
+                                                  .prepareChallengeForPlay(
+                                                challenge,
+                                              );
+                                              Navigator.of(context).push(
+                                                AppPageRoute<void>(
+                                                  builder: (context) =>
+                                                      ChallengePage(
+                                                    challenge:
+                                                        preparedChallenge,
+                                                    repository:
+                                                        widget.repository,
+                                                    session:
+                                                        const ChallengeSession(),
+                                                    onExit:
+                                                        _handleChallengeExit,
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         );
                                       },
+                                    );
+                                  }
+
+                                  final helper = FadeSlideIn(
+                                    delay: const Duration(milliseconds: 40),
+                                    child: Center(
+                                      child: ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 800,
+                                        ),
+                                        child: Text(
+                                          helperText,
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.titleLarge
+                                              ?.copyWith(
+                                            color: scheme.onSurfaceVariant,
+                                            height: 1.55,
+                                            fontSize: 28,
+                                          ),
+                                        ),
+                                      ),
                                     ),
+                                  );
+
+                                  if (centered) {
+                                    return Column(
+                                      children: [
+                                        const Spacer(),
+                                        helper,
+                                        const SizedBox(height: 30),
+                                        SizedBox(
+                                          height: gridHeight,
+                                          child: buildGrid(scrollable: false),
+                                        ),
+                                        const Spacer(),
+                                      ],
+                                    );
+                                  }
+
+                                  return Column(
+                                    children: [
+                                      helper,
+                                      const SizedBox(height: 26),
+                                      Expanded(
+                                        child: buildGrid(scrollable: true),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -314,15 +411,15 @@ class _ChallengePreviewCardState extends State<_ChallengePreviewCard> {
                   ),
                 ),
                 Positioned(
-                  top: -34,
-                  right: -10,
+                  left: -22,
+                  bottom: -48,
                   child: IgnorePointer(
                     child: Container(
-                      width: 132,
-                      height: 132,
+                      width: 146,
+                      height: 146,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: accent.withValues(alpha: 0.12),
+                        color: accent.withValues(alpha: 0.11),
                       ),
                     ),
                   ),

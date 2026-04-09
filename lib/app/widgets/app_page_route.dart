@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class AppPageRoute<T> extends PageRouteBuilder<T> {
   AppPageRoute({required WidgetBuilder builder})
       : super(
-          transitionDuration: const Duration(milliseconds: 420),
-          reverseTransitionDuration: const Duration(milliseconds: 280),
+          transitionDuration: const Duration(milliseconds: 320),
+          reverseTransitionDuration: const Duration(milliseconds: 220),
           pageBuilder: (context, animation, secondaryAnimation) =>
               builder(context),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

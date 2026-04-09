@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                         width: 520,
                         height: 520,
                         child: NotoAnimatedEmoji(
-                          asset: 'assets/animations/noto/robot.json',
+                          asset: 'assets/animations/noto/thinking_face.json',
                           size: 520,
                           repeat: true,
                         ),
@@ -85,7 +85,11 @@ class HomePage extends StatelessWidget {
                                       children: [
                                         _HeroBlock(titleSize: titleSize),
                                         const SizedBox(height: 28),
-                                        OutlinedButton.icon(
+                                        FilledButton.icon(
+                                          style: FilledButton.styleFrom(
+                                            backgroundColor: scheme.primary,
+                                            foregroundColor: scheme.onPrimary,
+                                          ),
                                           onPressed: () =>
                                               _showIntroDialog(context),
                                           icon: const Icon(
@@ -106,7 +110,11 @@ class HomePage extends StatelessWidget {
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 10),
-                                          child: OutlinedButton.icon(
+                                          child: FilledButton.icon(
+                                            style: FilledButton.styleFrom(
+                                              backgroundColor: scheme.primary,
+                                              foregroundColor: scheme.onPrimary,
+                                            ),
                                             onPressed: () =>
                                                 _showIntroDialog(context),
                                             icon: const Icon(
@@ -260,8 +268,8 @@ class _ModeCardState extends State<_ModeCard> {
   @override
   void initState() {
     super.initState();
-    final random = Random(widget.title.hashCode);
-    _pattern = List.generate(26, (index) {
+    final random = Random();
+    _pattern = List.generate(48, (index) {
       return widget.emojiChoices[random.nextInt(widget.emojiChoices.length)];
     });
   }
@@ -287,13 +295,23 @@ class _ModeCardState extends State<_ModeCard> {
                 Positioned.fill(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          widget.accent.withValues(alpha: 0.1),
-                          scheme.surface.withValues(alpha: 0.97),
-                        ],
+                      color: scheme.surfaceContainerLowest,
+                      border: Border.all(
+                        color: scheme.outlineVariant.withValues(alpha: 0.54),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: -36,
+                  bottom: -46,
+                  child: IgnorePointer(
+                    child: Container(
+                      width: 170,
+                      height: 170,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: widget.accent.withValues(alpha: 0.08),
                       ),
                     ),
                   ),
@@ -301,9 +319,9 @@ class _ModeCardState extends State<_ModeCard> {
                 Positioned.fill(
                   child: EmojiPattern(
                     emojis: _pattern,
-                    size: 42,
-                    spacing: 40,
-                    opacity: 0.03,
+                    size: 44,
+                    spacing: 28,
+                    opacity: 0.032,
                     rotation: widget.title == '文字挑战' ? -0.08 : 0.08,
                     padding: const EdgeInsets.all(18),
                   ),
