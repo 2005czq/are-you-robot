@@ -188,7 +188,53 @@ class ChallengeRepository {
   }
 
   Challenge prepareChallengeForPlay(Challenge challenge) {
-    return challenge.shuffledOptions(_random);
+    final normalized = challenge.mode == ChallengeMode.text
+        ? challenge.copyWith(
+            explanation: _normalizeTextExplanation(
+              challenge.explanation,
+              challenge.options,
+            ),
+          )
+        : challenge;
+
+    return normalized.shuffledOptions(_random);
+  }
+
+  String _normalizeTextExplanation(
+    String explanation,
+    List<ChallengeOption> options,
+  ) {
+    var normalized = explanation.replaceAll('AI 回答', 'AI回答');
+
+    if (options.isEmpty) {
+      return normalized;
+    }
+
+    final labelToRole = <String, String>{
+      for (final option in options)
+        option.label.toUpperCase(): _roleLabelForOption(option),
+    };
+    final labelReplacements = <String, String>{
+      for (final entry in labelToRole.entries) ...{
+        '${entry.key}选项': entry.value,
+        '${entry.key}回答': entry.value,
+        '${entry.key}段': entry.value,
+        '${entry.key}里': '${entry.value}里',
+        '${entry.key}更': '${entry.value}更',
+        '${entry.key}也': '${entry.value}也',
+        '${entry.key}按': '${entry.value}按',
+      },
+    };
+
+    for (final entry in labelReplacements.entries) {
+      normalized = normalized.replaceAll(entry.key, entry.value);
+    }
+
+    return normalized;
+  }
+
+  String _roleLabelForOption(ChallengeOption option) {
+    return option.isHuman ? '真人回答' : 'AI回答';
   }
 
   @visibleForTesting

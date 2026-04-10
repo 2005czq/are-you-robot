@@ -146,4 +146,64 @@ void main() {
       equals(original.options.map((option) => option.id).toSet()),
     );
   });
+
+  test('prepareChallengeForPlay normalizes A/B explanation wording before shuffling', () {
+    final repository = buildRepository(random: Random(1));
+    const original = Challenge(
+      id: 'text-order-a-b',
+      mode: ChallengeMode.text,
+      title: 'Order wording',
+      prompt: 'Pick one',
+      difficulty: 'normal',
+      explanation: 'A段像临场回忆，B段更像整理过。',
+      options: [
+        ChallengeOption(
+          id: 'opt-a',
+          label: 'A',
+          sourceType: 'ai',
+          text: 'AI text',
+        ),
+        ChallengeOption(
+          id: 'opt-b',
+          label: 'B',
+          sourceType: 'human',
+          text: 'Human text',
+        ),
+      ],
+    );
+
+    final prepared = repository.prepareChallengeForPlay(original);
+
+    expect(prepared.explanation, 'AI回答像临场回忆，真人回答更像整理过。');
+  });
+
+  test('prepareChallengeForPlay preserves explicit explanation wording before shuffling', () {
+    final repository = buildRepository(random: Random(1));
+    const original = Challenge(
+      id: 'text-explicit-wording',
+      mode: ChallengeMode.text,
+      title: 'Explicit wording',
+      prompt: 'Pick one',
+      difficulty: 'normal',
+      explanation: '真人回答更像想到哪写到哪，AI回答更完整。',
+      options: [
+        ChallengeOption(
+          id: 'opt-a',
+          label: 'A',
+          sourceType: 'human',
+          text: 'Human text',
+        ),
+        ChallengeOption(
+          id: 'opt-b',
+          label: 'B',
+          sourceType: 'ai',
+          text: 'AI text',
+        ),
+      ],
+    );
+
+    final prepared = repository.prepareChallengeForPlay(original);
+
+    expect(prepared.explanation, '真人回答更像想到哪写到哪，AI回答更完整。');
+  });
 }

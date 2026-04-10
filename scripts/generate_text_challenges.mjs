@@ -10,6 +10,7 @@ const repoRoot = path.resolve(path.dirname(currentFilePath), '..');
 const envPath = path.join(repoRoot, '.env');
 const outputPath = path.join(repoRoot, 'assets', 'bootstrap', 'generated_text_challenges.json');
 const manifestPath = path.join(repoRoot, 'assets', 'bootstrap', 'seed_manifest.json');
+const explanationOrderingReferencePattern = /(A段|B段|A选项|B选项|A回答|B回答|第一段|第二段|第1段|第2段|第一个选项|第二个选项|第一个回答|第二个回答|左边|右边|左侧|右侧|前者|后者)/u;
 
 const topics = [
   '忘记带作业时的心情',
@@ -169,7 +170,7 @@ function buildPayload({ model, topic, runLabel, nonce, requestFingerprint }) {
       {
         role: 'system',
         content:
-          '你是一个儿童向图灵测试题库编辑。你要生成可审核、可比较、可直接入库的中文文字题。每题必须有一个看起来像真人随手写的长回答和一个看起来像机器写的长回答，但两者都要自然、都不能自曝身份、不能提到 AI、模型、提示词、训练数据或系统指令。每个回答都要足够长，细节具体，可供孩子观察口吻差异。输出 JSON 时，字段键名必须使用英文，且只能使用这些键名：mode,title,prompt,difficulty,explanation,options,label,sourceType,text。',
+          '你是一个儿童向图灵测试题库编辑。你要生成可审核、可比较、可直接入库的中文文字题。每题必须有一个看起来像真人随手写的长回答和一个看起来像机器写的长回答，但两者都要自然、都不能自曝身份、不能提到 AI、模型、提示词、训练数据或系统指令。每个回答都要足够长，细节具体，可供孩子观察口吻差异。explanation 必须直接使用“真人回答”“AI回答”这类明确表述，不要使用 A/B、左右、前者后者、第一段第二段等顺序或位置指代。输出 JSON 时，字段键名必须使用英文，且只能使用这些键名：mode,title,prompt,difficulty,explanation,options,label,sourceType,text。',
       },
       {
         role: 'user',
@@ -183,13 +184,14 @@ function buildPayload({ model, topic, runLabel, nonce, requestFingerprint }) {
           '2. title 要像题目标题，简短自然。\n' +
           '3. prompt 是直接问孩子的话。\n' +
           '4. difficulty 只能是 easy、normal、hard 之一。\n' +
-          '5. explanation 要指出两段回答在口吻、细节、组织方式上的区别，80 到 140 字。\n' +
+          '5. explanation 要指出两段回答在口吻、细节、组织方式上的区别，80 到 140 字，并且必须直接使用“真人回答”和“AI回答”来说明区别。\n' +
           '6. options 必须正好 2 个，一个 sourceType 为 human，一个 sourceType 为 ai。\n' +
           '7. 两个 answer 都必须是长回答，每个至少 180 个汉字。\n' +
           '8. human 风格要有轻微跳跃、个人犹豫、具体场景、偶发细节，但仍然通顺。\n' +
           '9. ai 风格要更完整、更均衡、更像整理后的表达，但依旧自然，不要僵硬套话。\n' +
           '10. label 先给 A/B 即可，后续客户端会重新随机。\n' +
-          '11. 不要输出 Markdown，不要解释，只输出一个 JSON 对象。\n',
+          '11. explanation 不得使用 A/B、左右、前者/后者、第一段/第二段、第一个选项/第二个选项、第一个回答/第二个回答 这类位置或顺序指代。\n' +
+          '12. 不要输出 Markdown，不要解释，只输出一个 JSON 对象。\n',
       },
     ],
     response_format: {
@@ -378,6 +380,10 @@ function validateChallengeSet(challenges) {
       throw new Error(`invalid difficulty for ${challenge.id}`);
     }
 
+    if (containsExplanationOrderingReference(challenge.explanation)) {
+      throw new Error(`explanation uses order-dependent wording for ${challenge.id}`);
+    }
+
     if (!Array.isArray(challenge.options) || challenge.options.length !== 2) {
       throw new Error(`invalid options length for ${challenge.id}`);
     }
@@ -401,6 +407,10 @@ function normalizeText(value) {
 
 function countCjk(value) {
   return [...String(value)].filter((char) => /[\u3400-\u9fff]/u.test(char)).length;
+}
+
+function containsExplanationOrderingReference(value) {
+  return explanationOrderingReferencePattern.test(String(value));
 }
 
 async function readEnv(filePath) {

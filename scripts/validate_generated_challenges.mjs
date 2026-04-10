@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const currentFilePath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFilePath), '..');
 const generatedPath = path.join(repoRoot, 'assets', 'bootstrap', 'generated_text_challenges.json');
+const explanationOrderingReferencePattern = /(A段|B段|A选项|B选项|A回答|B回答|第一段|第二段|第1段|第2段|第一个选项|第二个选项|第一个回答|第二个回答|左边|右边|左侧|右侧|前者|后者)/u;
 
 async function main() {
   const raw = await fs.readFile(generatedPath, 'utf8');
@@ -31,6 +32,7 @@ async function main() {
     assert(challenge.mode === 'text', `${challenge.id} must be text mode`);
     assert(['easy', 'normal', 'hard'].includes(challenge.difficulty), `${challenge.id} has invalid difficulty`);
     assert(typeof challenge.explanation === 'string' && challenge.explanation.length >= 40, `${challenge.id} explanation is too short`);
+    assert(!containsExplanationOrderingReference(challenge.explanation), `${challenge.id} explanation uses order-dependent wording`);
     assert(Array.isArray(challenge.options) && challenge.options.length === 2, `${challenge.id} must have 2 options`);
 
     const sourceTypes = challenge.options.map((option) => option.sourceType).sort().join(',');
@@ -53,6 +55,10 @@ function assert(condition, message) {
 
 function countCjk(value) {
   return [...String(value)].filter((char) => /[\u3400-\u9fff]/u.test(char)).length;
+}
+
+function containsExplanationOrderingReference(value) {
+  return explanationOrderingReferencePattern.test(String(value));
 }
 
 main().catch((error) => {
