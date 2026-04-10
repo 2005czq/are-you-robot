@@ -1,0 +1,9 @@
+{
+  "processed": 46,
+  "successes": 39,
+  "failures": 7,
+  "manifest_csv": "output/pairs.csv",
+  "manifest_jsonl": "output/pairs.jsonl",
+  "metadata_dir": "output/metadata",
+  "generated_dir": "output/generated"
+}

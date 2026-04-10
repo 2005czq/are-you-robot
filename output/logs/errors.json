@@ -1,0 +1,34 @@
+{
+  "failures": [
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408110447.png",
+      "error": "[recognize:com.xingin.xhs_20260408110447.png] failed after 3 attempts: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408110614.png",
+      "error": "Command '['convert', '/home/zihim/picgen/img/com.xingin.xhs_20260408110614.png', '-auto-orient', '-resize', '1536x1536>', '-strip', '-quality', '92', '/home/zihim/picgen/output/tmp/com.xingin.xhs_20260408110614__recognize.jpg']' returned non-zero exit status 1."
+    },
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408110649.png",
+      "error": "[recognize:com.xingin.xhs_20260408110649.png] failed after 3 attempts: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408110658.png",
+      "error": "[recognize:com.xingin.xhs_20260408110658.png] failed after 3 attempts: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408112059.png",
+      "error": "[recognize:com.xingin.xhs_20260408112059.png] failed after 3 attempts: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "status": "failed",
+      "source_image": "img/com.xingin.xhs_20260408112157.png",
+      "error": "[recognize:com.xingin.xhs_20260408112157.png] failed after 3 attempts: HTTP Error 502: Bad Gateway"
+    }
+  ]
+}

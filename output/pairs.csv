@@ -1,0 +1,81 @@
+pair_id,image_path,paired_image_path,is_original
+pair_0001_2026-4-8_115718_3,img/2026-4-8 115718 3.jpg,output/generated/pair_0001_2026-4-8_115718_3__generated.png,true
+pair_0001_2026-4-8_115718_3,output/generated/pair_0001_2026-4-8_115718_3__generated.png,img/2026-4-8 115718 3.jpg,false
+pair_0002_2026-4-8_115741_2,img/2026-4-8 115741 2.jpg,output/generated/pair_0002_2026-4-8_115741_2__generated.png,true
+pair_0002_2026-4-8_115741_2,output/generated/pair_0002_2026-4-8_115741_2__generated.png,img/2026-4-8 115741 2.jpg,false
+pair_0003_2026-4-8_115741_8,img/2026-4-8 115741 8.jpg,output/generated/pair_0003_2026-4-8_115741_8__generated.png,true
+pair_0003_2026-4-8_115741_8,output/generated/pair_0003_2026-4-8_115741_8__generated.png,img/2026-4-8 115741 8.jpg,false
+pair_0004_2026-4-8_115741_9,img/2026-4-8 115741 9.jpg,output/generated/pair_0004_2026-4-8_115741_9__generated.png,true
+pair_0004_2026-4-8_115741_9,output/generated/pair_0004_2026-4-8_115741_9__generated.png,img/2026-4-8 115741 9.jpg,false
+pair_0005_2026-4-8_115759_2,img/2026-4-8 115759 2.jpg,output/generated/pair_0005_2026-4-8_115759_2__generated.png,true
+pair_0005_2026-4-8_115759_2,output/generated/pair_0005_2026-4-8_115759_2__generated.png,img/2026-4-8 115759 2.jpg,false
+pair_0006_2026-4-8_115759_3,img/2026-4-8 115759 3.jpg,output/generated/pair_0006_2026-4-8_115759_3__generated.png,true
+pair_0006_2026-4-8_115759_3,output/generated/pair_0006_2026-4-8_115759_3__generated.png,img/2026-4-8 115759 3.jpg,false
+pair_0007_2026-4-8_115759_4,img/2026-4-8 115759 4.jpg,output/generated/pair_0007_2026-4-8_115759_4__generated.png,true
+pair_0007_2026-4-8_115759_4,output/generated/pair_0007_2026-4-8_115759_4__generated.png,img/2026-4-8 115759 4.jpg,false
+pair_0008_2026-4-8_115759_5,img/2026-4-8 115759 5.jpg,output/generated/pair_0008_2026-4-8_115759_5__generated.png,true
+pair_0008_2026-4-8_115759_5,output/generated/pair_0008_2026-4-8_115759_5__generated.png,img/2026-4-8 115759 5.jpg,false
+pair_0009_2026-4-8_11578_5,img/2026-4-8 11578 5.jpg,output/generated/pair_0009_2026-4-8_11578_5__generated.png,true
+pair_0009_2026-4-8_11578_5,output/generated/pair_0009_2026-4-8_11578_5__generated.png,img/2026-4-8 11578 5.jpg,false
+pair_0010_2026-4-8_11578_7,img/2026-4-8 11578 7.jpg,output/generated/pair_0010_2026-4-8_11578_7__generated.png,true
+pair_0010_2026-4-8_11578_7,output/generated/pair_0010_2026-4-8_11578_7__generated.png,img/2026-4-8 11578 7.jpg,false
+pair_0011_2026-4-8_11578_8,img/2026-4-8 11578 8.jpg,output/generated/pair_0011_2026-4-8_11578_8__generated.png,true
+pair_0011_2026-4-8_11578_8,output/generated/pair_0011_2026-4-8_11578_8__generated.png,img/2026-4-8 11578 8.jpg,false
+pair_0012_2026-4-8_11578_9,img/2026-4-8 11578 9.jpg,output/generated/pair_0012_2026-4-8_11578_9__generated.png,true
+pair_0012_2026-4-8_11578_9,output/generated/pair_0012_2026-4-8_11578_9__generated.png,img/2026-4-8 11578 9.jpg,false
+pair_0013_anemone123-team-spirit-2447163,img/anemone123-team-spirit-2447163.jpg,output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png,true
+pair_0013_anemone123-team-spirit-2447163,output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png,img/anemone123-team-spirit-2447163.jpg,false
+pair_0014_arsenalizedritesh100-xiao-long-bao-6223162,img/arsenalizedritesh100-xiao-long-bao-6223162.jpg,output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png,true
+pair_0014_arsenalizedritesh100-xiao-long-bao-6223162,output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png,img/arsenalizedritesh100-xiao-long-bao-6223162.jpg,false
+pair_0015_bertvthul-avenue-815297,img/bertvthul-avenue-815297.jpg,output/generated/pair_0015_bertvthul-avenue-815297__generated.png,true
+pair_0015_bertvthul-avenue-815297,output/generated/pair_0015_bertvthul-avenue-815297__generated.png,img/bertvthul-avenue-815297.jpg,false
+pair_0016_camera-man-trail-5726987,img/camera-man-trail-5726987.jpg,output/generated/pair_0016_camera-man-trail-5726987__generated.png,true
+pair_0016_camera-man-trail-5726987,output/generated/pair_0016_camera-man-trail-5726987__generated.png,img/camera-man-trail-5726987.jpg,false
+pair_0017_chillla70-family-6398107,img/chillla70-family-6398107.jpg,output/generated/pair_0017_chillla70-family-6398107__generated.png,true
+pair_0017_chillla70-family-6398107,output/generated/pair_0017_chillla70-family-6398107__generated.png,img/chillla70-family-6398107.jpg,false
+pair_0019_com.xingin.xhs_20260408110454,img/com.xingin.xhs_20260408110454.png,output/generated/pair_0019_com.xingin.png,true
+pair_0019_com.xingin.xhs_20260408110454,output/generated/pair_0019_com.xingin.png,img/com.xingin.xhs_20260408110454.png,false
+pair_0020_com.xingin.xhs_20260408110502,img/com.xingin.xhs_20260408110502.png,output/generated/pair_0020_com.xingin.png,true
+pair_0020_com.xingin.xhs_20260408110502,output/generated/pair_0020_com.xingin.png,img/com.xingin.xhs_20260408110502.png,false
+pair_0021_com.xingin.xhs_20260408110600,img/com.xingin.xhs_20260408110600.png,output/generated/pair_0021_com.xingin.png,true
+pair_0021_com.xingin.xhs_20260408110600,output/generated/pair_0021_com.xingin.png,img/com.xingin.xhs_20260408110600.png,false
+pair_0025_com.xingin.xhs_20260408110818,img/com.xingin.xhs_20260408110818.png,output/generated/pair_0025_com.xingin.png,true
+pair_0025_com.xingin.xhs_20260408110818,output/generated/pair_0025_com.xingin.png,img/com.xingin.xhs_20260408110818.png,false
+pair_0026_com.xingin.xhs_20260408110830,img/com.xingin.xhs_20260408110830.png,output/generated/pair_0026_com.xingin.png,true
+pair_0026_com.xingin.xhs_20260408110830,output/generated/pair_0026_com.xingin.png,img/com.xingin.xhs_20260408110830.png,false
+pair_0027_com.xingin.xhs_20260408110850,img/com.xingin.xhs_20260408110850.png,output/generated/pair_0027_com.xingin.png,true
+pair_0027_com.xingin.xhs_20260408110850,output/generated/pair_0027_com.xingin.png,img/com.xingin.xhs_20260408110850.png,false
+pair_0028_com.xingin.xhs_20260408111231,img/com.xingin.xhs_20260408111231.png,output/generated/pair_0028_com.xingin.png,true
+pair_0028_com.xingin.xhs_20260408111231,output/generated/pair_0028_com.xingin.png,img/com.xingin.xhs_20260408111231.png,false
+pair_0029_com.xingin.xhs_20260408111245,img/com.xingin.xhs_20260408111245.png,output/generated/pair_0029_com.xingin.png,true
+pair_0029_com.xingin.xhs_20260408111245,output/generated/pair_0029_com.xingin.png,img/com.xingin.xhs_20260408111245.png,false
+pair_0030_com.xingin.xhs_20260408111255,img/com.xingin.xhs_20260408111255.png,output/generated/pair_0030_com.xingin.png,true
+pair_0030_com.xingin.xhs_20260408111255,output/generated/pair_0030_com.xingin.png,img/com.xingin.xhs_20260408111255.png,false
+pair_0031_com.xingin.xhs_20260408111302,img/com.xingin.xhs_20260408111302.png,output/generated/pair_0031_com.xingin.png,true
+pair_0031_com.xingin.xhs_20260408111302,output/generated/pair_0031_com.xingin.png,img/com.xingin.xhs_20260408111302.png,false
+pair_0032_com.xingin.xhs_20260408111308,img/com.xingin.xhs_20260408111308.png,output/generated/pair_0032_com.xingin.png,true
+pair_0032_com.xingin.xhs_20260408111308,output/generated/pair_0032_com.xingin.png,img/com.xingin.xhs_20260408111308.png,false
+pair_0033_com.xingin.xhs_20260408112042,img/com.xingin.xhs_20260408112042.png,output/generated/pair_0033_com.xingin.png,true
+pair_0033_com.xingin.xhs_20260408112042,output/generated/pair_0033_com.xingin.png,img/com.xingin.xhs_20260408112042.png,false
+pair_0036_com.xingin.xhs_20260408112232,img/com.xingin.xhs_20260408112232.png,output/generated/pair_0036_com.xingin.png,true
+pair_0036_com.xingin.xhs_20260408112232,output/generated/pair_0036_com.xingin.png,img/com.xingin.xhs_20260408112232.png,false
+pair_0037_couleur-duck-10202656,img/couleur-duck-10202656.jpg,output/generated/pair_0037_couleur-duck-10202656__generated.png,true
+pair_0037_couleur-duck-10202656,output/generated/pair_0037_couleur-duck-10202656__generated.png,img/couleur-duck-10202656.jpg,false
+pair_0038_daria-yakovleva-cake-1971552,img/daria-yakovleva-cake-1971552.jpg,output/generated/pair_0038_daria-yakovleva-cake-1971552__generated.png,true
+pair_0038_daria-yakovleva-cake-1971552,output/generated/pair_0038_daria-yakovleva-cake-1971552__generated.png,img/daria-yakovleva-cake-1971552.jpg,false
+pair_0039_der_mentor-strawberry-7224875,img/der_mentor-strawberry-7224875.jpg,output/generated/pair_0039_der_mentor-strawberry-7224875__generated.png,true
+pair_0039_der_mentor-strawberry-7224875,output/generated/pair_0039_der_mentor-strawberry-7224875__generated.png,img/der_mentor-strawberry-7224875.jpg,false
+pair_0040_jplenio-forest-3622519,img/jplenio-forest-3622519.jpg,output/generated/pair_0040_jplenio-forest-3622519__generated.png,true
+pair_0040_jplenio-forest-3622519,output/generated/pair_0040_jplenio-forest-3622519__generated.png,img/jplenio-forest-3622519.jpg,false
+pair_0041_miezekieze-cat-7204934,img/miezekieze-cat-7204934.jpg,output/generated/pair_0041_miezekieze-cat-7204934__generated.png,true
+pair_0041_miezekieze-cat-7204934,output/generated/pair_0041_miezekieze-cat-7204934__generated.png,img/miezekieze-cat-7204934.jpg,false
+pair_0042_pexels-astronomy-1867616,img/pexels-astronomy-1867616.jpg,output/generated/pair_0042_pexels-astronomy-1867616__generated.png,true
+pair_0042_pexels-astronomy-1867616,output/generated/pair_0042_pexels-astronomy-1867616__generated.png,img/pexels-astronomy-1867616.jpg,false
+pair_0043_piviso-pancakes-2291908,img/piviso-pancakes-2291908.jpg,output/generated/pair_0043_piviso-pancakes-2291908__generated.png,true
+pair_0043_piviso-pancakes-2291908,output/generated/pair_0043_piviso-pancakes-2291908__generated.png,img/piviso-pancakes-2291908.jpg,false
+pair_0044_soultrain-sunset-8214498,img/soultrain-sunset-8214498.jpg,output/generated/pair_0044_soultrain-sunset-8214498__generated.png,true
+pair_0044_soultrain-sunset-8214498,output/generated/pair_0044_soultrain-sunset-8214498__generated.png,img/soultrain-sunset-8214498.jpg,false
+pair_0045_this_is_engineering-woman-4702060,img/this_is_engineering-woman-4702060.jpg,output/generated/pair_0045_this_is_engineering-woman-4702060__generated.png,true
+pair_0045_this_is_engineering-woman-4702060,output/generated/pair_0045_this_is_engineering-woman-4702060__generated.png,img/this_is_engineering-woman-4702060.jpg,false
+pair_0046_yuri_b-flower-3175428,img/yuri_b-flower-3175428.jpg,output/generated/pair_0046_yuri_b-flower-3175428__generated.png,true
+pair_0046_yuri_b-flower-3175428,output/generated/pair_0046_yuri_b-flower-3175428__generated.png,img/yuri_b-flower-3175428.jpg,false

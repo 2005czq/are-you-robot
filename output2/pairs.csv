@@ -1,0 +1,79 @@
+pair_id,image_path,paired_image_path,is_original
+pair_0002_2026-4-8_115718_4,img/2026-4-8 115718 4.jpg,output/generated/pair_0002_2026-4-8_115718_4__generated.png,true
+pair_0002_2026-4-8_115718_4,output/generated/pair_0002_2026-4-8_115718_4__generated.png,img/2026-4-8 115718 4.jpg,false
+pair_0003_2026-4-8_115718_5,img/2026-4-8 115718 5.jpg,output/generated/pair_0003_2026-4-8_115718_5__generated.png,true
+pair_0003_2026-4-8_115718_5,output/generated/pair_0003_2026-4-8_115718_5__generated.png,img/2026-4-8 115718 5.jpg,false
+pair_0004_2026-4-8_115718_6,img/2026-4-8 115718 6.jpg,output/generated/pair_0004_2026-4-8_115718_6__generated.png,true
+pair_0004_2026-4-8_115718_6,output/generated/pair_0004_2026-4-8_115718_6__generated.png,img/2026-4-8 115718 6.jpg,false
+pair_0005_2026-4-8_115718_7,img/2026-4-8 115718 7.jpg,output/generated/pair_0005_2026-4-8_115718_7__generated.png,true
+pair_0005_2026-4-8_115718_7,output/generated/pair_0005_2026-4-8_115718_7__generated.png,img/2026-4-8 115718 7.jpg,false
+pair_0006_2026-4-8_115741_3,img/2026-4-8 115741 3.jpg,output/generated/pair_0006_2026-4-8_115741_3__generated.png,true
+pair_0006_2026-4-8_115741_3,output/generated/pair_0006_2026-4-8_115741_3__generated.png,img/2026-4-8 115741 3.jpg,false
+pair_0007_2026-4-8_115741_4,img/2026-4-8 115741 4.jpg,output/generated/pair_0007_2026-4-8_115741_4__generated.png,true
+pair_0007_2026-4-8_115741_4,output/generated/pair_0007_2026-4-8_115741_4__generated.png,img/2026-4-8 115741 4.jpg,false
+pair_0008_2026-4-8_115741_5,img/2026-4-8 115741 5.jpg,output/generated/pair_0008_2026-4-8_115741_5__generated.png,true
+pair_0008_2026-4-8_115741_5,output/generated/pair_0008_2026-4-8_115741_5__generated.png,img/2026-4-8 115741 5.jpg,false
+pair_0009_2026-4-8_115741_6,img/2026-4-8 115741 6.jpg,output/generated/pair_0009_2026-4-8_115741_6__generated.png,true
+pair_0009_2026-4-8_115741_6,output/generated/pair_0009_2026-4-8_115741_6__generated.png,img/2026-4-8 115741 6.jpg,false
+pair_0011_2026-4-8_11578_4,img/2026-4-8 11578 4.jpg,output/generated/pair_0011_2026-4-8_11578_4__generated.png,true
+pair_0011_2026-4-8_11578_4,output/generated/pair_0011_2026-4-8_11578_4__generated.png,img/2026-4-8 11578 4.jpg,false
+pair_0012_2026-4-8_11578_6,img/2026-4-8 11578 6.jpg,output/generated/pair_0012_2026-4-8_11578_6__generated.png,true
+pair_0012_2026-4-8_11578_6,output/generated/pair_0012_2026-4-8_11578_6__generated.png,img/2026-4-8 11578 6.jpg,false
+pair_0013_com.xingin.xhs_20260408110447,img/com.xingin.xhs_20260408110447.png,output/generated/pair_0013_com.xingin.png,true
+pair_0013_com.xingin.xhs_20260408110447,output/generated/pair_0013_com.xingin.png,img/com.xingin.xhs_20260408110447.png,false
+pair_0014_com.xingin.xhs_20260408110509,img/com.xingin.xhs_20260408110509.png,output/generated/pair_0014_com.xingin.png,true
+pair_0014_com.xingin.xhs_20260408110509,output/generated/pair_0014_com.xingin.png,img/com.xingin.xhs_20260408110509.png,false
+pair_0016_com.xingin.xhs_20260408110607,img/com.xingin.xhs_20260408110607.png,output/generated/pair_0016_com.xingin.png,true
+pair_0016_com.xingin.xhs_20260408110607,output/generated/pair_0016_com.xingin.png,img/com.xingin.xhs_20260408110607.png,false
+pair_0017_com.xingin.xhs_20260408110614,img/com.xingin.xhs_20260408110614.png,output/generated/pair_0017_com.xingin.png,true
+pair_0017_com.xingin.xhs_20260408110614,output/generated/pair_0017_com.xingin.png,img/com.xingin.xhs_20260408110614.png,false
+pair_0018_com.xingin.xhs_20260408110621,img/com.xingin.xhs_20260408110621.png,output/generated/pair_0018_com.xingin.png,true
+pair_0018_com.xingin.xhs_20260408110621,output/generated/pair_0018_com.xingin.png,img/com.xingin.xhs_20260408110621.png,false
+pair_0020_com.xingin.xhs_20260408110643,img/com.xingin.xhs_20260408110643.png,output/generated/pair_0020_com.xingin.png,true
+pair_0020_com.xingin.xhs_20260408110643,output/generated/pair_0020_com.xingin.png,img/com.xingin.xhs_20260408110643.png,false
+pair_0021_com.xingin.xhs_20260408110649,img/com.xingin.xhs_20260408110649.png,output/generated/pair_0021_com.xingin.png,true
+pair_0021_com.xingin.xhs_20260408110649,output/generated/pair_0021_com.xingin.png,img/com.xingin.xhs_20260408110649.png,false
+pair_0022_com.xingin.xhs_20260408110658,img/com.xingin.xhs_20260408110658.png,output/generated/pair_0022_com.xingin.png,true
+pair_0022_com.xingin.xhs_20260408110658,output/generated/pair_0022_com.xingin.png,img/com.xingin.xhs_20260408110658.png,false
+pair_0023_com.xingin.xhs_20260408110718,img/com.xingin.xhs_20260408110718.png,output/generated/pair_0023_com.xingin.png,true
+pair_0023_com.xingin.xhs_20260408110718,output/generated/pair_0023_com.xingin.png,img/com.xingin.xhs_20260408110718.png,false
+pair_0024_com.xingin.xhs_20260408111129,img/com.xingin.xhs_20260408111129.png,output/generated/pair_0024_com.xingin.png,true
+pair_0024_com.xingin.xhs_20260408111129,output/generated/pair_0024_com.xingin.png,img/com.xingin.xhs_20260408111129.png,false
+pair_0025_com.xingin.xhs_20260408111221,img/com.xingin.xhs_20260408111221.png,output/generated/pair_0025_com.xingin.png,true
+pair_0025_com.xingin.xhs_20260408111221,output/generated/pair_0025_com.xingin.png,img/com.xingin.xhs_20260408111221.png,false
+pair_0026_com.xingin.xhs_20260408111428,img/com.xingin.xhs_20260408111428.png,output/generated/pair_0026_com.xingin.png,true
+pair_0026_com.xingin.xhs_20260408111428,output/generated/pair_0026_com.xingin.png,img/com.xingin.xhs_20260408111428.png,false
+pair_0027_com.xingin.xhs_20260408111440,img/com.xingin.xhs_20260408111440.png,output/generated/pair_0027_com.xingin.png,true
+pair_0027_com.xingin.xhs_20260408111440,output/generated/pair_0027_com.xingin.png,img/com.xingin.xhs_20260408111440.png,false
+pair_0028_com.xingin.xhs_20260408111448,img/com.xingin.xhs_20260408111448.png,output/generated/pair_0028_com.xingin.png,true
+pair_0028_com.xingin.xhs_20260408111448,output/generated/pair_0028_com.xingin.png,img/com.xingin.xhs_20260408111448.png,false
+pair_0029_com.xingin.xhs_20260408111459,img/com.xingin.xhs_20260408111459.png,output/generated/pair_0029_com.xingin.png,true
+pair_0029_com.xingin.xhs_20260408111459,output/generated/pair_0029_com.xingin.png,img/com.xingin.xhs_20260408111459.png,false
+pair_0030_com.xingin.xhs_20260408111512,img/com.xingin.xhs_20260408111512.png,output/generated/pair_0030_com.xingin.png,true
+pair_0030_com.xingin.xhs_20260408111512,output/generated/pair_0030_com.xingin.png,img/com.xingin.xhs_20260408111512.png,false
+pair_0031_com.xingin.xhs_20260408111524,img/com.xingin.xhs_20260408111524.png,output/generated/pair_0031_com.xingin.png,true
+pair_0031_com.xingin.xhs_20260408111524,output/generated/pair_0031_com.xingin.png,img/com.xingin.xhs_20260408111524.png,false
+pair_0032_com.xingin.xhs_20260408111547,img/com.xingin.xhs_20260408111547.png,output/generated/pair_0032_com.xingin.png,true
+pair_0032_com.xingin.xhs_20260408111547,output/generated/pair_0032_com.xingin.png,img/com.xingin.xhs_20260408111547.png,false
+pair_0033_com.xingin.xhs_20260408111605,img/com.xingin.xhs_20260408111605.png,output/generated/pair_0033_com.xingin.png,true
+pair_0033_com.xingin.xhs_20260408111605,output/generated/pair_0033_com.xingin.png,img/com.xingin.xhs_20260408111605.png,false
+pair_0034_com.xingin.xhs_20260408111615,img/com.xingin.xhs_20260408111615.png,output/generated/pair_0034_com.xingin.png,true
+pair_0034_com.xingin.xhs_20260408111615,output/generated/pair_0034_com.xingin.png,img/com.xingin.xhs_20260408111615.png,false
+pair_0035_com.xingin.xhs_20260408111627,img/com.xingin.xhs_20260408111627.png,output/generated/pair_0035_com.xingin.png,true
+pair_0035_com.xingin.xhs_20260408111627,output/generated/pair_0035_com.xingin.png,img/com.xingin.xhs_20260408111627.png,false
+pair_0036_com.xingin.xhs_20260408111921,img/com.xingin.xhs_20260408111921.png,output/generated/pair_0036_com.xingin.png,true
+pair_0036_com.xingin.xhs_20260408111921,output/generated/pair_0036_com.xingin.png,img/com.xingin.xhs_20260408111921.png,false
+pair_0038_com.xingin.xhs_20260408111955,img/com.xingin.xhs_20260408111955.png,output/generated/pair_0038_com.xingin.png,true
+pair_0038_com.xingin.xhs_20260408111955,output/generated/pair_0038_com.xingin.png,img/com.xingin.xhs_20260408111955.png,false
+pair_0039_com.xingin.xhs_20260408112003,img/com.xingin.xhs_20260408112003.png,output/generated/pair_0039_com.xingin.png,true
+pair_0039_com.xingin.xhs_20260408112003,output/generated/pair_0039_com.xingin.png,img/com.xingin.xhs_20260408112003.png,false
+pair_0040_com.xingin.xhs_20260408112021,img/com.xingin.xhs_20260408112021.jpg,output/generated/pair_0040_com.xingin.png,true
+pair_0040_com.xingin.xhs_20260408112021,output/generated/pair_0040_com.xingin.png,img/com.xingin.xhs_20260408112021.jpg,false
+pair_0041_com.xingin.xhs_20260408112059,img/com.xingin.xhs_20260408112059.png,output/generated/pair_0041_com.xingin.png,true
+pair_0041_com.xingin.xhs_20260408112059,output/generated/pair_0041_com.xingin.png,img/com.xingin.xhs_20260408112059.png,false
+pair_0043_com.xingin.xhs_20260408112208,img/com.xingin.xhs_20260408112208.png,output/generated/pair_0043_com.xingin.png,true
+pair_0043_com.xingin.xhs_20260408112208,output/generated/pair_0043_com.xingin.png,img/com.xingin.xhs_20260408112208.png,false
+pair_0044_com.xingin.xhs_20260408112217,img/com.xingin.xhs_20260408112217.png,output/generated/pair_0044_com.xingin.png,true
+pair_0044_com.xingin.xhs_20260408112217,output/generated/pair_0044_com.xingin.png,img/com.xingin.xhs_20260408112217.png,false
+pair_0046_com.xingin.xhs_20260408112252,img/com.xingin.xhs_20260408112252.png,output/generated/pair_0046_com.xingin.png,true
+pair_0046_com.xingin.xhs_20260408112252,output/generated/pair_0046_com.xingin.png,img/com.xingin.xhs_20260408112252.png,false

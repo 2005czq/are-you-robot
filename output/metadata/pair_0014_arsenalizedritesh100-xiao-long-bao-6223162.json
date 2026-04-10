@@ -1,0 +1,85 @@
+{
+  "status": "completed",
+  "pair_id": "pair_0014_arsenalizedritesh100-xiao-long-bao-6223162",
+  "source_image": "img/arsenalizedritesh100-xiao-long-bao-6223162.jpg",
+  "generated_image": "output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png",
+  "generated_image_url": "https://ai-draw.huan666.de/images/p9OlLjhZ6GZdeKJ6QpQLaQ.png",
+  "download_bytes": 1359723,
+  "recognize_prompt_output": "可还原的长提示词（中文）如下：\n\n一张写实风格的美食摄影作品，近距离拍摄一盘刚出锅或刚蒸好的中式包子/小笼包，主体为多个褶皱明显、顶部收口捏褶的浅米白色蒸包，整齐又略带自然随意地摆放在圆形瓷盘中，包子数量较多，前景有几只包子清晰对焦，表皮柔软饱满、微微发亮，带有蒸汽后形成的湿润油润感和细腻面皮纹理，褶皱层次丰富，局部能看到轻微泛黄的肉汁或油渍痕迹，强调食物的新鲜热气感与可口质感。盘子为白底蓝纹的中式花纹瓷盘，盘沿有蓝色装饰图案；盘前横放一把金属汤匙和一把金属叉子，银色反光柔和，餐具部分进入焦内但整体不喧宾夺主。构图采用超低机位、贴近盘沿的近景/微距式美食摄影视角，平视偏低角度，焦点集中在前排中间偏左与中间偏右的几只包子上，前景盘沿和餐具略有虚化，后排包子与背景明显散景虚化，形成浅景深效果，突出主体食物体积感和诱人质地。背景是室内餐桌环境，可能是餐馆或家庭厨房/餐厅，背景中有模糊的墙面、绿色区域和台面物体，整体不清晰，仅作为生活化环境衬托。光线为柔和自然光或室内漫射光，从侧前方或侧上方照射，整体亮度适中，无强烈硬阴影，包子表面高光柔和，空气感自然，氛围温暖、日常、朴实，偏真实纪录感而非商业夸张摆拍。色调以奶白、米黄、浅灰、蓝白瓷器色为主，整体低饱和、自然还原，略带生活化餐饮摄影的真实色彩，强调面皮的柔嫩、湿润、弹性质感，以及瓷器和金属餐具的真实反射。画面比例接近横幅，摄影感强，类似单反拍摄，可能使用50mm到85mm焦段，大光圈浅景深，背景虚化明显，高分辨率，细节真实，食物纹理清晰，写实、自然、家常美食题材。\n\n可选负面提示词：不要卡通风、不要插画风、不要夸张摆盘、不要过度饱和、不要塑料质感、不要食物畸形、不要重复包子、不要错误褶皱、不要模糊失焦主体、不要过曝、不要噪点过重、不要背景杂乱、不要文字水印、不要不自然打光、不要悬浮餐具、不要盘子变形、不要AI涂抹感。",
+  "generate_prompt_input": "生成一张 4:3 的 4k 分辨率图片，要求：\n可还原的长提示词（中文）如下：\n\n一张写实风格的美食摄影作品，近距离拍摄一盘刚出锅或刚蒸好的中式包子/小笼包，主体为多个褶皱明显、顶部收口捏褶的浅米白色蒸包，整齐又略带自然随意地摆放在圆形瓷盘中，包子数量较多，前景有几只包子清晰对焦，表皮柔软饱满、微微发亮，带有蒸汽后形成的湿润油润感和细腻面皮纹理，褶皱层次丰富，局部能看到轻微泛黄的肉汁或油渍痕迹，强调食物的新鲜热气感与可口质感。盘子为白底蓝纹的中式花纹瓷盘，盘沿有蓝色装饰图案；盘前横放一把金属汤匙和一把金属叉子，银色反光柔和，餐具部分进入焦内但整体不喧宾夺主。构图采用超低机位、贴近盘沿的近景/微距式美食摄影视角，平视偏低角度，焦点集中在前排中间偏左与中间偏右的几只包子上，前景盘沿和餐具略有虚化，后排包子与背景明显散景虚化，形成浅景深效果，突出主体食物体积感和诱人质地。背景是室内餐桌环境，可能是餐馆或家庭厨房/餐厅，背景中有模糊的墙面、绿色区域和台面物体，整体不清晰，仅作为生活化环境衬托。光线为柔和自然光或室内漫射光，从侧前方或侧上方照射，整体亮度适中，无强烈硬阴影，包子表面高光柔和，空气感自然，氛围温暖、日常、朴实，偏真实纪录感而非商业夸张摆拍。色调以奶白、米黄、浅灰、蓝白瓷器色为主，整体低饱和、自然还原，略带生活化餐饮摄影的真实色彩，强调面皮的柔嫩、湿润、弹性质感，以及瓷器和金属餐具的真实反射。画面比例接近横幅，摄影感强，类似单反拍摄，可能使用50mm到85mm焦段，大光圈浅景深，背景虚化明显，高分辨率，细节真实，食物纹理清晰，写实、自然、家常美食题材。\n\n可选负面提示词：不要卡通风、不要插画风、不要夸张摆盘、不要过度饱和、不要塑料质感、不要食物畸形、不要重复包子、不要错误褶皱、不要模糊失焦主体、不要过曝、不要噪点过重、不要背景杂乱、不要文字水印、不要不自然打光、不要悬浮餐具、不要盘子变形、不要AI涂抹感。",
+  "generate_response_text": "完成\n\n![Generated Image](https://ai-draw.huan666.de/images/p9OlLjhZ6GZdeKJ6QpQLaQ.png)",
+  "manifest_rows": [
+    {
+      "pair_id": "pair_0014_arsenalizedritesh100-xiao-long-bao-6223162",
+      "image_path": "img/arsenalizedritesh100-xiao-long-bao-6223162.jpg",
+      "paired_image_path": "output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png",
+      "is_original": true
+    },
+    {
+      "pair_id": "pair_0014_arsenalizedritesh100-xiao-long-bao-6223162",
+      "image_path": "output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png",
+      "paired_image_path": "img/arsenalizedritesh100-xiao-long-bao-6223162.jpg",
+      "is_original": false
+    }
+  ],
+  "recognize_response": {
+    "id": "resp_056b5f50b9aafc1b0169d7b6c9229c81989332a21e4328a140",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "可还原的长提示词（中文）如下：\n\n一张写实风格的美食摄影作品，近距离拍摄一盘刚出锅或刚蒸好的中式包子/小笼包，主体为多个褶皱明显、顶部收口捏褶的浅米白色蒸包，整齐又略带自然随意地摆放在圆形瓷盘中，包子数量较多，前景有几只包子清晰对焦，表皮柔软饱满、微微发亮，带有蒸汽后形成的湿润油润感和细腻面皮纹理，褶皱层次丰富，局部能看到轻微泛黄的肉汁或油渍痕迹，强调食物的新鲜热气感与可口质感。盘子为白底蓝纹的中式花纹瓷盘，盘沿有蓝色装饰图案；盘前横放一把金属汤匙和一把金属叉子，银色反光柔和，餐具部分进入焦内但整体不喧宾夺主。构图采用超低机位、贴近盘沿的近景/微距式美食摄影视角，平视偏低角度，焦点集中在前排中间偏左与中间偏右的几只包子上，前景盘沿和餐具略有虚化，后排包子与背景明显散景虚化，形成浅景深效果，突出主体食物体积感和诱人质地。背景是室内餐桌环境，可能是餐馆或家庭厨房/餐厅，背景中有模糊的墙面、绿色区域和台面物体，整体不清晰，仅作为生活化环境衬托。光线为柔和自然光或室内漫射光，从侧前方或侧上方照射，整体亮度适中，无强烈硬阴影，包子表面高光柔和，空气感自然，氛围温暖、日常、朴实，偏真实纪录感而非商业夸张摆拍。色调以奶白、米黄、浅灰、蓝白瓷器色为主，整体低饱和、自然还原，略带生活化餐饮摄影的真实色彩，强调面皮的柔嫩、湿润、弹性质感，以及瓷器和金属餐具的真实反射。画面比例接近横幅，摄影感强，类似单反拍摄，可能使用50mm到85mm焦段，大光圈浅景深，背景虚化明显，高分辨率，细节真实，食物纹理清晰，写实、自然、家常美食题材。\n\n可选负面提示词：不要卡通风、不要插画风、不要夸张摆盘、不要过度饱和、不要塑料质感、不要食物畸形、不要重复包子、不要错误褶皱、不要模糊失焦主体、不要过曝、不要噪点过重、不要背景杂乱、不要文字水印、不要不自然打光、不要悬浮餐具、不要盘子变形、不要AI涂抹感。"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "object": "chat.completion",
+    "created": 1775744748,
+    "model": "gpt-5.4",
+    "usage": {
+      "prompt_tokens": 2936,
+      "completion_tokens": 726,
+      "total_tokens": 3662,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    }
+  },
+  "generate_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "完成\n\n![Generated Image](https://ai-draw.huan666.de/images/p9OlLjhZ6GZdeKJ6QpQLaQ.png)",
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1775744504,
+    "id": "chatcmpl-2eec649156c44b1da6be0283",
+    "model": "nano-banana",
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 660,
+      "completion_tokens": 32,
+      "total_tokens": 692,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  }
+}

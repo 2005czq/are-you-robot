@@ -1,0 +1,85 @@
+{
+  "status": "completed",
+  "pair_id": "pair_0027_com.xingin.xhs_20260408110850",
+  "source_image": "img/com.xingin.xhs_20260408110850.png",
+  "generated_image": "output/generated/pair_0027_com.xingin.png",
+  "generated_image_url": "https://ai-draw.huan666.de/images/k_3Vmn1zdVOAVSwiuPk0Tw.png",
+  "download_bytes": 1863521,
+  "recognize_prompt_output": "写实摄影风格、商业静物广告感、超清高速抓拍、一张充满夏日清爽感的水果入水瞬间画面，主体是一只透明玻璃或亚克力材质的长方形水槽/玻璃容器，容器几乎占满整个画面，平视近距离拍摄，略偏微距，镜头聚焦在水中翻涌的水果与爆开的水花上；画面中有多颗小番茄/樱桃番茄，颜色丰富，包含乳白色番茄、浅绿色番茄、亮黄色番茄、橙红色和棕褐色番茄，大小不一，部分沉在底部，部分悬浮在水中，顶部有几颗番茄刚刚落入水中，形成剧烈的入水冲击，大量透明气泡、水珠、飞溅水花、翻卷水流和漩涡清晰可见；番茄表面带有细腻果皮质感和绿色萼片，部分萼片清晰舒展，果实圆润饱满，带有自然高光和轻微半透明感。构图为横向画幅，主体集中在画面中央与下半部，水槽上沿形成稳定横线，画面具有明显前中后景层次，背景被大幅虚化，焦点集中在中央爆开的水柱、水波和前景几颗番茄上，底部几颗番茄形成视觉支撑，顶部飞溅水滴增加动势；采用高速快门冻结瞬间动态，可能是棚拍或强烈自然阳光下拍摄，清澈明亮的逆光/侧逆光穿透水体与玻璃，形成大量闪烁高光、晶莹反射、折射与边缘轮廓光，水体极其通透，气泡细节锐利，玻璃边缘和水面反光明显，整体氛围明快、干净、清新、沁凉、富有生命力。色彩以透明白、高光银白、浅青蓝水色为基底，辅以绿色、乳白、黄色、橙红色小番茄点缀，背景呈深绿色虚化光斑，带有圆形散景和闪亮亮点，类似户外阳光下的花园或自然环境虚化背景；整体色调高亮、高键、轻微暖阳感，画面纯净、通透、商业广告级质感，强调水的透明度、玻璃材质、果实新鲜度与瞬间动感。细节要求：超高分辨率、极致清晰、真实折射、真实液体动力学、水花形态自然、气泡层次丰富、番茄表面微小纹理可见、玻璃容器边缘厚度清晰、底部少量水滴和反射、背景简洁不杂乱、无多余道具、无人物、无文字。可加入提示词：高速摄影、frozen motion、macro photography、food advertising photography、fresh cherry tomatoes splashing into water、crystal clear water、sparkling highlights、bokeh background、summer freshness、photorealistic、ultra detailed、natural refraction、transparent glass container。负面提示词：低清晰度、模糊、噪点、过曝死白、脏污水体、畸形水果、重复水果、材质失真、边缘锯齿、背景杂乱、文字水印、logo、失焦、过度饱和、假水花、不自然气泡、容器变形。",
+  "generate_prompt_input": "生成一张 4:3 的 4k 分辨率图片，要求：\n写实摄影风格、商业静物广告感、超清高速抓拍、一张充满夏日清爽感的水果入水瞬间画面，主体是一只透明玻璃或亚克力材质的长方形水槽/玻璃容器，容器几乎占满整个画面，平视近距离拍摄，略偏微距，镜头聚焦在水中翻涌的水果与爆开的水花上；画面中有多颗小番茄/樱桃番茄，颜色丰富，包含乳白色番茄、浅绿色番茄、亮黄色番茄、橙红色和棕褐色番茄，大小不一，部分沉在底部，部分悬浮在水中，顶部有几颗番茄刚刚落入水中，形成剧烈的入水冲击，大量透明气泡、水珠、飞溅水花、翻卷水流和漩涡清晰可见；番茄表面带有细腻果皮质感和绿色萼片，部分萼片清晰舒展，果实圆润饱满，带有自然高光和轻微半透明感。构图为横向画幅，主体集中在画面中央与下半部，水槽上沿形成稳定横线，画面具有明显前中后景层次，背景被大幅虚化，焦点集中在中央爆开的水柱、水波和前景几颗番茄上，底部几颗番茄形成视觉支撑，顶部飞溅水滴增加动势；采用高速快门冻结瞬间动态，可能是棚拍或强烈自然阳光下拍摄，清澈明亮的逆光/侧逆光穿透水体与玻璃，形成大量闪烁高光、晶莹反射、折射与边缘轮廓光，水体极其通透，气泡细节锐利，玻璃边缘和水面反光明显，整体氛围明快、干净、清新、沁凉、富有生命力。色彩以透明白、高光银白、浅青蓝水色为基底，辅以绿色、乳白、黄色、橙红色小番茄点缀，背景呈深绿色虚化光斑，带有圆形散景和闪亮亮点，类似户外阳光下的花园或自然环境虚化背景；整体色调高亮、高键、轻微暖阳感，画面纯净、通透、商业广告级质感，强调水的透明度、玻璃材质、果实新鲜度与瞬间动感。细节要求：超高分辨率、极致清晰、真实折射、真实液体动力学、水花形态自然、气泡层次丰富、番茄表面微小纹理可见、玻璃容器边缘厚度清晰、底部少量水滴和反射、背景简洁不杂乱、无多余道具、无人物、无文字。可加入提示词：高速摄影、frozen motion、macro photography、food advertising photography、fresh cherry tomatoes splashing into water、crystal clear water、sparkling highlights、bokeh background、summer freshness、photorealistic、ultra detailed、natural refraction、transparent glass container。负面提示词：低清晰度、模糊、噪点、过曝死白、脏污水体、畸形水果、重复水果、材质失真、边缘锯齿、背景杂乱、文字水印、logo、失焦、过度饱和、假水花、不自然气泡、容器变形。",
+  "generate_response_text": "已完成\n\n![Generated Image](https://ai-draw.huan666.de/images/k_3Vmn1zdVOAVSwiuPk0Tw.png)",
+  "manifest_rows": [
+    {
+      "pair_id": "pair_0027_com.xingin.xhs_20260408110850",
+      "image_path": "img/com.xingin.xhs_20260408110850.png",
+      "paired_image_path": "output/generated/pair_0027_com.xingin.png",
+      "is_original": true
+    },
+    {
+      "pair_id": "pair_0027_com.xingin.xhs_20260408110850",
+      "image_path": "output/generated/pair_0027_com.xingin.png",
+      "paired_image_path": "img/com.xingin.xhs_20260408110850.png",
+      "is_original": false
+    }
+  ],
+  "recognize_response": {
+    "id": "resp_0ab5a22f2ef354e70169d7b9ffb8a08199bd080e534031abae",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "写实摄影风格、商业静物广告感、超清高速抓拍、一张充满夏日清爽感的水果入水瞬间画面，主体是一只透明玻璃或亚克力材质的长方形水槽/玻璃容器，容器几乎占满整个画面，平视近距离拍摄，略偏微距，镜头聚焦在水中翻涌的水果与爆开的水花上；画面中有多颗小番茄/樱桃番茄，颜色丰富，包含乳白色番茄、浅绿色番茄、亮黄色番茄、橙红色和棕褐色番茄，大小不一，部分沉在底部，部分悬浮在水中，顶部有几颗番茄刚刚落入水中，形成剧烈的入水冲击，大量透明气泡、水珠、飞溅水花、翻卷水流和漩涡清晰可见；番茄表面带有细腻果皮质感和绿色萼片，部分萼片清晰舒展，果实圆润饱满，带有自然高光和轻微半透明感。构图为横向画幅，主体集中在画面中央与下半部，水槽上沿形成稳定横线，画面具有明显前中后景层次，背景被大幅虚化，焦点集中在中央爆开的水柱、水波和前景几颗番茄上，底部几颗番茄形成视觉支撑，顶部飞溅水滴增加动势；采用高速快门冻结瞬间动态，可能是棚拍或强烈自然阳光下拍摄，清澈明亮的逆光/侧逆光穿透水体与玻璃，形成大量闪烁高光、晶莹反射、折射与边缘轮廓光，水体极其通透，气泡细节锐利，玻璃边缘和水面反光明显，整体氛围明快、干净、清新、沁凉、富有生命力。色彩以透明白、高光银白、浅青蓝水色为基底，辅以绿色、乳白、黄色、橙红色小番茄点缀，背景呈深绿色虚化光斑，带有圆形散景和闪亮亮点，类似户外阳光下的花园或自然环境虚化背景；整体色调高亮、高键、轻微暖阳感，画面纯净、通透、商业广告级质感，强调水的透明度、玻璃材质、果实新鲜度与瞬间动感。细节要求：超高分辨率、极致清晰、真实折射、真实液体动力学、水花形态自然、气泡层次丰富、番茄表面微小纹理可见、玻璃容器边缘厚度清晰、底部少量水滴和反射、背景简洁不杂乱、无多余道具、无人物、无文字。可加入提示词：高速摄影、frozen motion、macro photography、food advertising photography、fresh cherry tomatoes splashing into water、crystal clear water、sparkling highlights、bokeh background、summer freshness、photorealistic、ultra detailed、natural refraction、transparent glass container。负面提示词：低清晰度、模糊、噪点、过曝死白、脏污水体、畸形水果、重复水果、材质失真、边缘锯齿、背景杂乱、文字水印、logo、失焦、过度饱和、假水花、不自然气泡、容器变形。"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "object": "chat.completion",
+    "created": 1775745576,
+    "model": "gpt-5.4",
+    "usage": {
+      "prompt_tokens": 2713,
+      "completion_tokens": 835,
+      "total_tokens": 3548,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    }
+  },
+  "generate_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "已完成\n\n![Generated Image](https://ai-draw.huan666.de/images/k_3Vmn1zdVOAVSwiuPk0Tw.png)",
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1775745332,
+    "id": "chatcmpl-0e2dc6f5f3d645d8b452f860",
+    "model": "nano-banana",
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 733,
+      "completion_tokens": 33,
+      "total_tokens": 766,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  }
+}

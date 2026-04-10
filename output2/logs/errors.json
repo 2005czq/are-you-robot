@@ -1,0 +1,46 @@
+{
+  "failures": [
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/2026-4-8 115718 2.jpg",
+      "error": "[recognize:2026-4-8 115718 2.jpg] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/2026-4-8 115741 7.jpg",
+      "error": "[recognize:2026-4-8 115741 7.jpg] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/com.xingin.xhs_20260408110516.png",
+      "error": "[recognize:com.xingin.xhs_20260408110516.png] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/com.xingin.xhs_20260408110628.png",
+      "error": "[recognize:com.xingin.xhs_20260408110628.png] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/com.xingin.xhs_20260408111941.png",
+      "error": "[recognize:com.xingin.xhs_20260408111941.png] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/com.xingin.xhs_20260408112157.png",
+      "error": "[recognize:com.xingin.xhs_20260408112157.png] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    },
+    {
+      "status": "failed",
+      "stage": "recognize",
+      "source_image": "img/com.xingin.xhs_20260408112243.png",
+      "error": "[recognize:com.xingin.xhs_20260408112243.png] failed after 3 attempts: HTTP 504: <!DOCTYPE html>\n<html>\n<head>\n<title>Error</title>\n<style>\nhtml { color-scheme: light dark; }\nbody { width: 35em; margin: 0 auto;\nfont-family: Tahoma, Verdana, Arial, sans-serif; }\n</style>\n</head>\n<body>\n<h1>An error occurred.</h1>\n<p>Sorry, the page you are looking for is currently unavailable.<br/>\nPlease try again later.</p>\n<p>If you are the system administrator of this resource then you should check\nthe error log for details.</p>\n<p><em>Faithfully yours, nginx.</em></p>\n</body>\n</html>\n"
+    }
+  ]
+}

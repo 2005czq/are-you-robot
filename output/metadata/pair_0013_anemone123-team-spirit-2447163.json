@@ -1,0 +1,85 @@
+{
+  "status": "completed",
+  "pair_id": "pair_0013_anemone123-team-spirit-2447163",
+  "source_image": "img/anemone123-team-spirit-2447163.jpg",
+  "generated_image": "output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png",
+  "generated_image_url": "https://ai-draw.huan666.de/images/qiBXLRf8kB3EGmU5z6qTaw.png",
+  "download_bytes": 1729610,
+  "recognize_prompt_output": "写实摄影风格，纪实感、公益宣传海报感、强调团结与连接主题的多人手部特写，从正上方俯拍视角拍摄，近景构图，6个人围成一圈、彼此用手紧握对方手腕，形成稳定的闭环结构，画面主体只出现手和前臂，不出现面部与身体其余部分，人物可能为不同年龄与不同肤色的成年人，包含浅肤色、偏白肤色、偏棕色/小麦色肤色，手部状态有明显年龄差异：有较年轻、皮肤细腻的手，也有年长者带有皱纹、斑点、皮肤松弛纹理的手，还有男性前臂体毛较明显的手臂，强调多样性、包容、互助、家庭或社区凝聚力；其中两只手上可见简洁的金色戒指，可能是婚戒，增加真实生活感。背景是户外自然草地，绿色草丛、杂草、细碎叶片与少量小型白色雏菊点缀其间，地面质感自然、不刻意布景。整体光线为柔和自然日光，可能是阴天或漫射阳光条件下拍摄，没有强烈硬阴影，曝光均衡，肤色自然温暖，绿色背景清新但不过度饱和，细节清晰，手部皮肤纹理、指节、静脉、毛发和戒指金属反光都可辨认。构图上主体位于画面中央，环形结构非常明确，视觉焦点集中在彼此交握的手腕连接处，背景基本清晰但次于主体，没有明显虚化特效，整体类似中等焦段或标准焦段拍摄，真实相机摄影质感，高分辨率，高细节，色彩自然，轻微商业图库风格，适合作为“团结、支持、社区、伙伴关系、家庭纽带、多元共融”主题配图。\n\n可选负面提示词：不要出现面部、不要多余肢体、不要畸形手指、不要多余手臂、不要手部结构错误、不要模糊、不要低清晰度、不要过曝、不要过度磨皮、不要夸张景深、不要背景杂乱、不要文字水印、不要卡通化、不要油画笔触、不要不真实肤色、不要金属戒指变形、不要重复手势。",
+  "generate_prompt_input": "生成一张 4:3 的 4k 分辨率图片，要求：\n写实摄影风格，纪实感、公益宣传海报感、强调团结与连接主题的多人手部特写，从正上方俯拍视角拍摄，近景构图，6个人围成一圈、彼此用手紧握对方手腕，形成稳定的闭环结构，画面主体只出现手和前臂，不出现面部与身体其余部分，人物可能为不同年龄与不同肤色的成年人，包含浅肤色、偏白肤色、偏棕色/小麦色肤色，手部状态有明显年龄差异：有较年轻、皮肤细腻的手，也有年长者带有皱纹、斑点、皮肤松弛纹理的手，还有男性前臂体毛较明显的手臂，强调多样性、包容、互助、家庭或社区凝聚力；其中两只手上可见简洁的金色戒指，可能是婚戒，增加真实生活感。背景是户外自然草地，绿色草丛、杂草、细碎叶片与少量小型白色雏菊点缀其间，地面质感自然、不刻意布景。整体光线为柔和自然日光，可能是阴天或漫射阳光条件下拍摄，没有强烈硬阴影，曝光均衡，肤色自然温暖，绿色背景清新但不过度饱和，细节清晰，手部皮肤纹理、指节、静脉、毛发和戒指金属反光都可辨认。构图上主体位于画面中央，环形结构非常明确，视觉焦点集中在彼此交握的手腕连接处，背景基本清晰但次于主体，没有明显虚化特效，整体类似中等焦段或标准焦段拍摄，真实相机摄影质感，高分辨率，高细节，色彩自然，轻微商业图库风格，适合作为“团结、支持、社区、伙伴关系、家庭纽带、多元共融”主题配图。\n\n可选负面提示词：不要出现面部、不要多余肢体、不要畸形手指、不要多余手臂、不要手部结构错误、不要模糊、不要低清晰度、不要过曝、不要过度磨皮、不要夸张景深、不要背景杂乱、不要文字水印、不要卡通化、不要油画笔触、不要不真实肤色、不要金属戒指变形、不要重复手势。",
+  "generate_response_text": "完成\n\n![Generated Image](https://ai-draw.huan666.de/images/qiBXLRf8kB3EGmU5z6qTaw.png)",
+  "manifest_rows": [
+    {
+      "pair_id": "pair_0013_anemone123-team-spirit-2447163",
+      "image_path": "img/anemone123-team-spirit-2447163.jpg",
+      "paired_image_path": "output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png",
+      "is_original": true
+    },
+    {
+      "pair_id": "pair_0013_anemone123-team-spirit-2447163",
+      "image_path": "output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png",
+      "paired_image_path": "img/anemone123-team-spirit-2447163.jpg",
+      "is_original": false
+    }
+  ],
+  "recognize_response": {
+    "id": "resp_09ea1c74c88fe53f0169d7b6cb5418819abae0479a977b35f0",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "写实摄影风格，纪实感、公益宣传海报感、强调团结与连接主题的多人手部特写，从正上方俯拍视角拍摄，近景构图，6个人围成一圈、彼此用手紧握对方手腕，形成稳定的闭环结构，画面主体只出现手和前臂，不出现面部与身体其余部分，人物可能为不同年龄与不同肤色的成年人，包含浅肤色、偏白肤色、偏棕色/小麦色肤色，手部状态有明显年龄差异：有较年轻、皮肤细腻的手，也有年长者带有皱纹、斑点、皮肤松弛纹理的手，还有男性前臂体毛较明显的手臂，强调多样性、包容、互助、家庭或社区凝聚力；其中两只手上可见简洁的金色戒指，可能是婚戒，增加真实生活感。背景是户外自然草地，绿色草丛、杂草、细碎叶片与少量小型白色雏菊点缀其间，地面质感自然、不刻意布景。整体光线为柔和自然日光，可能是阴天或漫射阳光条件下拍摄，没有强烈硬阴影，曝光均衡，肤色自然温暖，绿色背景清新但不过度饱和，细节清晰，手部皮肤纹理、指节、静脉、毛发和戒指金属反光都可辨认。构图上主体位于画面中央，环形结构非常明确，视觉焦点集中在彼此交握的手腕连接处，背景基本清晰但次于主体，没有明显虚化特效，整体类似中等焦段或标准焦段拍摄，真实相机摄影质感，高分辨率，高细节，色彩自然，轻微商业图库风格，适合作为“团结、支持、社区、伙伴关系、家庭纽带、多元共融”主题配图。\n\n可选负面提示词：不要出现面部、不要多余肢体、不要畸形手指、不要多余手臂、不要手部结构错误、不要模糊、不要低清晰度、不要过曝、不要过度磨皮、不要夸张景深、不要背景杂乱、不要文字水印、不要卡通化、不要油画笔触、不要不真实肤色、不要金属戒指变形、不要重复手势。"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "object": "chat.completion",
+    "created": 1775744744,
+    "model": "gpt-5.4",
+    "usage": {
+      "prompt_tokens": 3339,
+      "completion_tokens": 577,
+      "total_tokens": 3916,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    }
+  },
+  "generate_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "完成\n\n![Generated Image](https://ai-draw.huan666.de/images/qiBXLRf8kB3EGmU5z6qTaw.png)",
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1775744499,
+    "id": "chatcmpl-c4e7218af6784d1aa19f670d",
+    "model": "nano-banana",
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 561,
+      "completion_tokens": 34,
+      "total_tokens": 595,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  }
+}

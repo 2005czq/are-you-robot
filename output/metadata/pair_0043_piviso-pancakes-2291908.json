@@ -1,0 +1,85 @@
+{
+  "status": "completed",
+  "pair_id": "pair_0043_piviso-pancakes-2291908",
+  "source_image": "img/piviso-pancakes-2291908.jpg",
+  "generated_image": "output/generated/pair_0043_piviso-pancakes-2291908__generated.png",
+  "generated_image_url": "https://ai-draw.huan666.de/images/LtMHprqMTtNQpAwFRDCrqQ.png",
+  "download_bytes": 1658931,
+  "recognize_prompt_output": "美食静物摄影，写实风格，偏商业美食广告与社交媒体食物写真质感，一盘刚出锅的松饼/煎饼堆叠在深色圆形陶瓷盘中，主体为一叠厚薄不一、边缘微卷、表面金黄焦褐色斑驳的手工煎饼，层层叠放，质感松软蓬松，顶部放着数颗覆有明显白色冰霜颗粒的冷冻覆盆子，盘子前景右侧也散落数颗冷冻覆盆子，果实颗粒结构清晰、颜色为偏冷的玫红至深红色，画面左上角伸入一个倾斜的透明玻璃瓶口，瓶中是深褐色糖浆/枫糖浆/可乐色液体，正缓慢倒出黏稠糖浆，糖浆滴落在顶部覆盆子和煎饼上，并沿着煎饼侧面自然流淌形成高光反射与黏稠挂壁效果，焦点清晰落在顶部煎饼、覆盆子和糖浆交汇处，近景美食特写，略低角度平视，主体位于画面中央偏左，黑色盘子占据大部分中下区域，背景为粗麻布桌布和竖向铺陈的麻布背景，带有明显编织纹理，右下与右侧可见红色几何/民族风织纹图案，营造朴素乡村餐桌氛围，暖色自然光，从左侧或左前侧照射，光线柔和但具有方向性，煎饼表面和糖浆有温暖高光，盘面有柔和反射，背景轻微虚化，浅景深，食物主体清晰突出，色调以金黄、焦糖棕、深棕黑、莓果玫红为主，综合色彩自然浓郁不过分饱和，强调食物真实质感、焦脆边缘、松软内部、玻璃瓶透明反光、糖浆流动感、冷冻水果霜感、陶瓷盘光泽、麻布粗糙纤维感，高分辨率，细节丰富，真实摄影，可能使用50mm或85mm镜头，f/2.8-f/4，专业布光，高清，细腻纹理，诱人食欲感，干净构图，无多余餐具，无人物，无文字。  \n\n负面提示词：低清晰度，模糊，对焦错误，食物变形，煎饼比例异常，重复水果，融化失真，糖浆形态不自然，过曝，欠曝，噪点，伪影，脏盘子，杂乱背景，过度饱和，塑料质感，CG感过强，错误透视，文字，水印，边缘裁切突兀。",
+  "generate_prompt_input": "生成一张 4:3 的 4k 分辨率图片，要求：\n美食静物摄影，写实风格，偏商业美食广告与社交媒体食物写真质感，一盘刚出锅的松饼/煎饼堆叠在深色圆形陶瓷盘中，主体为一叠厚薄不一、边缘微卷、表面金黄焦褐色斑驳的手工煎饼，层层叠放，质感松软蓬松，顶部放着数颗覆有明显白色冰霜颗粒的冷冻覆盆子，盘子前景右侧也散落数颗冷冻覆盆子，果实颗粒结构清晰、颜色为偏冷的玫红至深红色，画面左上角伸入一个倾斜的透明玻璃瓶口，瓶中是深褐色糖浆/枫糖浆/可乐色液体，正缓慢倒出黏稠糖浆，糖浆滴落在顶部覆盆子和煎饼上，并沿着煎饼侧面自然流淌形成高光反射与黏稠挂壁效果，焦点清晰落在顶部煎饼、覆盆子和糖浆交汇处，近景美食特写，略低角度平视，主体位于画面中央偏左，黑色盘子占据大部分中下区域，背景为粗麻布桌布和竖向铺陈的麻布背景，带有明显编织纹理，右下与右侧可见红色几何/民族风织纹图案，营造朴素乡村餐桌氛围，暖色自然光，从左侧或左前侧照射，光线柔和但具有方向性，煎饼表面和糖浆有温暖高光，盘面有柔和反射，背景轻微虚化，浅景深，食物主体清晰突出，色调以金黄、焦糖棕、深棕黑、莓果玫红为主，综合色彩自然浓郁不过分饱和，强调食物真实质感、焦脆边缘、松软内部、玻璃瓶透明反光、糖浆流动感、冷冻水果霜感、陶瓷盘光泽、麻布粗糙纤维感，高分辨率，细节丰富，真实摄影，可能使用50mm或85mm镜头，f/2.8-f/4，专业布光，高清，细腻纹理，诱人食欲感，干净构图，无多余餐具，无人物，无文字。  \n\n负面提示词：低清晰度，模糊，对焦错误，食物变形，煎饼比例异常，重复水果，融化失真，糖浆形态不自然，过曝，欠曝，噪点，伪影，脏盘子，杂乱背景，过度饱和，塑料质感，CG感过强，错误透视，文字，水印，边缘裁切突兀。",
+  "generate_response_text": "已完成\n\n![Generated Image](https://ai-draw.huan666.de/images/LtMHprqMTtNQpAwFRDCrqQ.png)",
+  "manifest_rows": [
+    {
+      "pair_id": "pair_0043_piviso-pancakes-2291908",
+      "image_path": "img/piviso-pancakes-2291908.jpg",
+      "paired_image_path": "output/generated/pair_0043_piviso-pancakes-2291908__generated.png",
+      "is_original": true
+    },
+    {
+      "pair_id": "pair_0043_piviso-pancakes-2291908",
+      "image_path": "output/generated/pair_0043_piviso-pancakes-2291908__generated.png",
+      "paired_image_path": "img/piviso-pancakes-2291908.jpg",
+      "is_original": false
+    }
+  ],
+  "recognize_response": {
+    "id": "resp_0a7685d2d95ad1e80169d7bdbee70c819ba2a1bce84cd43601",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "美食静物摄影，写实风格，偏商业美食广告与社交媒体食物写真质感，一盘刚出锅的松饼/煎饼堆叠在深色圆形陶瓷盘中，主体为一叠厚薄不一、边缘微卷、表面金黄焦褐色斑驳的手工煎饼，层层叠放，质感松软蓬松，顶部放着数颗覆有明显白色冰霜颗粒的冷冻覆盆子，盘子前景右侧也散落数颗冷冻覆盆子，果实颗粒结构清晰、颜色为偏冷的玫红至深红色，画面左上角伸入一个倾斜的透明玻璃瓶口，瓶中是深褐色糖浆/枫糖浆/可乐色液体，正缓慢倒出黏稠糖浆，糖浆滴落在顶部覆盆子和煎饼上，并沿着煎饼侧面自然流淌形成高光反射与黏稠挂壁效果，焦点清晰落在顶部煎饼、覆盆子和糖浆交汇处，近景美食特写，略低角度平视，主体位于画面中央偏左，黑色盘子占据大部分中下区域，背景为粗麻布桌布和竖向铺陈的麻布背景，带有明显编织纹理，右下与右侧可见红色几何/民族风织纹图案，营造朴素乡村餐桌氛围，暖色自然光，从左侧或左前侧照射，光线柔和但具有方向性，煎饼表面和糖浆有温暖高光，盘面有柔和反射，背景轻微虚化，浅景深，食物主体清晰突出，色调以金黄、焦糖棕、深棕黑、莓果玫红为主，综合色彩自然浓郁不过分饱和，强调食物真实质感、焦脆边缘、松软内部、玻璃瓶透明反光、糖浆流动感、冷冻水果霜感、陶瓷盘光泽、麻布粗糙纤维感，高分辨率，细节丰富，真实摄影，可能使用50mm或85mm镜头，f/2.8-f/4，专业布光，高清，细腻纹理，诱人食欲感，干净构图，无多余餐具，无人物，无文字。  \n\n负面提示词：低清晰度，模糊，对焦错误，食物变形，煎饼比例异常，重复水果，融化失真，糖浆形态不自然，过曝，欠曝，噪点，伪影，脏盘子，杂乱背景，过度饱和，塑料质感，CG感过强，错误透视，文字，水印，边缘裁切突兀。"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "object": "chat.completion",
+    "created": 1775746529,
+    "model": "gpt-5.4",
+    "usage": {
+      "prompt_tokens": 2878,
+      "completion_tokens": 691,
+      "total_tokens": 3569,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    }
+  },
+  "generate_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "content": "已完成\n\n![Generated Image](https://ai-draw.huan666.de/images/LtMHprqMTtNQpAwFRDCrqQ.png)",
+          "role": "assistant"
+        }
+      }
+    ],
+    "created": 1775746314,
+    "id": "chatcmpl-36055271844d46a0bb400ad9",
+    "model": "nano-banana",
+    "object": "chat.completion",
+    "usage": {
+      "prompt_tokens": 591,
+      "completion_tokens": 25,
+      "total_tokens": 616,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    }
+  }
+}
