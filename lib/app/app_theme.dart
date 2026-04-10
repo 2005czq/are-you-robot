@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/emoji_text.dart';
@@ -11,7 +10,7 @@ ThemeData buildAppTheme(Brightness brightness) {
     dynamicSchemeVariant: DynamicSchemeVariant.tonalSpot,
   );
 
-  const serifFamily = kIsWeb ? 'Noto Serif SC' : 'NotoSerifSC';
+  const serifFamily = 'NotoSerifSC';
   const serifFallback = <String>['SourceSerif4', 'Georgia'];
   final fontFallback = <String>[...serifFallback, ...kEmojiFontFallback];
 
