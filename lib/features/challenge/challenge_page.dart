@@ -959,24 +959,29 @@ class _OptionCard extends StatelessWidget {
                   )
                 else
                   Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                        color: scheme.surface.withValues(alpha: 0.96),
-                        borderRadius: BorderRadius.circular(22),
-                        border: Border.all(
-                          color: scheme.outlineVariant.withValues(alpha: 0.34),
-                        ),
-                      ),
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: Text(
-                          option.text ?? '',
-                          style: theme.textTheme.titleMedium
-                              ?.copyWith(height: 1.8),
-                        ),
-                      ),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final cardWidth = constraints.maxWidth;
+                        final isCompact = cardWidth < 280;
+                        final contentPadding = EdgeInsets.symmetric(
+                          horizontal: isCompact ? 2 : 6,
+                          vertical: isCompact ? 2 : 6,
+                        );
+                        final textStyle = theme.textTheme.titleMedium
+                            ?.copyWith(
+                              fontSize: isCompact ? 18 : 20,
+                              height: isCompact ? 1.78 : 1.72,
+                            );
+
+                        return SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          padding: contentPadding,
+                          child: Text(
+                            option.text ?? '',
+                            style: textStyle,
+                          ),
+                        );
+                      },
                     ),
                   ),
               ],
