@@ -41,7 +41,7 @@ void main() {
       {"id": "a", "label": "A", "sourceType": "human", "text": "Hello"},
       {"id": "b", "label": "B", "sourceType": "ai", "text": "Hi"}
     ]
-  },
+  }
 ]
 ''';
 

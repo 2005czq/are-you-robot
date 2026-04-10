@@ -8,30 +8,55 @@ import { updateSeedManifest } from './bootstrap_manifest.mjs';
 const currentFilePath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFilePath), '..');
 const envPath = path.join(repoRoot, '.env');
-const picDir = path.join(repoRoot, 'pic');
 const outputPath = path.join(repoRoot, 'assets', 'bootstrap', 'generated_image_challenges.json');
 const manifestPath = path.join(repoRoot, 'assets', 'bootstrap', 'seed_manifest.json');
 const difficulties = ['easy', 'normal', 'hard'];
+const supportedAssetRoots = [
+  'pic/',
+  'output/generated/',
+  'output/tmp/',
+  'output2/generated/',
+  'output2/tmp/',
+];
 
 async function main() {
   const env = await readEnv(envPath);
   const baseUrl = requiredEnv(env, 'OPENAI_BASE_URL');
   const apiKey = requiredEnv(env, 'OPENAI_API_KEY');
   const model = env.OPENAI_MODEL || 'gpt-5.4';
-  const pairs = await discoverPairs(picDir);
+
+  const pairs = await discoverAllPairs();
+  const existingChallenges = await readExistingChallenges();
+  const existingByAssets = new Map(
+    existingChallenges.map((challenge) => [buildAssetKey(challenge), challenge]),
+  );
+
   const challenges = [];
+  const usedTitles = new Set();
 
-  for (const pair of pairs) {
-    const challenge = await generateSingleChallenge({
-      baseUrl,
-      apiKey,
-      model,
-      pair,
-    });
+  for (let index = 0; index < pairs.length; index += 1) {
+    const pair = {
+      ...pairs[index],
+      slug: String(index + 1).padStart(3, '0'),
+    };
 
+    const reused = existingByAssets.get(buildPairAssetKey(pair));
+    let challenge = reused
+      ? normalizeChallenge(reused, pair)
+      : await generateSingleChallenge({
+          baseUrl,
+          apiKey,
+          model,
+          pair,
+        });
+
+    challenge = ensureUniqueTitle(challenge, usedTitles);
     challenges.push(challenge);
     await fs.writeFile(outputPath, `${JSON.stringify(challenges, null, 2)}\n`, 'utf8');
-    console.log(`generated ${pair.slug}: ${challenge.title}`);
+
+    console.log(
+      `${reused ? 'reused' : 'generated'} ${pair.slug}/${String(pairs.length).padStart(3, '0')}: ${challenge.title}`,
+    );
   }
 
   validateChallengeSet(challenges);
@@ -52,7 +77,30 @@ async function main() {
   console.log(`wrote ${challenges.length} challenges to ${path.relative(repoRoot, outputPath)}`);
 }
 
-async function discoverPairs(directory) {
+async function discoverAllPairs() {
+  const pairs = [
+    ...(await discoverPicPairs(path.join(repoRoot, 'pic'))),
+    ...(await discoverBatchPairs('output')),
+    ...(await discoverBatchPairs('output2')),
+  ];
+
+  const deduped = [];
+  const seenAssetKeys = new Set();
+
+  for (const pair of pairs) {
+    const assetKey = buildPairAssetKey(pair);
+    if (seenAssetKeys.has(assetKey)) {
+      continue;
+    }
+
+    seenAssetKeys.add(assetKey);
+    deduped.push(pair);
+  }
+
+  return deduped;
+}
+
+async function discoverPicPairs(directory) {
   const entries = await fs.readdir(directory);
   const trueFiles = new Map();
   const falseFiles = new Map();
@@ -70,19 +118,65 @@ async function discoverPairs(directory) {
     }
   }
 
-  const indexes = [...trueFiles.keys()].filter((index) => falseFiles.has(index)).sort((left, right) => left - right);
-  if (indexes.length === 0) {
-    throw new Error('No matching trueN/falseN image pairs found in pic/');
+  return [...trueFiles.keys()]
+    .filter((index) => falseFiles.has(index))
+    .sort((left, right) => left - right)
+    .map((index) => ({
+      source: `pic:${index}`,
+      humanPath: path.join(directory, trueFiles.get(index)),
+      aiPath: path.join(directory, falseFiles.get(index)),
+      humanAsset: `pic/${trueFiles.get(index)}`,
+      aiAsset: `pic/${falseFiles.get(index)}`,
+    }));
+}
+
+async function discoverBatchPairs(rootName) {
+  const metadataDir = path.join(repoRoot, rootName, 'metadata');
+  const generatedDir = path.join(repoRoot, rootName, 'generated');
+  const tmpDir = path.join(repoRoot, rootName, 'tmp');
+  const metadataFiles = (await fs.readdir(metadataDir))
+    .filter((entry) => entry.endsWith('.json'))
+    .sort();
+
+  const pairs = [];
+
+  for (const entry of metadataFiles) {
+    const metadataPath = path.join(metadataDir, entry);
+    const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf8'));
+    if (metadata.status !== 'completed') {
+      continue;
+    }
+
+    const sourceImage = metadata.source_image;
+    const generatedImage = metadata.generated_image;
+    if (!sourceImage || !generatedImage) {
+      continue;
+    }
+
+    const humanPath = path.join(tmpDir, `${normalizeTmpStem(path.parse(sourceImage).name)}__recognize.jpg`);
+    const aiPath = path.join(generatedDir, path.basename(generatedImage));
+    if (!(await fileExists(humanPath)) || !(await fileExists(aiPath))) {
+      continue;
+    }
+
+    pairs.push({
+      source: `${rootName}:${metadata.pair_id ?? path.parse(entry).name}`,
+      humanPath,
+      aiPath,
+      humanAsset: toAssetPath(humanPath),
+      aiAsset: toAssetPath(aiPath),
+    });
   }
 
-  return indexes.map((index) => ({
-    index,
-    slug: String(index).padStart(3, '0'),
-    humanPath: path.join(picDir, trueFiles.get(index)),
-    aiPath: path.join(picDir, falseFiles.get(index)),
-    humanAsset: `pic/${trueFiles.get(index)}`,
-    aiAsset: `pic/${falseFiles.get(index)}`,
-  }));
+  return pairs;
+}
+
+function normalizeTmpStem(value) {
+  return String(value).replace(/\s+/g, '_');
+}
+
+function toAssetPath(filePath) {
+  return path.relative(repoRoot, filePath).split(path.sep).join('/');
 }
 
 async function generateSingleChallenge({ baseUrl, apiKey, model, pair }) {
@@ -108,13 +202,13 @@ async function generateSingleChallenge({ baseUrl, apiKey, model, pair }) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`generation failed for pair ${pair.slug}: ${response.status} ${errorText}`);
+        throw new Error(`generation failed for pair ${pair.source}: ${response.status} ${errorText}`);
       }
 
       const json = await response.json();
       const content = json.choices?.[0]?.message?.content;
       if (typeof content !== 'string') {
-        throw new Error(`missing structured output for pair ${pair.slug}`);
+        throw new Error(`missing structured output for pair ${pair.source}`);
       }
 
       const parsed = parseLooseJson(content);
@@ -147,7 +241,8 @@ function buildPayload({ model, pair, humanImage, aiImage }) {
             type: 'text',
             text:
               `请根据下面这组图片生成 1 道图片挑战题。\n` +
-              `已知真实照片文件是 ${path.basename(pair.humanPath)}，AI 生成图文件是 ${path.basename(pair.aiPath)}。\n` +
+              `真实照片路径：${pair.humanAsset}\n` +
+              `AI 生成图路径：${pair.aiAsset}\n` +
               '输出要求：\n' +
               '1. 只输出 JSON，不要 Markdown。\n' +
               '2. JSON 字段只能包含 title、prompt、difficulty、explanation。\n' +
@@ -205,7 +300,7 @@ function normalizeChallenge(challenge, pair) {
   const slug = pair.slug;
   const difficulty = normalizeDifficulty(challenge.difficulty);
   if (!difficulty) {
-    throw new Error(`invalid difficulty for pair ${slug}`);
+    throw new Error(`invalid difficulty for pair ${pair.source}`);
   }
 
   return {
@@ -230,6 +325,33 @@ function normalizeChallenge(challenge, pair) {
       },
     ],
   };
+}
+
+function ensureUniqueTitle(challenge, usedTitles) {
+  const original = challenge.title || '图片判断';
+  let nextTitle = original;
+  let suffix = 2;
+
+  while (usedTitles.has(nextTitle)) {
+    nextTitle = `${original} ${suffix}`;
+    suffix += 1;
+  }
+
+  usedTitles.add(nextTitle);
+  return {
+    ...challenge,
+    title: nextTitle,
+  };
+}
+
+function buildPairAssetKey(pair) {
+  return `${pair.humanAsset}::${pair.aiAsset}`;
+}
+
+function buildAssetKey(challenge) {
+  const humanAsset = challenge.options.find((option) => option.sourceType === 'human')?.asset;
+  const aiAsset = challenge.options.find((option) => option.sourceType === 'ai')?.asset;
+  return `${humanAsset ?? ''}::${aiAsset ?? ''}`;
 }
 
 async function encodeImageForVision(filePath) {
@@ -287,6 +409,11 @@ function validateChallengeSet(challenges) {
       throw new Error(`invalid options length for ${challenge.id}`);
     }
 
+    const sourceTypes = challenge.options.map((option) => option.sourceType).sort().join(',');
+    if (sourceTypes !== 'ai,human') {
+      throw new Error(`source types must be one ai and one human for ${challenge.id}`);
+    }
+
     if (!challenge.prompt || !challenge.explanation) {
       throw new Error(`missing prompt or explanation for ${challenge.id}`);
     }
@@ -336,6 +463,25 @@ function parseLooseJson(content) {
 
 function normalizeText(value) {
   return String(value ?? '').replace(/\r\n/g, '\n').replace(/\s+$/g, '').trim();
+}
+
+async function readExistingChallenges() {
+  try {
+    const raw = await fs.readFile(outputPath, 'utf8');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function readEnv(filePath) {

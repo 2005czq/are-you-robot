@@ -5,6 +5,13 @@ import { fileURLToPath } from 'node:url';
 const currentFilePath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(currentFilePath), '..');
 const generatedPath = path.join(repoRoot, 'assets', 'bootstrap', 'generated_image_challenges.json');
+const allowedAssetRoots = [
+  'pic/',
+  'output/generated/',
+  'output/tmp/',
+  'output2/generated/',
+  'output2/tmp/',
+];
 
 async function main() {
   const raw = await fs.readFile(generatedPath, 'utf8');
@@ -39,7 +46,10 @@ async function main() {
 
     for (const option of challenge.options) {
       assert(typeof option.id === 'string' && option.id.length > 0, `${challenge.id} has option without id`);
-      assert(typeof option.asset === 'string' && option.asset.startsWith('pic/'), `${challenge.id}/${option.id} asset must point to pic/`);
+      assert(
+        typeof option.asset === 'string' && allowedAssetRoots.some((root) => option.asset.startsWith(root)),
+        `${challenge.id}/${option.id} asset must point to a supported image root`,
+      );
       await fs.access(path.join(repoRoot, option.asset));
     }
   }

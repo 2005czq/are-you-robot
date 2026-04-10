@@ -29,6 +29,10 @@ flutter:
     - assets/bootstrap/generated_image_challenges.json
     - assets/bootstrap/generated_text_challenges.json
     - assets/bootstrap/seed_manifest.json
+    - output/generated/
+    - output/tmp/
+    - output2/generated/
+    - output2/tmp/
     - pic/
   fonts:
     - family: NotoColorEmoji

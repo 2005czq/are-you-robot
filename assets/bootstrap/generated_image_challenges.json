@@ -152,5 +152,1809 @@
         "asset": "pic/false7.png"
       }
     ]
+  },
+  {
+    "id": "image-008",
+    "mode": "image",
+    "title": "猫咪过生日",
+    "prompt": "看看这两张猫咪和生日蛋糕的画面，哪一张更像真正拍出来的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里，手遮住猫眼的动作自然，猫毛蓬松层次分明，草莓和奶油质感也更真。AI图的猫脸与爪子边缘偏软，蛋糕纹理重复，手和蜡烛连接处略别扭。",
+    "options": [
+      {
+        "id": "image-008-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true8.jpg"
+      },
+      {
+        "id": "image-008-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false8.png"
+      }
+    ]
+  },
+  {
+    "id": "image-009",
+    "mode": "image",
+    "title": "分彩椒",
+    "prompt": "看看这两张彩椒图片，哪一张更像是真实拍到的厨房食物照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片里的辣椒形状更自然，有细小褶皱和不规则弯曲，金属盘与木桌纹理也更真实；AI图的椒体过于圆润饱满，表面高光太均匀，重复感更强。",
+    "options": [
+      {
+        "id": "image-009-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "pic/true9.jpg"
+      },
+      {
+        "id": "image-009-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "pic/false9.png"
+      }
+    ]
+  },
+  {
+    "id": "image-010",
+    "mode": "image",
+    "title": "树荫下的小院墙",
+    "prompt": "这两张街边房子和院墙的图片里，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的墙面污渍、路砖磨损和树皮纹理更自然，明暗也有细微变化；AI图的墙体和地面过于整齐，窗户、树叶和纹理重复感更明显。",
+    "options": [
+      {
+        "id": "image-010-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115718_3__recognize.jpg"
+      },
+      {
+        "id": "image-010-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0001_2026-4-8_115718_3__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-011",
+    "mode": "image",
+    "title": "海边飞鸟",
+    "prompt": "看看这两张海面上很多海鸟飞翔的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里海鸟远近大小变化自然，部分鸟有运动模糊，海浪和山体层次也更真实；AI图中的鸟群分布过于整齐，前景大鸟边缘偏软，羽毛和光影显得重复。",
+    "options": [
+      {
+        "id": "image-011-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115741_2__recognize.jpg"
+      },
+      {
+        "id": "image-011-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0002_2026-4-8_115741_2__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-012",
+    "mode": "image",
+    "title": "煎蛋吐司",
+    "prompt": "这两张煎蛋吐司的图片里，哪一张更像真实拍到的早餐呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的蛋白边缘起泡不规则，面包烤色和盘面反光更自然；AI图的吐司形状过于整齐，蛋黄像塑料球，光影和叉子边缘显得太规整。",
+    "options": [
+      {
+        "id": "image-012-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115741_8__recognize.jpg"
+      },
+      {
+        "id": "image-012-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0003_2026-4-8_115741_8__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-013",
+    "mode": "image",
+    "title": "樱桃巧克力蛋糕",
+    "prompt": "请你仔细看看，这两张樱桃巧克力蛋糕的图片，哪一张更像是真实拍出来的？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的奶油形状更自然，巧克力边缘有不规则抹痕，盘子反光也更随意；AI图的奶油花纹太整齐，蛋糕表面过于平滑，水果摆放像重复复制。",
+    "options": [
+      {
+        "id": "image-013-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115741_9__recognize.jpg"
+      },
+      {
+        "id": "image-013-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0004_2026-4-8_115741_9__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-014",
+    "mode": "image",
+    "title": "早餐吐司盘",
+    "prompt": "这两张早餐吐司图片里，哪一张更像真的用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的鸡蛋切面、面包孔洞和餐叉反光更自然，食物摆放也有些随意；AI图的淋酱形状偏刻意，水果和麦片纹理重复，整体边缘过于整齐。",
+    "options": [
+      {
+        "id": "image-014-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115759_2__recognize.jpg"
+      },
+      {
+        "id": "image-014-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0005_2026-4-8_115759_2__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-015",
+    "mode": "image",
+    "title": "草莓小蛋糕",
+    "prompt": "两张图里都有草莓奶油小蛋糕，你觉得哪一张更像真的用相机拍下来的？",
+    "difficulty": "normal",
+    "explanation": "真实照片里草莓大小和摆放更自然，奶油抹面有细小不平整，手和盘子的边缘也有真实阴影。AI图中草莓过于整齐，杯身分层和文字更像被规则拼出来。",
+    "options": [
+      {
+        "id": "image-015-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115759_3__recognize.jpg"
+      },
+      {
+        "id": "image-015-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0006_2026-4-8_115759_3__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-016",
+    "mode": "image",
+    "title": "牛奶盒和玻璃瓶",
+    "prompt": "看看这两张有牛奶盒和玻璃瓶的图片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里纸盒有自然褶皱和磨损，印刷字样细小且不规整，玻璃反光也更随光线变化；AI图的文字像乱字符，边缘过于干净，桌面和物体质感偏平滑。",
+    "options": [
+      {
+        "id": "image-016-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115759_4__recognize.jpg"
+      },
+      {
+        "id": "image-016-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0007_2026-4-8_115759_4__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-017",
+    "mode": "image",
+    "title": "草莓蛋糕",
+    "prompt": "这两张草莓蛋糕的图片里，哪一张更像是真实拍出来的呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的覆盆子大小和形状更自然，奶油边缘有轻微挤压感，叉子反光也更杂。AI图里水果排列太整齐，奶油团和蛋糕层次显得更光滑规整。",
+    "options": [
+      {
+        "id": "image-017-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_115759_5__recognize.jpg"
+      },
+      {
+        "id": "image-017-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0008_2026-4-8_115759_5__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-018",
+    "mode": "image",
+    "title": "银河夜空",
+    "prompt": "这两张星空山坡的图片里，哪一张更像真的相机拍到的夜晚景色？",
+    "difficulty": "normal",
+    "explanation": "真实夜景的星点亮度和疏密更自然，天空有细碎噪点，树和岩石边缘略糊。AI图里的银河过于浓亮，山坡轮廓太整齐，暗部纹理显得重复发闷。",
+    "options": [
+      {
+        "id": "image-018-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_11578_5__recognize.jpg"
+      },
+      {
+        "id": "image-018-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0009_2026-4-8_11578_5__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-019",
+    "mode": "image",
+    "title": "露珠草叶",
+    "prompt": "看看这两张长着露珠的草叶，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的清晰范围更窄，前后景虚化自然，水珠大小和形状更随机；AI图的高光圆点过于整齐明亮，叶片纹理和边缘显得太均匀。",
+    "options": [
+      {
+        "id": "image-019-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_11578_7__recognize.jpg"
+      },
+      {
+        "id": "image-019-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0010_2026-4-8_11578_7__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-020",
+    "mode": "image",
+    "title": "草地小鸡",
+    "prompt": "两张都是草地上的小鸡，你觉得哪一张更像真正用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里草叶长短杂乱、前后虚化自然，小鸡绒毛边缘有细小散开感；AI图光线太均匀，羽毛和草地更顺滑，局部结构略显规整。",
+    "options": [
+      {
+        "id": "image-020-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_11578_8__recognize.jpg"
+      },
+      {
+        "id": "image-020-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0011_2026-4-8_11578_8__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-021",
+    "mode": "image",
+    "title": "炸鸡拼盘",
+    "prompt": "看看这两张炸鸡拼盘的图片，哪一张更像真正拍出来的照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片里的炸鸡碎皮、酱汁流动和木盘纹理更自然，前清后虚的景深也明显；AI图文字像海报叠上去，食物表面过于光滑整齐，重复感更强。",
+    "options": [
+      {
+        "id": "image-021-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/2026-4-8_11578_9__recognize.jpg"
+      },
+      {
+        "id": "image-021-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0012_2026-4-8_11578_9__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-022",
+    "mode": "image",
+    "title": "草地上的团结手环",
+    "prompt": "这两张都是大家手拉手围成一圈的画面，你觉得哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里皮肤纹理、汗毛和老人手背斑点更自然，草地杂乱有轻微虚化；AI图的草和小花分布偏均匀，手指关节与边缘有些发糊，质感略像抹平。",
+    "options": [
+      {
+        "id": "image-022-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/anemone123-team-spirit-2447163__recognize.jpg"
+      },
+      {
+        "id": "image-022-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0013_anemone123-team-spirit-2447163__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-023",
+    "mode": "image",
+    "title": "小笼包真假眼",
+    "prompt": "看看这两张小笼包照片，哪一张更像真正用相机拍出来的？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的小笼包褶子厚薄不一，表皮有自然反光和轻微粘感，前后虚化也更随机；AI图里的包子形状太整齐，褶纹重复，餐具边缘和材质显得过分光滑。",
+    "options": [
+      {
+        "id": "image-023-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/arsenalizedritesh100-xiao-long-bao-6223162__recognize.jpg"
+      },
+      {
+        "id": "image-023-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0014_arsenalizedritesh100-xiao-long-bao-6223162__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-024",
+    "mode": "image",
+    "title": "林间小路",
+    "prompt": "你看这两张森林小路的画面，哪一张更像真的相机拍出来的？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的阳光穿过雾气更自然，路面泥土反光和高低起伏也更杂乱；AI图树干排列太整齐，边缘偏干净，草地纹理有重复感。",
+    "options": [
+      {
+        "id": "image-024-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/bertvthul-avenue-815297__recognize.jpg"
+      },
+      {
+        "id": "image-024-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0015_bertvthul-avenue-815297__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-025",
+    "mode": "image",
+    "title": "森林小路",
+    "prompt": "看看这两张森林里的小路，哪一张更像真正用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的树皮纹理、地面杂草和弯曲小路更自然，远近层次也更真实。AI图的树干太整齐，枝条重复，光线和边缘显得有点统一发硬。",
+    "options": [
+      {
+        "id": "image-025-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/camera-man-trail-5726987__recognize.jpg"
+      },
+      {
+        "id": "image-025-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0016_camera-man-trail-5726987__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-026",
+    "mode": "image",
+    "title": "海边一家人",
+    "prompt": "看看这两张海边散步的画面，哪一张更像真正用相机拍到的一家人和小狗？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的海浪层次更自然，人物表情和衣服褶皱有细微变化，沙滩倒影也更真实。AI图整体过于平滑，人物边缘和狗毛细节略显整齐。",
+    "options": [
+      {
+        "id": "image-026-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/chillla70-family-6398107__recognize.jpg"
+      },
+      {
+        "id": "image-026-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0017_chillla70-family-6398107__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-027",
+    "mode": "image",
+    "title": "床上的阅读角",
+    "prompt": "看看这两张床铺照片，哪一张更像是真实拍到的房间一角？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的床单褶皱和枕头压痕更自然，书页卷起的厚薄、阴影也更细。AI画面里花纹重复感偏强，夹子和物品边缘略发虚，材质显得太均匀。",
+    "options": [
+      {
+        "id": "image-027-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110454__recognize.jpg"
+      },
+      {
+        "id": "image-027-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0019_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-028",
+    "mode": "image",
+    "title": "厨房里的西瓜",
+    "prompt": "请你找一找，哪一张更像是真的在厨房里随手拍到的西瓜切片画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里光线更自然，物体摆放有生活感，杯盘和刀具边缘会有轻微小瑕疵。AI图里台面、瓷砖和器具过于整齐，西瓜纹理与阴影显得更统一。",
+    "options": [
+      {
+        "id": "image-028-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110502__recognize.jpg"
+      },
+      {
+        "id": "image-028-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0020_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-029",
+    "mode": "image",
+    "title": "青果落水杯",
+    "prompt": "看看这两张有绿色果子和玻璃杯的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的水花形状更不规则，果子大小和清晰度有自然变化；AI图水珠分布太均匀，玻璃纹理过于整齐，整体像被刻意打亮。",
+    "options": [
+      {
+        "id": "image-029-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110600__recognize.jpg"
+      },
+      {
+        "id": "image-029-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0021_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-030",
+    "mode": "image",
+    "title": "冰块水果盘",
+    "prompt": "看看这两张有草莓、蓝莓和冰块的图片，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里冰块透明度和气泡变化更自然，水果表面水珠大小不一，切开的草莓纤维细节丰富；AI图里蓝莓和冰块形状更整齐，纹理有些重复，边缘偏干净。",
+    "options": [
+      {
+        "id": "image-030-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110818__recognize.jpg"
+      },
+      {
+        "id": "image-030-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0025_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-031",
+    "mode": "image",
+    "title": "草莓切面",
+    "prompt": "看看这两张草莓图片，哪一张更像真的拍出来的照片？",
+    "difficulty": "easy",
+    "explanation": "真实照片里的草莓有自然水珠和果汁反光，切面纹理不完全对称，前后虚化也更真实；AI图草莓排列太整齐，表面孔洞和切面纹路有重复感，质感偏平滑。",
+    "options": [
+      {
+        "id": "image-031-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110830__recognize.jpg"
+      },
+      {
+        "id": "image-031-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0026_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-032",
+    "mode": "image",
+    "title": "番茄落水",
+    "prompt": "你来找一找，哪一张更像真的拍到小番茄掉进水缸里的瞬间？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的水花形状更自然杂乱，玻璃边缘有轻微变形和反光，番茄表面质感也不完全一样；AI图的水泡更均匀，果实排列偏整齐，边缘显得过于干净。",
+    "options": [
+      {
+        "id": "image-032-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408110850__recognize.jpg"
+      },
+      {
+        "id": "image-032-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0027_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-033",
+    "mode": "image",
+    "title": "湖上的天鹅",
+    "prompt": "看看这两张湖里游天鹅的画面，哪一张更像真正拍出来的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的水波更杂乱自然，天鹅大小和姿态有变化，羽毛边缘也不完全整齐；AI图里的天鹅排布更平均，倒影和水面纹理显得重复、过于规整。",
+    "options": [
+      {
+        "id": "image-033-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408111231__recognize.jpg"
+      },
+      {
+        "id": "image-033-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0028_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-034",
+    "mode": "image",
+    "title": "雪山湖边小屋",
+    "prompt": "请你仔细看看，这两张雪山和湖水倒影的画面里，哪一张更像是真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里山体纹理、树林疏密和灯光倒影更自然，水面反射有细小变化；AI图的森林排布太整齐，山和倒影边缘偏硬，整体质感更像拼出来的。",
+    "options": [
+      {
+        "id": "image-034-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408111245__recognize.jpg"
+      },
+      {
+        "id": "image-034-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0029_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-035",
+    "mode": "image",
+    "title": "雪山公路",
+    "prompt": "看看这两张雪山前的公路照片，哪一张更像真的相机拍出来的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的山体起伏更自然，云层厚薄和光线变化细腻，公路标线远近透视也更真实。AI图的云像堆叠棉团，路面与山坡纹理偏均匀发滑。",
+    "options": [
+      {
+        "id": "image-035-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408111255__recognize.jpg"
+      },
+      {
+        "id": "image-035-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0030_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-036",
+    "mode": "image",
+    "title": "山谷河流",
+    "prompt": "看看这两张高空拍到的山谷和河流，哪一张更像真正用相机拍下来的风景？",
+    "difficulty": "normal",
+    "explanation": "真实照片里云雾遮挡自然，山体纹理和明暗变化丰富，河道分叉也更随机；AI图远处山形重复感偏强，表面像被统一抹平，细节略显僵硬。",
+    "options": [
+      {
+        "id": "image-036-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408111302__recognize.jpg"
+      },
+      {
+        "id": "image-036-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0031_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-037",
+    "mode": "image",
+    "title": "秋天雪山",
+    "prompt": "这两张秋天雪山风景里，哪一张更像真的相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的山体起伏更自然，云层光影有细微变化，树林疏密不一；AI图的树带颜色太整齐，山峰边缘偏规整，整体纹理像被均匀铺开。",
+    "options": [
+      {
+        "id": "image-037-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408111308__recognize.jpg"
+      },
+      {
+        "id": "image-037-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0032_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-038",
+    "mode": "image",
+    "title": "屋顶送礼物",
+    "prompt": "这两张画面里，哪一张更像真的拍出来的动画场景呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里天空、屋顶和窗框带有拍摄质感，边缘更硬，细节清楚中夹着轻微压缩痕迹；AI图的瓦片和花朵重复更明显，光影过于均匀，结构也更规整。",
+    "options": [
+      {
+        "id": "image-038-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408112042__recognize.jpg"
+      },
+      {
+        "id": "image-038-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0033_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-039",
+    "mode": "image",
+    "title": "水果切片台面",
+    "prompt": "你来找一找，哪一张更像真的在厨房里拍到的水果和奶油画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的台面光线更自然，木板划痕、果肉汁水和碗边抹痕都比较随意；AI图物体更整齐，边缘偏软，奶油表面和包装膜纹理有些假。",
+    "options": [
+      {
+        "id": "image-039-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/com.xingin.xhs_20260408112232__recognize.jpg"
+      },
+      {
+        "id": "image-039-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0036_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-040",
+    "mode": "image",
+    "title": "水里的绿头鸭",
+    "prompt": "请你找一找，哪一张更像真的相机拍到的绿头鸭在浅水里休息？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的水波、倒影和石子层次更自然，鸭子羽毛细节清楚但不过分整齐；AI图的身体边缘更硬，水下倒影和亮斑显得有些生硬。",
+    "options": [
+      {
+        "id": "image-040-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/couleur-duck-10202656__recognize.jpg"
+      },
+      {
+        "id": "image-040-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0037_couleur-duck-10202656__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-041",
+    "mode": "image",
+    "title": "提拉米苏蛋糕",
+    "prompt": "这两张提拉米苏蛋糕图片里，哪一张更像是真实拍到的甜点照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的可可粉撒得不均匀，巧克力酱线条有自然粗细和小拖痕，蛋糕边缘略松散；AI图表面过于平整对称，夹层纹理重复，装饰颗粒也太整齐。",
+    "options": [
+      {
+        "id": "image-041-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/daria-yakovleva-cake-1971552__recognize.jpg"
+      },
+      {
+        "id": "image-041-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0038_daria-yakovleva-cake-1971552__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-042",
+    "mode": "image",
+    "title": "草莓特写",
+    "prompt": "这两张草莓照片里，哪一张更像真的用相机近距离拍出来的？",
+    "difficulty": "easy",
+    "explanation": "真实拍摄的草莓颜色有深浅变化，籽孔大小不一，表面反光自然，前后景虚化明显；AI图的籽点排列太整齐，表皮像抛光过，叶片和轮廓也更规整。",
+    "options": [
+      {
+        "id": "image-042-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/der_mentor-strawberry-7224875__recognize.jpg"
+      },
+      {
+        "id": "image-042-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0039_der_mentor-strawberry-7224875__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-043",
+    "mode": "image",
+    "title": "晨雾森林",
+    "prompt": "这两张都是有雾和阳光的森林，哪一张更像真正用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的雾气更自然松散，远近树木虚实过渡柔和；AI图阳光束太整齐明显，树形重复感更强，山林层次像被刻意排开。",
+    "options": [
+      {
+        "id": "image-043-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/jplenio-forest-3622519__recognize.jpg"
+      },
+      {
+        "id": "image-043-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0040_jplenio-forest-3622519__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-044",
+    "mode": "image",
+    "title": "花丛里的小猫",
+    "prompt": "这两张都是花丛中的小猫，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里前后花朵虚化更自然，猫脸清楚但边缘有轻微镜头柔化，树枝遮挡也更随机；AI图的毛纹和花瓣更整齐，局部结构显得过于平滑。",
+    "options": [
+      {
+        "id": "image-044-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/miezekieze-cat-7204934__recognize.jpg"
+      },
+      {
+        "id": "image-044-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0041_miezekieze-cat-7204934__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-045",
+    "mode": "image",
+    "title": "银河夜空 2",
+    "prompt": "你觉得哪一张更像真的相机拍到的星空银河呢？",
+    "difficulty": "normal",
+    "explanation": "真实星空里的星点大小和亮度更自然，银河云气有细碎层次与轻微噪点；AI图局部雾状纹理偏糊，暗部结构重复，亮斑边缘也不够稳定。",
+    "options": [
+      {
+        "id": "image-045-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/pexels-astronomy-1867616__recognize.jpg"
+      },
+      {
+        "id": "image-045-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0042_pexels-astronomy-1867616__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-046",
+    "mode": "image",
+    "title": "煎饼和树莓",
+    "prompt": "看看这两张煎饼配树莓的图片，哪一张更像是真实拍到的早餐场景？",
+    "difficulty": "normal",
+    "explanation": "真实照片里煎饼厚薄不一、边缘微卷，糖浆流动自然，瓶身反光复杂；AI图的煎饼层层太整齐，表面纹理更重复，边缘和光影显得过于平滑。",
+    "options": [
+      {
+        "id": "image-046-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/piviso-pancakes-2291908__recognize.jpg"
+      },
+      {
+        "id": "image-046-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0043_piviso-pancakes-2291908__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-047",
+    "mode": "image",
+    "title": "傍晚城市天际线",
+    "prompt": "看看这两张傍晚城市照片，哪一张更像真的用相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里楼体高低错落，窗灯亮暗不一，云层和远处空气有自然层次；AI图建筑边缘偏整齐，灯光分布太规律，部分塔架和楼面纹理显得重复。",
+    "options": [
+      {
+        "id": "image-047-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/soultrain-sunset-8214498__recognize.jpg"
+      },
+      {
+        "id": "image-047-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0044_soultrain-sunset-8214498__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-048",
+    "mode": "image",
+    "title": "白板前的红发姐姐",
+    "prompt": "这两张里，哪一张更像真的相机拍到的白板前红发姐姐？",
+    "difficulty": "normal",
+    "explanation": "真实照片的前景白板雾化更自然，人物倒影和背景虚化层次明显；AI图里头发丝过于整齐，手指和衣服边缘偏干净，柜面与小盆栽也有些像复制出来的。",
+    "options": [
+      {
+        "id": "image-048-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/this_is_engineering-woman-4702060__recognize.jpg"
+      },
+      {
+        "id": "image-048-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0045_this_is_engineering-woman-4702060__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-049",
+    "mode": "image",
+    "title": "粉花花瓶",
+    "prompt": "这两张粉色背景里的花瓶照片，哪一张更像真的相机拍出来的？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的花瓣层次更自然，花茎和叶片边缘有细小起伏，白色花瓶反光柔和，背景渐变和桌面阴影也更接近真实布光。",
+    "options": [
+      {
+        "id": "image-049-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output/tmp/yuri_b-flower-3175428__recognize.jpg"
+      },
+      {
+        "id": "image-049-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output/generated/pair_0046_yuri_b-flower-3175428__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-050",
+    "mode": "image",
+    "title": "卖龙须糖的人",
+    "prompt": "这两张图里都有一位戴口罩的人在做龙须糖，你觉得哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的阳光更自然，透明箱子有细碎反光和使用痕迹，桌布花纹也更随机。AI图的箱体结构偏规整，表面纹理和物品边缘有些发糊、重复感更强。",
+    "options": [
+      {
+        "id": "image-050-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115718_2__recognize.jpg"
+      },
+      {
+        "id": "image-050-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0001_2026-4-8_115718_2__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-051",
+    "mode": "image",
+    "title": "雪山晨光",
+    "prompt": "这两张雪山风景里，哪一张更像真实相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的雪山受光自然，前景树叶像近处剪影，边缘有真实虚化感；AI图的树枝纹理重复又偏硬，山体细节分布太平均，整体像被均匀铺开。",
+    "options": [
+      {
+        "id": "image-051-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115718_4__recognize.jpg"
+      },
+      {
+        "id": "image-051-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0002_2026-4-8_115718_4__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-052",
+    "mode": "image",
+    "title": "海边桥景汽车",
+    "prompt": "这两张海边有桥和汽车的画面里，哪一张更像真正用相机拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的锈迹、路面裂缝和车身反光更自然，远处云层明暗变化丰富；AI图的桥塔和护栏边缘偏整齐，水面与城市纹理有些重复，整体像被过度抹平。",
+    "options": [
+      {
+        "id": "image-052-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115718_5__recognize.jpg"
+      },
+      {
+        "id": "image-052-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0003_2026-4-8_115718_5__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-053",
+    "mode": "image",
+    "title": "客厅真假图",
+    "prompt": "看看这两张客厅图片，哪一张更像是真实拍到的房间呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的窗帘透光更自然，沙发褶皱和抱枕形状有细小不规则变化，地面反光也更真实；AI图整体太工整，线条和材质显得偏统一。",
+    "options": [
+      {
+        "id": "image-053-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115718_6__recognize.jpg"
+      },
+      {
+        "id": "image-053-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0004_2026-4-8_115718_6__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-054",
+    "mode": "image",
+    "title": "菜筐里的藕",
+    "prompt": "请你找一找，哪一张更像在菜市场里真实拍到的莲藕？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的藕大小不一、泥点和断口更杂乱，筐边编织也有自然变形；AI图的藕排列太整齐，表皮偏光滑，篮筐纹理重复，牌子和支架边缘显得过于规整。",
+    "options": [
+      {
+        "id": "image-054-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115718_7__recognize.jpg"
+      },
+      {
+        "id": "image-054-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0005_2026-4-8_115718_7__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-055",
+    "mode": "image",
+    "title": "窗边山景客厅",
+    "prompt": "看看这两张窗边客厅的山景图，哪一张更像是真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里窗框、沙发和花盆摆放更自然，远近清楚还有轻微虚化；AI图构图太对称，花盆和窗帘重复感强，木梁和边缘显得过于整齐。",
+    "options": [
+      {
+        "id": "image-055-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115741_3__recognize.jpg"
+      },
+      {
+        "id": "image-055-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0006_2026-4-8_115741_3__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-056",
+    "mode": "image",
+    "title": "窗边看草原",
+    "prompt": "这两张都是从窗边看向草地和山坡的画面，哪一张更像真正用相机拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄常有强弱不一的逆光，窗内偏暗、靠窗垫子有自然高光，远处景物略虚。AI图边缘过整齐，草地和栅栏重复感强，整体像被均匀照亮。",
+    "options": [
+      {
+        "id": "image-056-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115741_4__recognize.jpg"
+      },
+      {
+        "id": "image-056-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0007_2026-4-8_115741_4__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-057",
+    "mode": "image",
+    "title": "木屋小客厅",
+    "prompt": "这两张木头房间的图片里，哪一张更像真实拍到的画面呢？仔细看看灯光、木头纹理和屋里的小东西。",
+    "difficulty": "normal",
+    "explanation": "真实照片里的灯光有明暗层次，前后景深自然，木柱和墙面磨损更随机，桌上物品摆放也更生活化；AI图整体太整齐，纹理重复感更明显。",
+    "options": [
+      {
+        "id": "image-057-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115741_5__recognize.jpg"
+      },
+      {
+        "id": "image-057-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0008_2026-4-8_115741_5__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-058",
+    "mode": "image",
+    "title": "海边夕阳港口",
+    "prompt": "看看这两张港口夕阳的画面，哪一张更像真的相机随手拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里逆光更强，太阳炫光和镜头光斑自然，车与吊机边缘有轻微糊感。AI图整体太干净，吊机结构更规整，地面和远处细节显得重复又偏平。",
+    "options": [
+      {
+        "id": "image-058-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_115741_6__recognize.jpg"
+      },
+      {
+        "id": "image-058-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0009_2026-4-8_115741_6__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-059",
+    "mode": "image",
+    "title": "牛耕田地",
+    "prompt": "这两张图里，哪一张更像是真实拍到的农田和牛耕画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的牛皮肤褶皱、泥地和树叶细节更自然，远处建筑略虚；AI图光线过于均匀，牛角和农具边缘太整齐，草地纹理也有重复感。",
+    "options": [
+      {
+        "id": "image-059-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_11578_4__recognize.jpg"
+      },
+      {
+        "id": "image-059-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0011_2026-4-8_11578_4__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-060",
+    "mode": "image",
+    "title": "黑猫钻隧道",
+    "prompt": "这两张里都有一只黑色小猫在蓝色隧道里玩，你觉得哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里隧道边缘有自然虚化，网布纹理和褶皱不规则，小猫姿势也更随意；AI图的圆环更工整，毛发和胡须偏整齐，整体质感略显平滑。",
+    "options": [
+      {
+        "id": "image-060-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/2026-4-8_11578_6__recognize.jpg"
+      },
+      {
+        "id": "image-060-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0012_2026-4-8_11578_6__generated.png"
+      }
+    ]
+  },
+  {
+    "id": "image-061",
+    "mode": "image",
+    "title": "蓝色甜点托盘",
+    "prompt": "这两张都是蓝色托盘上的饮料和蛋糕，你觉得哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里奶油边缘蓬松不规则，杯身文字和餐具反光更自然，蛋糕切面也有细小孔洞；AI图的奶油过于顺滑，桌布纹理重复，物体边线显得太整齐。",
+    "options": [
+      {
+        "id": "image-061-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110447__recognize.jpg"
+      },
+      {
+        "id": "image-061-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0013_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-062",
+    "mode": "image",
+    "title": "湖边野餐",
+    "prompt": "看看这两张湖边铺白布、摆着酒杯和酒瓶的画面，哪一张更像真正拍出来的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里水面反光和沙地细节更自然，玻璃杯折射也更细碎。AI图人物衣袖蝴蝶结过于规整，酒瓶标签和手部边缘有点发糊，整体像被统一柔化过。",
+    "options": [
+      {
+        "id": "image-062-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110509__recognize.jpg"
+      },
+      {
+        "id": "image-062-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0014_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-063",
+    "mode": "image",
+    "title": "樱花雨中撑伞",
+    "prompt": "看看这两张下雨天樱花树下撑透明伞的画面，哪一张更像真正用相机拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片常有自然遮挡和不完美构图，前景花朵虚化层次更随意，地面反光也更自然。AI图里人物五官更工整，雨伞骨架和花瓣分布偏整齐，整体像被过度润色。",
+    "options": [
+      {
+        "id": "image-063-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110607__recognize.jpg"
+      },
+      {
+        "id": "image-063-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0016_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-064",
+    "mode": "image",
+    "title": "清泉里游泳",
+    "prompt": "看看这两张清澈水潭里有人游泳的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的水波和阳光反射更自然杂乱，人物边缘也有些被水面影响而发虚；AI图的同心波纹太整齐重复，水下纹理和石头分布显得过于规则。",
+    "options": [
+      {
+        "id": "image-064-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110614__recognize.jpg"
+      },
+      {
+        "id": "image-064-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0017_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-065",
+    "mode": "image",
+    "title": "车窗外的樱花",
+    "prompt": "看看这两张车窗外的樱花，哪一张更像真正拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的画面常有玻璃反光、窗边磨砂点和轻微模糊，花枝疏密也更自然；AI图通常更干净平均，树枝边缘和车窗结构显得过于规整。",
+    "options": [
+      {
+        "id": "image-065-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110621__recognize.jpg"
+      },
+      {
+        "id": "image-065-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0018_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-066",
+    "mode": "image",
+    "title": "雪街和高山",
+    "prompt": "看看这两张雪地小镇的画面，哪一张更像真的相机拍出来的？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的雪堆、房屋和电线有自然杂乱感，远山被云雾半遮，景深也更像镜头拍摄；AI图街道过于对称整齐，山体像圆锥，光影和纹理显得偏平滑。",
+    "options": [
+      {
+        "id": "image-066-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110643__recognize.jpg"
+      },
+      {
+        "id": "image-066-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0020_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-067",
+    "mode": "image",
+    "title": "雪夜便利店",
+    "prompt": "这两张雪地里的便利店照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里招牌发光更自然，窗内海报和货架细节杂而清楚，积雪边缘也不完全对称；AI图的门窗线条过于工整，店面结构和灯光显得均匀发硬。",
+    "options": [
+      {
+        "id": "image-067-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110649__recognize.jpg"
+      },
+      {
+        "id": "image-067-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0021_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-068",
+    "mode": "image",
+    "title": "雪地小站",
+    "prompt": "看看这两个雪地里的小候车亭，哪一张更像真正拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里雪堆高低更自然，树枝和积雪形状杂乱有层次，亭子玻璃反光也更真实；AI图的树和雪纹理偏重复，亭子结构过于规整，发光边缘有点假。",
+    "options": [
+      {
+        "id": "image-068-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110658__recognize.jpg"
+      },
+      {
+        "id": "image-068-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0022_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-069",
+    "mode": "image",
+    "title": "海边棕榈街景",
+    "prompt": "看看这两张海边有棕榈树和小店的街景，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的招牌、路人和棕榈叶细节更杂更自然，远近清晰度也有变化；AI图街道过于整齐对称，树干和建筑边缘偏统一，人物与招牌像被简化了。",
+    "options": [
+      {
+        "id": "image-069-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408110718__recognize.jpg"
+      },
+      {
+        "id": "image-069-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0023_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-070",
+    "mode": "image",
+    "title": "山村与雪山",
+    "prompt": "看看这两张山村和高山的风景图，哪一张更像真实相机拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片的光影更自然，山体明暗过渡细，村庄布局有真实疏密；AI图草地过于平滑发亮，房屋和树林边缘偏整齐，远山纹理也有些重复。",
+    "options": [
+      {
+        "id": "image-070-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111129__recognize.jpg"
+      },
+      {
+        "id": "image-070-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0024_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-071",
+    "mode": "image",
+    "title": "天鹅雪湖",
+    "prompt": "这两张雪山湖边有天鹅的画面里，哪一张更像真实拍到的照片呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里的湖面波纹、雪岸厚薄和远山纹理更自然，天鹅姿态也有大小远近变化；AI图的山体褶皱较整齐，水边弧线过顺，鸟群分布略显重复。",
+    "options": [
+      {
+        "id": "image-071-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111221__recognize.jpg"
+      },
+      {
+        "id": "image-071-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0025_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-072",
+    "mode": "image",
+    "title": "苹果和电话",
+    "prompt": "看看这两张图，哪一张更像真的拍出来的小女孩在桌上摆苹果和电话的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片的手指、发丝和玻璃苹果反光更自然，前后景虚化层次清楚；AI图里电话按键偏糊，苹果形状和高光有些重复，头发边缘也稍乱。",
+    "options": [
+      {
+        "id": "image-072-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111428__recognize.jpg"
+      },
+      {
+        "id": "image-072-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0026_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-073",
+    "mode": "image",
+    "title": "林中口琴女孩",
+    "prompt": "看看这两张林间女孩吹口琴的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里阳光斑驳，脸部和手指有自然过曝与细小阴影，毛线帽纹理松紧不一。AI图的人脸和手更光滑，帽子孔洞与珠子分布更整齐，边缘显得过于干净。",
+    "options": [
+      {
+        "id": "image-073-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111440__recognize.jpg"
+      },
+      {
+        "id": "image-073-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0027_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-074",
+    "mode": "image",
+    "title": "山谷里的纱带女孩",
+    "prompt": "这两张山谷中举着纱带的女孩照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的人脸明暗更自然，手臂和纱带边缘有轻微虚化，远山也带真实景深。AI画面整体太均匀，纱的纹理重复，人物皮肤和衣料显得过于光滑。",
+    "options": [
+      {
+        "id": "image-074-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111448__recognize.jpg"
+      },
+      {
+        "id": "image-074-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0028_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-075",
+    "mode": "image",
+    "title": "星星贴纸女孩",
+    "prompt": "看看这两张有星星贴纸的女孩照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄常见光斑明暗不均，发丝有零散飞线，贴纸反光强弱不同；AI图皮肤太平滑，头发纹理重复，五官和肩带边缘显得过于规整。",
+    "options": [
+      {
+        "id": "image-075-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111459__recognize.jpg"
+      },
+      {
+        "id": "image-075-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0029_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-076",
+    "mode": "image",
+    "title": "窗边读书和小猫",
+    "prompt": "看看这两张窗边读书和小猫的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片常有自然过曝和柔焦，木桌磨损、玻璃反光、猫毛层次更细碎；AI图轮廓更整齐干净，窗框和桌板纹理重复，人物皮肤与头发过于平滑。",
+    "options": [
+      {
+        "id": "image-076-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111512__recognize.jpg"
+      },
+      {
+        "id": "image-076-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0030_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-077",
+    "mode": "image",
+    "title": "花丛里的女孩",
+    "prompt": "请你仔细看，这两张花丛中女孩的照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里阳光和阴影更自然，前景花叶虚化明显，脸部细节有细小变化；AI图的人脸和手指太规整，叶片纹理与花朵分布显得有些重复。",
+    "options": [
+      {
+        "id": "image-077-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111524__recognize.jpg"
+      },
+      {
+        "id": "image-077-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0031_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-078",
+    "mode": "image",
+    "title": "麦田里的女孩",
+    "prompt": "看看这两张在麦田里的画面，哪一张更像是真实相机拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里人物姿势更自然，衣服褶皱和头发边缘有细小变化，麦穗高低也更杂乱；AI图的人脸过于平滑，草叶纹理重复，整体像被统一磨皮。",
+    "options": [
+      {
+        "id": "image-078-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111547__recognize.jpg"
+      },
+      {
+        "id": "image-078-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0032_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-079",
+    "mode": "image",
+    "title": "花中眼睛",
+    "prompt": "看这两张泡在水里、周围有小花的脸，哪一张更像真正拍出来的照片？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄常有自然反光、局部虚焦和花瓣轻微遮挡，皮肤纹理不太均匀；AI图里五官和花朵边缘更整齐，皮肤太光滑，水波与金箔分布也显得过于规整。",
+    "options": [
+      {
+        "id": "image-079-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111605__recognize.jpg"
+      },
+      {
+        "id": "image-079-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0033_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-080",
+    "mode": "image",
+    "title": "树叶下的女孩",
+    "prompt": "看看这两张藏在树叶中的女孩照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片的光线更自然，脸上有细小阴影和轻微瑕疵，叶片边缘虚实变化明显；AI图皮肤过于干净平滑，五官和叶面水滴都显得太规整。",
+    "options": [
+      {
+        "id": "image-080-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111615__recognize.jpg"
+      },
+      {
+        "id": "image-080-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0034_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-081",
+    "mode": "image",
+    "title": "红衣和小番茄",
+    "prompt": "请你仔细看这两张图，哪一张更像用相机真实拍到的红衣女孩和小番茄？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的画面里，阳光穿过塑料袋在脸上形成自然又不规则的高光，手指和番茄边缘有真实虚化；AI图皮肤过于光滑，床面纹理和番茄分布显得有些重复生硬。",
+    "options": [
+      {
+        "id": "image-081-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111627__recognize.jpg"
+      },
+      {
+        "id": "image-081-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0035_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-082",
+    "mode": "image",
+    "title": "花丛里的女孩 2",
+    "prompt": "看看这两张戴草帽、躲在粉色花丛里的女孩照片，哪一张更像真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄的人脸毛孔、雀斑和花瓣褶皱更自然，帽檐投下的光斑也不规则；AI图的皮肤太平滑，五官和花朵边缘更工整，光影纹理有些重复。",
+    "options": [
+      {
+        "id": "image-082-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111921__recognize.jpg"
+      },
+      {
+        "id": "image-082-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0036_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-083",
+    "mode": "image",
+    "title": "河边放风筝",
+    "prompt": "你来找一找，哪一张更像真的在河边拍到的放风筝画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄常有自然抓拍感，头发被风吹得凌乱细碎，护栏水渍和远处虚化更真实；AI图人物边缘太干净，头发丝走向整齐，皮肤和衣料质感也偏平滑。",
+    "options": [
+      {
+        "id": "image-083-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408111955__recognize.jpg"
+      },
+      {
+        "id": "image-083-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0038_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-084",
+    "mode": "image",
+    "title": "夕阳纸飞机",
+    "prompt": "这两张夕阳下拿着纸飞机的画面里，哪一张更像真实相机拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里逆光更强，人物大多成剪影，头发和栏杆边缘有自然虚化；AI图两人过于对称，肤色与衣服细节被保留太多，整体光影更均匀。",
+    "options": [
+      {
+        "id": "image-084-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112003__recognize.jpg"
+      },
+      {
+        "id": "image-084-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0039_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-085",
+    "mode": "image",
+    "title": "电话里的女孩",
+    "prompt": "你来找一找，哪一张更像是真实相机拍到的女孩接电话画面？",
+    "difficulty": "normal",
+    "explanation": "真实拍摄里头发走向更自然，皮肤和沙发有细小纹理，电话边缘与手部姿势也更随意；生成图五官过于工整，对称感强，卷发和线圈重复得很整齐。",
+    "options": [
+      {
+        "id": "image-085-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112021__recognize.jpg"
+      },
+      {
+        "id": "image-085-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0040_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-086",
+    "mode": "image",
+    "title": "猫咪吃早餐",
+    "prompt": "看看这两张图，哪一张更像是真实拍到的女孩和猫咪一起吃早餐？",
+    "difficulty": "easy",
+    "explanation": "真实照片会有自然镜头感，背景虚化和光线过渡更随意；AI图里人物猫咪边缘太干净，糖浆、餐具和桌布质感偏统一，像画出来的。",
+    "options": [
+      {
+        "id": "image-086-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112059__recognize.jpg"
+      },
+      {
+        "id": "image-086-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0041_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-087",
+    "mode": "image",
+    "title": "图书馆阅览室",
+    "prompt": "这两张都是大图书馆的阅览室，哪一张更像是真实拍到的画面？",
+    "difficulty": "normal",
+    "explanation": "真实照片里灯光明暗更自然，人物姿势和桌椅摆放有些小差异；AI图天花板花纹过于整齐，吊灯发光很平均，桌椅和书架重复感更强。",
+    "options": [
+      {
+        "id": "image-087-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112208__recognize.jpg"
+      },
+      {
+        "id": "image-087-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0043_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-088",
+    "mode": "image",
+    "title": "草地倒立腿",
+    "prompt": "两张图里都有两个小伙伴躺在草地上把腿举起来，哪一张更像真实拍到的照片呢？",
+    "difficulty": "normal",
+    "explanation": "真实照片里草地明暗不太均匀，衣服褶皱和鞋带更自然，远山边缘略有模糊。AI图草坪纹理过于整齐，人物皮肤和头发偏光滑，整体像被修得太干净。",
+    "options": [
+      {
+        "id": "image-088-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112217__recognize.jpg"
+      },
+      {
+        "id": "image-088-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0044_com.xingin.png"
+      }
+    ]
+  },
+  {
+    "id": "image-089",
+    "mode": "image",
+    "title": "窗边玩偶下午茶",
+    "prompt": "看看这两张窗边摆着玩偶和甜点的画面，哪一张更像真实拍到的照片？",
+    "difficulty": "normal",
+    "explanation": "真实照片里窗外倒影、木纹和玩偶绒毛更自然，书本弯折与甜点奶油层次也有真实小瑕疵；AI图边缘过圆顺，表情和纹理偏规整，像被统一抹平。",
+    "options": [
+      {
+        "id": "image-089-a",
+        "label": "A",
+        "sourceType": "human",
+        "asset": "output2/tmp/com.xingin.xhs_20260408112252__recognize.jpg"
+      },
+      {
+        "id": "image-089-b",
+        "label": "B",
+        "sourceType": "ai",
+        "asset": "output2/generated/pair_0046_com.xingin.png"
+      }
+    ]
   }
 ]
