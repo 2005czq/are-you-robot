@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -30,6 +31,8 @@ class ChallengePage extends StatefulWidget {
 
 class _ChallengePageState extends State<ChallengePage>
     with SingleTickerProviderStateMixin {
+  static const _questionTimeLimit = Duration(minutes: 2);
+
   static const _correctResults = [
     _ResultPreset(
       title: '这下看准了',
@@ -96,8 +99,37 @@ class _ChallengePageState extends State<ChallengePage>
     ),
   ];
 
+  static const _timeoutResults = [
+    _ResultPreset(
+      title: '时间到，这题先封盘',
+      descriptionPrefix: '你已经盯得够久了，这题按超时处理。',
+      asset: 'assets/animations/noto/dizzy.json',
+    ),
+    _ResultPreset(
+      title: '两分钟用完了',
+      descriptionPrefix: '这题确实很会拖住人，超时也算它有点本事。',
+      asset: 'assets/animations/noto/open_mouth_face.json',
+    ),
+    _ResultPreset(
+      title: '这一题先被时间拿下了',
+      descriptionPrefix: '你已经观察到后半程了，只是计时先一步结束。',
+      asset: 'assets/animations/noto/thinking_face.json',
+    ),
+    _ResultPreset(
+      title: '倒计时归零了',
+      descriptionPrefix: '这题的迷惑性不低，拖到最后一秒也很常见。',
+      asset: 'assets/animations/noto/woozy_face.json',
+    ),
+    _ResultPreset(
+      title: '这题先超时了',
+      descriptionPrefix: '先把这次感觉记住，时间到也算一种线索。',
+      asset: 'assets/animations/noto/pleading_face.json',
+    ),
+  ];
+
   final math.Random _random = math.Random();
   late final AnimationController _streakController;
+  Timer? _countdownTimer;
 
   String? _selectedOptionId;
   _ResultPresentation? _result;
@@ -106,20 +138,26 @@ class _ChallengePageState extends State<ChallengePage>
   bool _loadingNext = false;
   late int _streak;
   late Set<String> _playedIds;
+  late DateTime _deadline;
+  late int _remainingSeconds;
 
   @override
   void initState() {
     super.initState();
     _streak = widget.session.streak;
     _playedIds = {...widget.session.playedIds, widget.challenge.id};
+    _deadline = DateTime.now().add(_questionTimeLimit);
+    _remainingSeconds = _questionTimeLimit.inSeconds;
     _streakController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 860),
     );
+    _startCountdown();
   }
 
   @override
   void dispose() {
+    _stopCountdown();
     _streakController.dispose();
     super.dispose();
   }
@@ -307,11 +345,27 @@ class _ChallengePageState extends State<ChallengePage>
                                     const SizedBox(height: 18),
                                     FadeSlideIn(
                                       delay: const Duration(milliseconds: 130),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          FilledButton.icon(
+                                      child: LayoutBuilder(
+                                        builder: (context, actionConstraints) {
+                                          final compactActions =
+                                              actionConstraints.maxWidth < 860;
+                                          final badges = <Widget>[
+                                            if (_result == null)
+                                              _CountdownBadge(
+                                                remainingSeconds:
+                                                    _remainingSeconds,
+                                                accent: accent,
+                                              ),
+                                            if (_streak > 0)
+                                              _StreakBadge(
+                                                streak: _streak,
+                                                controller: _streakController,
+                                                accent: accent,
+                                              ),
+                                          ];
+
+                                          final actionButton =
+                                              FilledButton.icon(
                                             style: FilledButton.styleFrom(
                                               backgroundColor: _result == null
                                                   ? accent
@@ -353,28 +407,59 @@ class _ChallengePageState extends State<ChallengePage>
                                                       ? '确定'
                                                       : '继续',
                                             ),
-                                          ),
-                                          const SizedBox(width: 18),
-                                          Expanded(
-                                            child: Text(
-                                              _result == null
-                                                  ? '先选中一个你觉得更像真人创作的选项，再点确定。'
-                                                  : '看完这道题的反馈后，点继续进入下一步。',
-                                              style: theme.textTheme.bodyLarge
-                                                  ?.copyWith(
-                                                color: scheme.onSurfaceVariant,
-                                              ),
+                                          );
+
+                                          final helperText = Text(
+                                            _result == null
+                                                ? '先选中一个你觉得更像真人创作的选项，再点确定。'
+                                                : _result!.isCorrect
+                                                    ? '看完这道题的反馈后，点继续进入下一题。'
+                                                    : '这题会结束本轮，点继续查看结算。',
+                                            style: theme.textTheme.bodyLarge
+                                                ?.copyWith(
+                                              color: scheme.onSurfaceVariant,
                                             ),
-                                          ),
-                                          if (_streak > 0) ...[
-                                            const SizedBox(width: 16),
-                                            _StreakBadge(
-                                              streak: _streak,
-                                              controller: _streakController,
-                                              accent: accent,
-                                            ),
-                                          ],
-                                        ],
+                                          );
+
+                                          if (compactActions) {
+                                            return Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                actionButton,
+                                                const SizedBox(height: 12),
+                                                helperText,
+                                                if (badges.isNotEmpty) ...[
+                                                  const SizedBox(height: 14),
+                                                  Wrap(
+                                                    spacing: 12,
+                                                    runSpacing: 12,
+                                                    children: badges,
+                                                  ),
+                                                ],
+                                              ],
+                                            );
+                                          }
+
+                                          return Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              actionButton,
+                                              const SizedBox(width: 18),
+                                              Expanded(child: helperText),
+                                              if (badges.isNotEmpty)
+                                                const SizedBox(width: 16),
+                                              for (var i = 0;
+                                                  i < badges.length;
+                                                  i++) ...[
+                                                if (i > 0)
+                                                  const SizedBox(width: 12),
+                                                badges[i],
+                                              ],
+                                            ],
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],
@@ -436,6 +521,8 @@ class _ChallengePageState extends State<ChallengePage>
       return;
     }
 
+    _stopCountdown();
+
     final selected = widget.challenge.options
         .firstWhere((option) => option.id == selectedId);
     final isCorrect = selected.isHuman;
@@ -470,6 +557,61 @@ class _ChallengePageState extends State<ChallengePage>
     });
   }
 
+  void _startCountdown() {
+    _stopCountdown();
+    _tickCountdown();
+    _countdownTimer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _tickCountdown(),
+    );
+  }
+
+  void _stopCountdown() {
+    _countdownTimer?.cancel();
+    _countdownTimer = null;
+  }
+
+  void _tickCountdown() {
+    if (!mounted || _result != null) {
+      _stopCountdown();
+      return;
+    }
+
+    final remainingMs = _deadline.difference(DateTime.now()).inMilliseconds;
+    final nextRemaining = remainingMs <= 0
+        ? 0
+        : (remainingMs / Duration.millisecondsPerSecond).ceil();
+
+    if (nextRemaining != _remainingSeconds) {
+      setState(() {
+        _remainingSeconds = nextRemaining;
+      });
+    }
+
+    if (nextRemaining == 0) {
+      _stopCountdown();
+      _handleTimeout();
+    }
+  }
+
+  void _handleTimeout() {
+    if (_result != null) {
+      return;
+    }
+
+    final preset = _pickOne(_timeoutResults);
+    setState(() {
+      _selectedOptionId = null;
+      _result = _ResultPresentation(
+        isCorrect: false,
+        title: preset.title,
+        asset: preset.asset,
+        description:
+            '${preset.descriptionPrefix}${widget.challenge.explanation}',
+      );
+    });
+  }
+
   Future<void> _confirmResult() async {
     final result = _result;
     if (result == null) {
@@ -486,6 +628,8 @@ class _ChallengePageState extends State<ChallengePage>
   }
 
   Future<void> _goToNextRandomChallenge() async {
+    _stopCountdown();
+
     setState(() {
       _loadingNext = true;
     });
@@ -643,9 +787,8 @@ class _ChallengePageState extends State<ChallengePage>
   Future<void> _showSessionCompleteDialog(int streak) async {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
-    final streakHint = streak > 0
-        ? '🏁 本轮最好成绩：$streak 连胜'
-        : '📚 这一轮能出的题都被你刷完了。';
+    final streakHint =
+        streak > 0 ? '🏁 本轮最好成绩：$streak 连胜' : '📚 这一轮能出的题都被你刷完了。';
     final message = _buildDeckClearedCopy(streak);
 
     await showGeneralDialog<void>(
@@ -967,11 +1110,10 @@ class _OptionCard extends StatelessWidget {
                           horizontal: isCompact ? 2 : 6,
                           vertical: isCompact ? 2 : 6,
                         );
-                        final textStyle = theme.textTheme.titleMedium
-                            ?.copyWith(
-                              fontSize: isCompact ? 18 : 20,
-                              height: isCompact ? 1.78 : 1.72,
-                            );
+                        final textStyle = theme.textTheme.titleMedium?.copyWith(
+                          fontSize: isCompact ? 18 : 20,
+                          height: isCompact ? 1.78 : 1.72,
+                        );
 
                         return SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
@@ -1040,6 +1182,55 @@ class _StreakBadge extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _CountdownBadge extends StatelessWidget {
+  const _CountdownBadge({
+    required this.remainingSeconds,
+    required this.accent,
+  });
+
+  final int remainingSeconds;
+  final Color accent;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
+    final activeColor = remainingSeconds <= 20
+        ? scheme.error
+        : remainingSeconds <= 45
+            ? scheme.secondary
+            : accent;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOutCubic,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
+      decoration: BoxDecoration(
+        color: activeColor.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: activeColor.withValues(alpha: 0.18)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.timer_outlined, color: activeColor, size: 22),
+          const SizedBox(width: 8),
+          Text(
+            _formatRemainingTime(remainingSeconds),
+            style: theme.textTheme.labelLarge?.copyWith(color: activeColor),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatRemainingTime(int totalSeconds) {
+    final minutes = totalSeconds ~/ 60;
+    final seconds = totalSeconds % 60;
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
   }
 }
 
